@@ -68,9 +68,6 @@
                     }
                 }
             }
-            if(emptyBox.length == 0){
-                alert('游戏结束');
-            }
             // 随机生成的个数
             var num = Math.random() > 0.5 ? 2 : 1;
             if(num > emptyBox.length){
@@ -200,37 +197,41 @@
             }
             return result;
         }
+        function gameOver(){
+            for(var i=0;i<4;i++){
+                for(var j=0;j<4;j++){
+                    if(scene[i][j] == 0){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         document.onkeydown = function(e){
             var sceneBefore = copyArr(scene);
             switch(e.keyCode){
                 // up
                 case 38:
                     up();
-                    if(!sceneEqual(scene, sceneBefore)){
-                        beforeMove();
-                    }
                     break;
                 // left
                 case 37:
                     left();
-                    if (!sceneEqual(scene, sceneBefore)) {
-                        beforeMove();
-                    }
                     break;
                 // down
                 case 40:
                     down();
-                    if (!sceneEqual(scene, sceneBefore)) {
-                        beforeMove();
-                    }
                     break;
                 // right
                 case 39:
                     right();
-                    if (!sceneEqual(scene, sceneBefore)) {
-                        beforeMove();
-                    }
                     break;
+            }
+            if(gameOver()){
+                alert('游戏结束');
+            }
+            if (!sceneEqual(scene, sceneBefore)) {
+                beforeMove();
             }
         }
     </script>
