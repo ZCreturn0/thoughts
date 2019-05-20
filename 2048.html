@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2048</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 200px;
+            height: 200px;
+            box-sizing: content-box;
+            border: 3px solid #ccc;
+            position: relative;
+            margin: 200px auto;
+        }
+        .box{
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid #ccc;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        // 保存地图
+        var scene = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ];
+        function drawScene(){
+            var container = document.getElementById('container');
+            for(var i=0;i<4;i++){
+                for(j=0;j<4;j++){
+                    var box = document.createElement('div');
+                    box.classList = `box box_${i}_${j}`;
+                    box.style.left = j * 50 + 'px';
+                    box.style.top = i * 50 + 'px';
+                    container.append(box);
+                }
+            }
+        }
+        drawScene();
+        function addRandomBox(arr, n){
+            var randomNum = Math.random() > 0.5 ? 4 : 2;
+            scene[arr[n].i][arr[n].j] = randomNum;
+            arr.splice(n, 1);
+        }
+        // 每次移动前,生成随机数
+        function beforeMove(){
+            // 保存空白点的坐标
+            var emptyBox = [];
+            for(var i=0;i<4;i++){
+                for(var j=0;j<4;j++){
+                    if(!scene[i][j]){
+                        emptyBox.push({i,j});
+                    }
+                }
+            }
+            if(emptyBox.length == 0){
+                alert('游戏结束');
+            }
+            // 随机生成的个数
+            var num = Math.random() > 0.5 ? 2 : 1;
+            if(num > emptyBox.length){
+                num = emptyBox.length;
+            }
+            for(var i=0;i<num;i++){
+                var n = Math.floor(Math.random() * emptyBox.length);
+                addRandomBox(emptyBox, n);
+            }
+            updateMap();
+        }
+        beforeMove();
+        // 更新地图上的数字
+        function updateMap(){
+            for (var i = 0; i < 4; i++) {
+                for (var j = 0; j < 4; j++) {
+                    var box = document.getElementsByClassName(`box_${i}_${j}`)[0];
+                    if(scene[i][j] != 0){
+                        box.innerText = scene[i][j];
+                    }
+                    else{
+                        box.innerText = '';
+                    }
+                }
+            }
+        }
+        function up(){
+            // 上操作,第一行不用判断
+            for(var i=1;i<4;i++){
+                for(var j=0;j<4;j++){
+                    // 当前判断结点的上一行同列结点即不为0也与当前结点不同,结束当前结点判断
+                    if(scene[i-1][j] != 0 && scene[i-1][j] != scene[i][j]){
+                        continue;
+                    }
+                    else{
+                        for(var current = i;current > 0; current--){
+                            if(scene[current-1][j] == 0){
+                                scene[current - 1][j] = scene[current][j];
+                                scene[current][j] = 0;
+                            }
+                            else if(scene[current - 1][j] == scene[current][j]){
+                                scene[current - 1][j] *= 2;
+                                scene[current][j] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function down() {
+            for (var i = 2; i >= 0; i--) {
+                for (var j = 0; j < 4; j++) {
+                    if (scene[i + 1][j] != 0 && scene[i + 1][j] != scene[i][j]) {
+                        continue;
+                    }
+                    else {
+                        for (var current = i; current < 3; current++) {
+                            if (scene[current + 1][j] == 0) {
+                                scene[current + 1][j] = scene[current][j];
+                                scene[current][j] = 0;
+                            }
+                            else if (scene[current + 1][j] == scene[current][j]) {
+                                scene[current + 1][j] *= 2;
+                                scene[current][j] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function left(){
+            for(var i=0;i<4;i++){
+                for(var j=1;j<4;j++){
+                    if (scene[i][j - 1] != 0 && scene[i][j - 1] != scene[i][j]) {
+                        continue;
+                    }
+                    else{
+                        for (var current = j; current > 0; current--) {
+                            if (scene[i][current - 1] == 0) {
+                                scene[i][current - 1] = scene[i][current];
+                                scene[i][current] = 0;
+                            }
+                            else if (scene[i][current - 1] == scene[i][current]) {
+                                scene[i][current - 1] *= 2;
+                                scene[i][current] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function right() {
+            for (var i = 0; i < 4; i++) {
+                for (var j = 2; j >= 0; j--) {
+                    if (scene[i][j + 1] != 0 && scene[i][j + 1] != scene[i][j]) {
+                        continue;
+                    }
+                    else {
+                        for (var current = j; current < 3; current++) {
+                            if (scene[i][current + 1] == 0) {
+                                scene[i][current + 1] = scene[i][current];
+                                scene[i][current] = 0;
+                            }
+                            else if (scene[i][current + 1] == scene[i][current]) {
+                                scene[i][current + 1] *= 2;
+                                scene[i][current] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function sceneEqual(scene1, scene2){
+            for(var i=0;i<4;i++){
+                for(var j=0;j<4;j++){
+                    if(scene1[i][j] != scene2[i][j]){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        function copyArr(arr){
+            var result = [];
+            for(var i=0;i<4;i++){
+                result.push([...arr[i]]);
+            }
+            return result;
+        }
+        document.onkeydown = function(e){
+            var sceneBefore = copyArr(scene);
+            switch(e.keyCode){
+                // up
+                case 38:
+                    up();
+                    if(!sceneEqual(scene, sceneBefore)){
+                        beforeMove();
+                    }
+                    break;
+                // left
+                case 37:
+                    left();
+                    if (!sceneEqual(scene, sceneBefore)) {
+                        beforeMove();
+                    }
+                    break;
+                // down
+                case 40:
+                    down();
+                    if (!sceneEqual(scene, sceneBefore)) {
+                        beforeMove();
+                    }
+                    break;
+                // right
+                case 39:
+                    right();
+                    if (!sceneEqual(scene, sceneBefore)) {
+                        beforeMove();
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
