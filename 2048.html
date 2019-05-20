@@ -39,6 +39,34 @@
             [0, 0, 0, 0],
             [0, 0, 0, 0]
         ];
+        // 颜色
+        var color = {
+            '2': '#eee4da',
+            '4': '#ece0ca',
+            '8': '#f2b179',
+            '16': '#f59565',
+            '32': '#f57c5f',
+            '64': '#f75d3b',
+            '128': '#ff0e38',
+            '256': '#bee131',
+            '512': '#64e131',
+            '1024': '#1aca31',
+            '2048': '#1acaa0'
+        }
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+        // 当每个box的'data-value'变化时,修改背景颜色
+        var boxObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                console.log();
+                var value = mutation.target.getAttribute('data-value');
+                if(value){
+                    mutation.target.style.background = color[value] || '#fff';
+                }
+                else{
+                    mutation.target.style.background = '#fff';
+                }
+            });
+        });
         function drawScene(){
             var container = document.getElementById('container');
             for(var i=0;i<4;i++){
@@ -48,18 +76,23 @@
                     box.style.left = j * 50 + 'px';
                     box.style.top = i * 50 + 'px';
                     container.append(box);
+                    // 观察每个box
+                    boxObserver.observe(box, {
+                        attributes: true
+                    });
                 }
             }
         }
         drawScene();
         function addRandomBox(arr, n){
+            // 新生成的box值只能是2或4
             var randomNum = Math.random() > 0.5 ? 4 : 2;
             scene[arr[n].i][arr[n].j] = randomNum;
             arr.splice(n, 1);
         }
         // 每次移动前,生成随机数
         function beforeMove(){
-            // 保存空白点的坐标
+            // 保存空白box的坐标
             var emptyBox = [];
             for(var i=0;i<4;i++){
                 for(var j=0;j<4;j++){
@@ -70,6 +103,7 @@
             }
             // 随机生成的个数
             var num = Math.random() > 0.5 ? 2 : 1;
+            // 空白box个数为1时(为0的情况不会运行beforeMove),只生成一个新的box
             if(num > emptyBox.length){
                 num = emptyBox.length;
             }
@@ -86,9 +120,12 @@
                 for (var j = 0; j < 4; j++) {
                     var box = document.getElementsByClassName(`box_${i}_${j}`)[0];
                     if(scene[i][j] != 0){
+                        // 修改'data-value'属性以修改背景色
+                        box.setAttribute('data-value', scene[i][j]);
                         box.innerText = scene[i][j];
                     }
                     else{
+                        box.setAttribute('data-value', '');
                         box.innerText = '';
                     }
                 }
@@ -180,6 +217,7 @@
                 }
             }
         }
+        // 判断场景是否相同
         function sceneEqual(scene1, scene2){
             for(var i=0;i<4;i++){
                 for(var j=0;j<4;j++){
@@ -190,6 +228,7 @@
             }
             return true;
         }
+        // 复制数组(二维)
         function copyArr(arr){
             var result = [];
             for(var i=0;i<4;i++){
@@ -197,15 +236,37 @@
             }
             return result;
         }
-        function gameOver(){
+        // 判断有无空白box
+        function haveEmptyBox(){
             for(var i=0;i<4;i++){
                 for(var j=0;j<4;j++){
                     if(scene[i][j] == 0){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        // 相邻的box无相等的值
+        function noSameNeighbor(){
+            // 横纵遍历即可
+            for(var i=1;i<4;i++){
+                for(var j=0;j<4;j++){
+                    if(scene[i][j] == scene[i-1][j]){
+                        return false;
+                    }
+                    if(scene[j][i] == scene[j][i - 1]){
                         return false;
                     }
                 }
             }
             return true;
+        }
+        // 游戏结束
+        // 条件1:无空白box
+        // 条件2:不能再移动(等同相邻的box无相等的值)
+        function gameOver(){
+            return !haveEmptyBox() && noSameNeighbor();
         }
         document.onkeydown = function(e){
             var sceneBefore = copyArr(scene);
