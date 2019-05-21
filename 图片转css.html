@@ -38,8 +38,8 @@
             var div = document.getElementById('preview');
             if (file.files && file.files[0]) {
                 // 自行调整大小限制
-                if (file.files[0].size > 1 * 1024 * 1024) {
-                    alert('图片大小不能大于2M');
+                if (file.files[0].size > 30 * 1024) {
+                    alert('图片大小不能大于30K');
                     return false;
                 }
                 var img = document.getElementById('upImg');     //获得用户上传的图片节点
@@ -59,16 +59,17 @@
                             var showInCss = document.getElementsByClassName('showInCss')[0];
                             showInCss.style.width = width + 'px';
                             showInCss.style.height = height + 'px';
-                            console.log(width*height);
-                            console.log(imageData.data.length/4);
                             // 统计第几个像素点
                             var n = 0;
                             var imageCss = [];
                             for(var i=0;i<imageData.data.length;i+=4){
                                 var x = Math.floor(n / width);
                                 var y = n - x * width;
-                                var color = `rgba(${imageData.data[i]},${imageData.data[i + 1]},${imageData.data[i + 2]},${imageData.data[i + 3]})`;
-                                imageCss.push(`${y}px ${x}px ${color}`);
+                                // 背景色非白色才渲染,减少渲染数
+                                if(!(imageData.data[i] == 0 && imageData.data[i+1] == 0 && imageData.data[i+2] == 0 && imageData.data[i+3] == 0)){
+                                    var color = `rgba(${imageData.data[i]},${imageData.data[i + 1]},${imageData.data[i + 2]},${imageData.data[i + 3]})`;
+                                    imageCss.push(`${y}px ${x}px ${color}`);
+                                }
                                 n++;
                             }
                             var point = document.getElementsByClassName('point')[0];
