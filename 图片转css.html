@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="file"/>
+    <script>
+        var file = document.getElementById('file');
+        file.onchange = function(){
+            console.log(this.files);
+            var src = window.URL.createObjectURL(this.files[0]);
+            var image = document.createElement('image');
+            console.log(src)
+            image.src = src;
+            document.body.append(image);
+        }
+    </script>
+</body>
+</html> -->
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>上传图片</title>
+    </head>
+
+    <body>
+        <div class="yanzRight">
+            <input name="evidence" onchange="uploadImg(this)" type="file" />
+            <span class="dui" id="imgOrder_dui" style="display: none;"></span>
+        </div>
+        <div id="preview">
+            <img src="" alt="" id="upImg"/>
+        </div>
+
+    </body>
+
+    <script>
+        function uploadImg(file) {
+            var div = document.getElementById('preview');
+            if (file.files && file.files[0]) {
+                var img = document.getElementById('upImg');     //获得用户上传的图片节点
+                var reader = new FileReader();                  //判断图片是否加载完毕
+                reader.onload = function (evt) {
+                    if (reader.readyState === 2) {              //加载完毕后赋值
+                        img.src = evt.target.result;
+                    }
+                }
+                reader.readAsDataURL(file.files[0]);
+            }
+        }
+    </script>
+
+</html>
