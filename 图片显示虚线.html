@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* 随机位置 */
+        .img1{
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+        .img2{
+            position: absolute;
+            left: 200px;
+            top: 300px;
+        }
+        .pic{
+            border: 1px solid red;
+        }
+        .dottedHorizontal{
+            position: absolute;
+            width: 100vw;
+            height: 0px;
+            border: 1px dotted green;
+        }
+        .dottedVertical{
+            position: absolute;
+            width: 0px;
+            height: 100vh;
+            border: 1px dotted green;
+        }
+    </style>
+</head>
+<body>
+    <image class="pic img1" src="./images/pic1.png" />
+    <image class="pic img2" src="./images/pic2.png" />
+    <script>
+        var images = document.getElementsByClassName('pic');
+        for(var img of images){
+            img.onclick = function(e){
+                var leftTopX = this.getBoundingClientRect().left;
+                var leftTopY = this.getBoundingClientRect().top;
+                var rightBottomX = this.getBoundingClientRect().left + this.getBoundingClientRect().width;
+                var rightBottomY = this.getBoundingClientRect().top + this.getBoundingClientRect().height;
+                // 上下两条线
+                var topLine = document.createElement('div');
+                topLine.classList = 'dottedHorizontal';
+                topLine.style.left = 0;
+                topLine.style.top = leftTopY + 'px';
+                document.body.append(topLine);
+                var bottomLine = document.createElement('div');
+                bottomLine.classList = 'dottedHorizontal';
+                bottomLine.style.left = 0;
+                bottomLine.style.top = rightBottomY + 'px';
+                document.body.append(bottomLine);
+
+                // 左右两条线
+                var leftLine = document.createElement('div');
+                leftLine.classList = 'dottedVertical';
+                leftLine.style.top = 0;
+                leftLine.style.left = leftTopX + 'px';
+                document.body.append(leftLine);
+                var rightLine = document.createElement('div');
+                rightLine.classList = 'dottedVertical';
+                rightLine.style.top = 0;
+                rightLine.style.left = rightBottomX + 'px';
+                document.body.append(rightLine);
+            }
+        }
+    </script>
+</body>
+</html>
