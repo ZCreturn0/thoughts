@@ -59,6 +59,7 @@
                 alert('导入的表格单个文件不能大于10M')
                 return
             }
+            var n = 1;
             for(let f of obj.files){
                 var promise = new Promise((resolve) => {
                     var reader = new FileReader();
@@ -74,12 +75,19 @@
                         resolve(JSON.parse(excelJson));
                     };
                 }).then((excelJson) => {
-                    combineJson = combineJson.concat([emptyLine]).concat(excelJson);
+                    console.log(excelJson)
+                    for(let i=0;i<excelJson.length;i++){
+                        for(let key of columnList){
+                            excelJson[key+n] = excelJson[key];
+                            delete excelJson[key];
+                        }
+                    }
+                    n++;
+                    combineJson = combineJson.concat(excelJson);        //concat([emptyLine])
                 });
                 promiseList.push(promise);
             }
             Promise.all(promiseList).then(function(values) {
-                console.log(values)
                 console.log(combineJson)
                 var excelData = [];
                 for(let data of combineJson){
@@ -90,6 +98,7 @@
                     excelData.push(obj);
                 }
                 excelData.shift();
+                console.log(excelData)
                 JSONToExcelConvertor(excelData, (new Date()).valueOf());
             });
             function JSONToExcelConvertor(JSONData, FileName,title,filter) {
