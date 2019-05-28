@@ -20,6 +20,10 @@
                 return;
             }
             var columnList = columnText.split(' ');
+            var emptyLine = {};
+            for(let key of columnList){
+                emptyLine[key] = '';
+            }
             var files = document.getElementById('uploadpicker');
             var combineJson = [];
             var promiseList = [];
@@ -28,12 +32,12 @@
                     var reader = new FileReader();                  //新建一个FileReader
                     reader.readAsText(file, "UTF-8");               //读取文件
                     reader.onload = function(evt){                  //读取完文件之后会回来这里
-                    var fileString = evt.target.result;             // 读取文件内容
-                    var fileJson = JSON.parse(fileString);
+                        var fileString = evt.target.result;         // 读取文件内容
+                        var fileJson = JSON.parse(fileString);
                         resolve(fileJson);
                     }
                 }).then((fileJson) => {
-                    combineJson = combineJson.concat(fileJson);
+                    combineJson = combineJson.concat([emptyLine]).concat(fileJson);
                 });
                 promiseList.push(promise);
             }
@@ -46,6 +50,7 @@
                     }
                     excelData.push(obj);
                 }
+                excelData.shift();
                 JSONToExcelConvertor(excelData, (new Date()).valueOf());
             });
         }

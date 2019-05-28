@@ -1,0 +1,1 @@
+打开excel转json.html,上传要合并的所有excel(按住ctrl或shift可多选),再点击生成按钮即可
