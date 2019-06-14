@@ -11,6 +11,23 @@
         function Arr(){
             this.length = 0;
         }
+        Object.defineProperty(Arr, 'length', {
+            enumerable: false
+        })
+        var arr1 = new Arr();
+        var obj = {
+            id: 1,
+            name: 'aa',
+            age: 12
+        }
+        Object.defineProperty(obj, 'id', {
+            enumerable: false
+        })
+        console.log(arr1);
+        console.log(obj);
+        for(var key in obj){
+            console.log(key)
+        }
     </script>
 </body>
 </html>
