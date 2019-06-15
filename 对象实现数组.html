@@ -10,13 +10,25 @@
     <script>
         function Arr(){
             this.length = 0;
+            // 使 'length' 不可枚举
             Object.defineProperty(this, 'length', {
                 enumerable: false
             });
+            // 看是否传入了参数;如果有传入参数则添加到数组里
+            if(arguments.length !== 0){
+
+            }
+            this.push = function(){
+
+            }
+            Object.defineProperty(this, 'push', {
+                enumerable: false
+            });
         }
-        var arr1 = new Arr();
-        console.log(arr1);
-        console.log(arr1.length);
+        var myArr = new Arr();
+        var arr = new Array();
+        console.log(myArr);
+        console.log(arr);
     </script>
 </body>
 </html>
