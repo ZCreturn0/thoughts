@@ -8,21 +8,6 @@
 </head>
 <body>
     <script>
-        function BaseArr(){
-            this.pop = function(){
-
-            }
-            Object.defineProperty(this, 'pop', {
-                enumerable: false
-            });
-            this.push = function () {
-
-            }
-            Object.defineProperty(this, 'push', {
-                enumerable: false
-            });
-        }
-        Arr.prototype = new BaseArr();
         function Arr(){
             this.length = 0;
             // 使 'length' 不可枚举
@@ -33,9 +18,26 @@
             if(arguments.length !== 0){
 
             }
+            this.pop = function () {
+
+            }
+            Object.defineProperty(this, 'pop', {
+                enumerable: false
+            });
+            this.push = function (val) {
+                this[length++] = val;
+            }
+            Object.defineProperty(this, 'push', {
+                enumerable: false
+            });
         }
         var myArr = new Arr();
         var arr = new Array();
+        myArr.push(1);
+        myArr.push(2);
+
+        arr.push(1);
+        arr.push(2);
         console.log(myArr);
         console.log(arr);
     </script>
