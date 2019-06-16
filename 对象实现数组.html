@@ -12,7 +12,13 @@
             this.length = 0;
             // 使 'length' 不可枚举
             Object.defineProperty(this, 'length', {
-                enumerable: false
+                enumerable: false,
+                set: function(value){
+                    length = value;
+                },
+                get: function(){
+                    return length;
+                }
             });
             // 看是否传入了参数;如果有传入参数则添加到数组里
             if(arguments.length !== 0){
