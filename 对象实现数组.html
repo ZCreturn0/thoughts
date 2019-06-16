@@ -19,7 +19,9 @@
 
             }
             this.pop = function () {
-
+                if(this.length > 0){
+                    delete this[--length];
+                }
             }
             Object.defineProperty(this, 'pop', {
                 enumerable: false
@@ -35,6 +37,12 @@
         var arr = new Array();
         myArr.push(1);
         myArr.push(2);
+        myArr.push(3);
+        myArr.push(4);
+        myArr.push(5);
+        console.log(myArr);
+        myArr.pop();
+        myArr.pop();
 
         arr.push(1);
         arr.push(2);
