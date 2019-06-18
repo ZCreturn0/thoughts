@@ -12,7 +12,7 @@ https.get(url, function (res) {
         console.log(html);
         fs.writeFile('raw.html', html, (err, data) => {
             if(err){
-                console.log(err)
+                console.log(err);
             }
             else{
                 console.log(data);
