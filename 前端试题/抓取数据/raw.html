@@ -1,7 +1,7 @@
 
 
-<!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/><meta name="renderer" content="webkit"/><meta property="qc:admins" content="15317273575564615446375"/><meta property="og:image" content="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="viewport"
-              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"/><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>[译]送你43道JavaScript面试题 - code秘密花园 - SegmentFault 思否</title><meta name="description" content="这两天的GitHub Trending repositories被一个名叫 javascript-questions的项目霸榜了，项目中记录了一些JavaScript题目。"/><meta name="keywords" content="前端,面试,javascript"/><link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="SegmentFault"/><link rel="shortcut icon" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/favicon.ico"/><link rel="apple-touch-icon" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"/><meta name="msapplication-square150x150logo" content="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="baidu_union_verify" content="bcf7fd80dca60d53d46d5b46e1b990ca"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="/feeds/blogs"><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/css/global.css"/><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/blog/css/blog.css"/><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/css/responsive.css"/><script type='text/javascript' src='https://sponsor.segmentfault.com/spcjs.php?id=1&block=1&repu=0&tag=前端,面试,javascript'></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>
+<!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/><meta name="renderer" content="webkit"/><meta property="qc:admins" content="15317273575564615446375"/><meta property="og:image" content="https://static.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"/><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>[译]送你43道JavaScript面试题 - code秘密花园 - SegmentFault 思否</title><meta name="description" content="这两天的GitHub Trending repositories被一个名叫 javascript-questions的项目霸榜了，项目中记录了一些JavaScript题目。"/><meta name="keywords" content="前端,面试,javascript"/><link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="SegmentFault"/><link rel="shortcut icon" href="https://static.segmentfault.com/v-5cc2cd8e/global/img/favicon.ico"/><link rel="apple-touch-icon" href="https://static.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"/><meta name="msapplication-square150x150logo" content="https://static.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="baidu_union_verify" content="bcf7fd80dca60d53d46d5b46e1b990ca"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="/feeds/blogs"><link rel="stylesheet" href="https://static.segmentfault.com/v-5cc2cd8e/global/css/global.css"/><link rel="stylesheet" href="https://static.segmentfault.com/v-5cc2cd8e/blog/css/blog.css"/><link rel="stylesheet" href="https://static.segmentfault.com/v-5cc2cd8e/global/css/responsive.css"/><script type='text/javascript' src='https://sponsor.segmentfault.com/spcjs.php?id=1&block=1&repu=0&tag=前端,面试,javascript'></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-6330872677300335",
             enable_page_level_ads: true
@@ -10,7 +10,7 @@
     ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
     ParadigmSDK.trackDetailPageShow();
 </script><body data-mod="blog"
-    class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon-512.png"><div id="gridMapHoverBox" style="position:absolute; border: 1px solid #009a61; z-index:99; font-size: 10px; background:#fff"></div><div class="global-nav sf-header sf-header--index"><div class="bottom-nav visible-xs visible-sm "><div class="opts"><a class="opts-group " href="/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group " href="/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group active" href="/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="/jobs">职位</a></li><li><a href="/events">活动</a></li><li><a href="/tags">标签</a></li><li><a href="/badges">徽章</a></li></ul></div></div></div></div><nav class="container nav"><div class="visible-xs visible-sm header-response"><a href="/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a></div><script>
+    class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://static.segmentfault.com/v-5cc2cd8e/global/img/touch-icon-512.png"><div id="gridMapHoverBox" style="position:absolute; border: 1px solid #009a61; z-index:99; font-size: 10px; background:#fff"></div><div class="global-nav sf-header sf-header--index"><div class="bottom-nav visible-xs visible-sm "><div class="opts"><a class="opts-group " href="/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group " href="/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group active" href="/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="/jobs">职位</a></li><li><a href="/events">活动</a></li><li><a href="/tags">标签</a></li><li><a href="/badges">徽章</a></li></ul></div></div></div></div><nav class="container nav"><div class="visible-xs visible-sm header-response"><a href="/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a></div><script>
 mobileScroll(
     function(direction) { 
         try {
@@ -78,7 +78,7 @@ function mobileScroll( fn ) {
                                                 <a href="/u/conardli" class="mr5"><strong>ConardLi</strong></a>
                                         
                                                 
-                                                                                                <img src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/rp.svg" class="mr5"><span style="color:#BF7158" class="mr10">6.6k</span>
+                                                                                                <img src="https://static.segmentfault.com/v-5cc2cd8e/global/img/rp.svg" class="mr5"><span style="color:#BF7158" class="mr10">6.6k</span>
 
                                                                                                 发布于
                                                 <a href="/blog/conardli">code秘密花园</a>
@@ -137,7 +137,7 @@ function mobileScroll( fn ) {
                                                                                             </ul>
 
                                             <span>
-                                                626 次阅读
+                                                648 次阅读
                                                 &nbsp;&middot;&nbsp;
                                                 读完需要 74 分钟 
                                                                             </span>
@@ -169,13 +169,13 @@ function mobileScroll( fn ) {
                 <div class="article fmt article__content" data-id="1190000019496107" data-license="cc">
                     
 <h2>导读</h2>
-<p><span class="img-wrap"><img data-src="/img/remote/1460000019496110?w=1514&amp;h=452" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496110?w=1514&amp;h=452" src="https://static.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
 <p>这两天的<code>GitHub Trending repositories</code>被一个名叫 <code>javascript-questions</code>的项目霸榜了，项目中记录了一些<code>JavaScript</code>题目。</p>
-<p><span class="img-wrap"><img data-src="/img/remote/1460000019496111?w=1806&amp;h=862" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496111?w=1806&amp;h=862" src="https://static.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
 <p>我大概从头到尾看了一遍，都是一些基础的题目，我大概花了半个小时（有些题很简单，可以一扫而过）把这些题做完了，虽然题目很简单，但是每道题都对应一个知识点，如果这个知识点你没有接触过，那肯定会做错，如果你接触过这些知识点，那么这些题对你来说就很容易。</p>
 <p>建议大家也花半个小时来做一做，以便查漏补缺。</p>
 <p>为方便大家能够更快的做题，而不把时间浪费在翻译上，我又花了几个小时把它们翻译成了中文，当然已经获得了作者授权。</p>
-<p><span class="img-wrap"><img data-src="/img/remote/1460000019496112?w=2860&amp;h=1952" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496112?w=2860&amp;h=1952" src="https://static.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
 <blockquote>文中有些点作者解释的不太完整，为了更好的理解，我在文中添加了一些个人解释。<p>仓库地址：<a href="https://github.com/lydiahallie/javascript-questions" rel="nofollow noreferrer">https://github.com/lydiahalli...</a></p>
 </blockquote>
 <h2>JavaScript 进阶问题列表</h2>
@@ -213,7 +213,7 @@ sayHi();</code></pre>
   console.log(name) // Uncaught ReferenceError: name is not defined
   let name = 'code秘密花园'
 }</code></pre>
-<p><code>let</code>变量如果不存在变量提升，<code>console.log(name)</code>就会输出<code>ConardLi</code>，结果却抛出了<code>ReferenceError</code>���那么这很好的说明了，<code>let</code>也存在变量提升，但是它存在一个“暂时死区”，在变量未初始化或赋值前不允许访问。</p>
+<p><code>let</code>变量如果不存在变量提升，<code>console.log(name)</code>就会输出<code>ConardLi</code>，结果却���出了<code>ReferenceError</code>，那么这很好的说明了，<code>let</code>也存在变量提升，但是它存在一个“暂时死区”，在变量未初始化或赋值前不允许访问。</p>
 <p>变量的赋值可以分为三个阶段：</p>
 <ul>
 <li>创建变量，在内存中开辟空间</li>
@@ -250,7 +250,7 @@ for (let i = 0; i &lt; 3; i++) {
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: C</h4>
-<p>由于<code>JavaScript</code>中的事件执行机制��<code>setTimeout</code>函数真正被执行时，循环已经走完。 由于第一个循环中的变量<code>i</code>是使用<code>var</code>关键字声明的，因此该值是全局的。 在循环期间，我们每次使用一元运算符<code>++</code>都会将<code>i</code>的值增加<code>1</code>。 因此在第一个例子中，当调用<code>setTimeout</code>函数时，<code>i</code>已经被赋值为<code>3</code>。</p>
+<p>由于<code>JavaScript</code>中的事件执行机制，<code>setTimeout</code>函数真正被执行时，循环已经走完。 由于第一个循环中的变量<code>i</code>是使用<code>var</code>关键字声明的，因此该值是全局的。 在循环期间，我们每次使用一元运算符<code>++</code>都会将<code>i</code>的值增加<code>1</code>。 因此在第一个例子中，当调用<code>setTimeout</code>函数时，<code>i</code>已经被赋值为<code>3</code>。</p>
 <p>在第二个循环中，使用<code>let</code>关键字声明变量<code>i</code>：使用<code>let</code>（和<code>const</code>）关键字声明的变量是具有块作用域的（块是<code>{}</code>之间的任何东西）。 在每次迭代期间，<code>i</code>将被创建为一个新值，并且每个值都会存在于循环内的块级作用域。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
@@ -298,7 +298,7 @@ shape.perimeter();</code></pre>
 <p>字符串<code>'Lydia'</code>是一个真值。 我们实际上要问的是“这个真值是假的吗？”。 这会返回<code>false</code>。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
-<h3>5. 哪个选项是���正确的?</h3>
+<h3>5. 哪个选项是不正确的?</h3>
 <pre><code class="javascript">const bird = {
   size: "small"
 };
@@ -418,7 +418,7 @@ console.log(greetign);</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: A</h4>
-<p>控制台会输出空对象，因为我们刚刚在全局对象上创建了一个空对象！ 当我们错误地将<code>greeting</code>输入为<code>greetign</code>时，JS解释器实际上在浏览器中将其视为<code>global.greetign = {}</code>（或<code>window.greetign = {}</code>）。</p>
+<p>控制台会输出空对象，因为我们刚刚在全局对象上创建了一个空对象！ 当我们错误��将<code>greeting</code>输入为<code>greetign</code>时，JS解释器实际上在浏览器中将其视为<code>global.greetign = {}</code>（或<code>window.greetign = {}</code>）。</p>
 <p>为了避免这种情况，我们可以使用<code>“use strict”</code>。 这可以确保在将变量赋值之前必须声明变量。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
@@ -464,7 +464,7 @@ console.log(member.getFullName());</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: A</h4>
-<p>您不能像使用常规对象那样向构造函数添加属性。 如果要一次向所有对象添加功���，则必须使用原型。 所以在这种情况下应该这样写：</p>
+<p>您不能像使用常规对象那样向构造函数添加属性。 如���要一次向所有对象添加功能，则必须使用原型。 所以在这种情况下应该这样写：</p>
 <pre><code class="js">Person.prototype.getFullName = function () {
   return `${this.firstName} ${this.lastName}`;
 }</code></pre>
@@ -498,7 +498,7 @@ console.log(sarah);</code></pre>
 <p>我们指定了<code>this.firstName</code>等于<code>'Sarah</code>和<code>this.lastName</code>等于<code>Smith</code>。 我们实际做的是定义<code>global.firstName ='Sarah'</code>和<code>global.lastName ='Smith</code>。 <code>sarah</code>本身的返回值是<code>undefined</code>。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
-<h3>12. ���件传播的三个阶段是什么？?</h3>
+<h3>12. 事件传播的三个阶段是什么？?</h3>
 <ul>
 <li>A: 目标 &gt; 捕获 &gt; 冒泡</li>
 <li>B: 冒泡 &gt; 目标 &gt; 捕获</li>
@@ -518,8 +518,8 @@ console.log(sarah);</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: B</h4>
-<p>除<strong>基础对象</strong>外，所有对象都有原型。 基础对象可以访问某些方法和属性，例如<code>.toString</code>。 这就是您可以使用内置<code>JavaScript</code>方法的原因！ 所有这些方法都可以在原型上找到。 虽然<code>JavaScript</code>无法直接在您的对象上找到它，但它会沿着原型链向下寻找并在那里找到它，这使您可以访问它。</p>
-<p>译者注：基础对象��原型链终点的对象。基础对象的原型是<code>null</code>。</p>
+<p>除<strong>基础对象</strong>外，所有对象都有原型。 基础对象可以访问某些方法和属性，例如<code>.toString</code>。 这就是您可以使用内置<code>JavaScript</code>方法的原因！ 所有这些方法都可以在原型上找到。 虽然<code>JavaScript</code>无法直接在您的对象上找到它，但它会沿着原型链向下寻找并在那里找到它，这使您可以访问它���</p>
+<p>译者注：基础对象指原型链终点的对象。基础对象的原型是<code>null</code>。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
 <h3>14. 下面代码的输出是什么?</h3>
@@ -621,7 +621,7 @@ checkAge({ age: 18 });</code></pre>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: C</h4>
 <p>在比较相等性，原始类型通过它们的值进行比较，而对象通过它们的引用进行比较。<code>JavaScript</code>检查对象是否具有对内存中相同位置的引用。</p>
-<p>我们作为参数传递的对象和我们用于检查相等性的对象在内存中位于不同位置，所以它们的引用是不同的。</p>
+<p>我们作为参数传递的对象和我们用于检查相等性的对象在内存中位于不同位置，所以它们的引用是不同���。</p>
 <p>这就是为什么<code>{ age: 18 } === { age: 18 }</code>和 <code>{ age: 18 } == { age: 18 }</code> 返回 <code>false</code>的原因。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
@@ -666,7 +666,7 @@ getAge();</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: C</h4>
-<p>使用<code>“use strict”</code>，可以确保不会意外地声明全局变量。 我们从未声明变量<code>age</code>，因为我们使��<code>`use strict'</code>，它会引发一个<code>ReferenceError</code>。 如果我们不使用<code>“use strict”</code>，它就会起作用，因为属性<code>age</code>会被添加到全局对象中。</p>
+<p>使用<code>“use strict”</code>，可以确保不会意外地声明全局变量。 我们从未声明变量<code>age</code>，因为我们使用<code>`use strict'</code>，它会引发一个<code>ReferenceError</code>。 如果我们不使用<code>“use strict”</code>，它就会起作用，因为属性<code>age</code>会被添加到全局对象中。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
 <h3>21. 下面代码的输出是什么?</h3>
@@ -696,7 +696,7 @@ getAge();</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: B</h4>
-<p>关闭选项卡���，将删除存储在<code>sessionStorage</code>中的数据。</p>
+<p>关闭选项卡后，将删除存储在<code>sessionStorage</code>中的数据。</p>
 <p>如果使用<code>localStorage</code>，数据将永远存在，除非例如调用<code>localStorage.clear()</code>。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
@@ -760,7 +760,7 @@ console.log(obj);</code></pre>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
 <h4>答案: C</h4>
-<p>如果对象有两个具有相同名称的键，则将替前面的键。它仍将处于第一个位置，但具有最��指定的值。</p>
+<p>如果对象有两个具有相同名称的键，则将替前面的键。它仍将��于第一个位置，但具有最后指定的值。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
 <h3>26. JavaScript全局执行上下文为你创建了两个东西:全局对象和this关键字.</h3>
@@ -844,13 +844,13 @@ console.log(a[b]);</code></pre>
 </li>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
-<h4>答���: B</h4>
+<h4>答案: B</h4>
 <p>对象键自动转换为字符串。我们试图将一个对象设置为对象<code>a</code>的键，其值为<code>123</code>。</p>
 <p>但是，当对象自动转换为字符串化时，它变成了<code>[Object object]</code>。 所以我们在这里说的是<code>a["Object object"] = 123</code>。 然后，我们可以尝试再次做同样的事情。 <code>c</code>对象同样会发生隐式类型转换。那么，<code>a["Object object"] = 456</code>。</p>
 <p>然后，我们打印<code>a[b]</code>，它实际上是<code>a["Object object"]</code>。 我们将其设置为<code>456</code>，因此返回<code>456</code>。</p>
 <p>&lt;/p&gt;<br>&lt;/details&gt;</p>
 <hr>
-<h3>30. 下面代码的输出是什么?</h3>
+<h3>30. 下面代码���输出是什么?</h3>
 <pre><code class="javascript">const foo = () =&gt; console.log("First");
 const bar = () =&gt; setTimeout(() =&gt; console.log("Second"));
 const baz = () =&gt; console.log("Third");
@@ -869,7 +869,7 @@ baz();</code></pre>
 </li>
 </ul>
 <p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
-<h4>答��: B</h4>
+<h4>答案: B</h4>
 <p>我们有一个<code>setTimeout</code>函数并首先调用它。 然而却最后打印了它。</p>
 <p>这是因为在浏览器中，我们不只有运行时引擎，我们还有一个叫做<code>WebAPI</code>的东西。<code>WebAPI</code>为我们提供了<code>setTimeout</code>函数，例如<code>DOM</code>。</p>
 <p>将<code>callback</code>推送到<code>WebAPI</code>后，<code>setTimeout</code>函数本身（但不是回调！）从堆栈中弹出。</p>
@@ -878,7 +878,7 @@ baz();</code></pre>
 <p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c86d92d1cd?w=566&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=592&amp;f=png&amp;s=27983" width="200"&gt;</p>
 <p><code>foo</code>从堆栈弹出，<code>baz</code>被调用，并打印<code>Third</code>。</p>
 <p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607baa7c1afee?w=568&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=600&amp;f=png&amp;s=28037" width="200"&gt;</p>
-<p><code>WebAPI</code>不能只是在准备就绪时将内容添加��堆栈中。 相反，它将回调函数推送到一个称为<code>任务队列</code>的东西。</p>
+<p><code>WebAPI</code>不能只��在准备就绪时将内容添加到堆栈中。 相反，它将回调函数推送到一个称为<code>任务队列</code>的东西。</p>
 <p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c8472a5516?w=556&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=580&amp;f=png&amp;s=24682" width="200"&gt;</p>
 <p>这是事件循环开始工作的地方。 <strong>事件循环</strong>查看堆栈和任务队列。 如果堆栈为空，则会占用队列中的第一个内容并将其推送到堆栈中。</p>
 <p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c848f4ea78?w=564&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=596&amp;f=png&amp;s=24825" width="200"&gt;</p>
@@ -1074,7 +1074,7 @@ console.log(numbers);</code></pre>
 <h3>39. JavaScript中的所有内容都是...</h3>
 <ul>
 <li>A：原始或对象</li>
-<li>B：函数或对���</li>
+<li>B：函数或对象</li>
 <li>C：技巧问题！只有对象</li>
 <li>D：数字或对象</li>
 </ul>
@@ -1170,13 +1170,13 @@ console.log(numbers);</code></pre>
 <p>想阅读更多优质文章、可关注我的<a href="https://github.com/ConardLi/ConardLi.github.io" rel="nofollow noreferrer"><code>github</code>博客</a>，你的star✨、点赞和关注是我持续创作的动力！</p>
 <p>推荐大家使用<a href="https://www.fundebug.com/?utm_source=conardli" rel="nofollow noreferrer">Fundebug</a>，一款很好用的BUG监控工具~</p>
 <p>推荐关注我的微信公众号【code秘密花园】，每天推送高质量文章，我们一起交流成长。</p>
-<p><span class="img-wrap"><img data-src="/img/bVbtbT2?w=1332&amp;h=602" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="图片描述" title="图片描述"></span></p>
+<p><span class="img-wrap"><img data-src="/img/bVbtbT2?w=1332&amp;h=602" src="https://static.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="图片描述" title="图片描述"></span></p>
 <blockquote>关注公众号后回复【加群】拉你进入优质前端交流群。</blockquote>
 
                 </div>
                                                 
                 <div class="clearfix mt10">
-                    <ul class="article-operation list-inline pull-left mt15"><li><a target="_blank"href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img class="mb5" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/creativecommons-cc.svg" height="20"/></a></li><li class="hidden-xs"><a href="https://github.com/ConardLi/javascript-questions" target="_blank">阅读原文</a></li><li class="dropdown js__content-ops hidden-xs" data-module="article"
+                    <ul class="article-operation list-inline pull-left mt15"><li><a target="_blank"href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img class="mb5" src="https://static.segmentfault.com/v-5cc2cd8e/global/img/creativecommons-cc.svg" height="20"/></a></li><li class="hidden-xs"><a href="https://github.com/ConardLi/javascript-questions" target="_blank">阅读原文</a></li><li class="dropdown js__content-ops hidden-xs" data-module="article"
                                 data-id="1190000019496107"
                                 data-typetext="文章"><a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="#911"
                                            data-toggle="modal"
@@ -1231,7 +1231,7 @@ console.log(numbers);</code></pre>
                     <div class="pull-right comment-option">
                                                 <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000019499389" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
                                             </div>
-                    <strong><a target="_blank" href="/u/jiakesi_5cb84ad20c0e5">贾克斯</a></strong>
+                    <strong><a target="_blank" href="/u/jiakesi_5cb84ad20c0e5">���克斯</a></strong>
                     <span class="comments-isAuthor hide"></span>
                     <span class="comments-date">  ·  1 天前</span>
                 </div>
@@ -1279,7 +1279,7 @@ console.log(numbers);</code></pre>
                                     <div class="comments-box" id="goToReplyEditor">
                 <div class="pull-left">
                     <img class="avatar-32 "
-                         src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/user-128.png"
+                         src="https://static.segmentfault.com/v-5cc2cd8e/global/img/user-128.png"
                          alt=""/>
                 </div>
                 <div class="comments-box-content">
@@ -1320,7 +1320,7 @@ console.log(numbers);</code></pre>
                 </style>
                 <div class="hidden-md">
                     <div class="job-recommend">
-                      <h3 class="job-title">���广链接</h3>
+                      <h3 class="job-title">推广链接</h3>
                       <div class="job-recommend-area">
                         <script type='text/javascript'>
                             OA_show(7);
@@ -1569,7 +1569,7 @@ console.log(numbers);</code></pre>
                                 <dd><a href="/tos?utm_source=sf-footer" target="_blank">服务条款</a></dd>
                                 <dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">内容许可</a></dd>
                                 <dd>
-                    <a href="/app" class="clearfix mt10 block"><img src="https://cdn.segmentfault.com/v-5cc2cd8e/page/img/app/appQrcode.png" class="app-qrcode"></a>
+                    <a href="/app" class="clearfix mt10 block"><img src="https://static.segmentfault.com/v-5cc2cd8e/page/img/app/appQrcode.png" class="app-qrcode"></a>
                     <div class="app-download-desc">
                         <p>扫一扫下载 App</p>
                     </div>
@@ -1691,7 +1691,7 @@ console.log(numbers);</code></pre>
 
                 <div class="form-group">
                     <div class="captchaInput mb10">
-                        <input type="text" class="form-control" name="cap" placeholder="右侧的验证码" style="width:50%; display: inline; margin-right: 15px;">
+                        <input type="text" class="form-control" name="cap" placeholder="���侧的验证码" style="width:50%; display: inline; margin-right: 15px;">
                         <span class="mt10">
                                 <a id="loginReloadCaptcha" href="javascript:void(0)">
                                 <img src="/user/captcha?w=135&h=34" class="cap" width="135" height="34"/></a>
@@ -1858,7 +1858,7 @@ console.log(numbers);</code></pre>
                 <div class="form-group ">
                     <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大���手机号">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大陆手机号">
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
@@ -1882,42 +1882,40 @@ console.log(numbers);</code></pre>
 
 
 <script>
-    window.serverTime = 1560861608000;
+    window.serverTime = 1560872658000;
 </script>
 
 <script>
     (function (w) {
         w.SF = {
-            staticUrl: "https://cdn.segmentfault.com/v-5cc2cd8e"
+            staticUrl: "https://static.segmentfault.com/v-5cc2cd8e"
         };
         w.SF.token = (function () {
-    var _9Jg1Fq2 = //'kh'
-'d30'+//'0x'
-'5f'+'53'//'7N'
-+'530'//'aRN'
-+//'Fx'
-'1'+'aO'//'aO'
-+''///*'Bm'*/'Bm'
-+'3a'//'62n'
-+'f'//'T'
-+'ccb'//'EwP'
-+'3'//'sg'
-+'d6'//'NF'
-+//'Y'
-'Y'+//'IyZ'
-'b7'+//'Ap'
-'8'+//'Ro'
-'b67'+//'U'
-'U'+//'8g8'
-'81c'+'92'//'ze'
-+'4'//'MT'
-, _gSkdMVf = [[11,13],[20,21],[26,27]];
+    var _kySeRW = '9'//'Ra'
++//'hH'
+'0'+//'G'
+'813'+'c'//'Z0'
++'95'//'oR'
++//'R'
+'b4'+//'X'
+'d6b'+'614'//'pLe'
++//'IHi'
+'8f'+//'7'
+'db'+'6a'//'Llx'
++'x'//'x'
++/* 'T'//'T' */''+//'i'
+'c9'+'90'//'3'
++'Fao'//'Fao'
++'91'//'oLU'
++'c'//'6'
++'e81'//'H'
+, _sVV = [[22,23],[26,29]];
 
-    for (var i = 0; i < _gSkdMVf.length; i ++) {
-        _9Jg1Fq2 = _9Jg1Fq2.substring(0, _gSkdMVf[i][0]) + _9Jg1Fq2.substring(_gSkdMVf[i][1]);
+    for (var i = 0; i < _sVV.length; i ++) {
+        _kySeRW = _kySeRW.substring(0, _sVV[i][0]) + _kySeRW.substring(_sVV[i][1]);
     }
 
-    return _9Jg1Fq2;
+    return _kySeRW;
 })();;
     })(window);
 
@@ -1942,9 +1940,9 @@ console.log(numbers);</code></pre>
     })(window.location);
     </script>
 
-             <script crossorigin src="https://cdn.segmentfault.com/v-5cc2cd8e/3rd/assets.js"></script>
+             <script crossorigin src="https://static.segmentfault.com/v-5cc2cd8e/3rd/assets.js"></script>
                  
-        <script crossorigin src="https://cdn.segmentfault.com/v-5cc2cd8e/blog/script/post.min.js"></script>
+        <script crossorigin src="https://static.segmentfault.com/v-5cc2cd8e/blog/script/post.min.js"></script>
             
 
 <script>
@@ -1972,7 +1970,7 @@ if (!!navigator.userAgent.match(/MicroMessenger/i)) {
 }
 </script>
 
-<script src="https://cdn.segmentfault.com/v-5cc2cd8e/global/script/ads.min.js" type="text/javascript"></script>
+<script src="https://static.segmentfault.com/v-5cc2cd8e/global/script/ads.min.js" type="text/javascript"></script>
 
 <script>
     var _gaq = _gaq || [];
@@ -2001,7 +1999,7 @@ if (!!navigator.userAgent.match(/MicroMessenger/i)) {
         'createdTime'
     : 0,
         'now'
-    : 1560861609,
+    : 1560872658,
         'allowLinker'
     : true });
     ga('require', 'linker');
