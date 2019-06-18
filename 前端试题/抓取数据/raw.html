@@ -1,0 +1,2040 @@
+
+
+<!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/><meta name="renderer" content="webkit"/><meta property="qc:admins" content="15317273575564615446375"/><meta property="og:image" content="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"/><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>[译]送你43道JavaScript面试题 - code秘密花园 - SegmentFault 思否</title><meta name="description" content="这两天的GitHub Trending repositories被一个名叫 javascript-questions的项目霸榜了，项目中记录了一些JavaScript题目。"/><meta name="keywords" content="前端,面试,javascript"/><link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="SegmentFault"/><link rel="shortcut icon" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/favicon.ico"/><link rel="apple-touch-icon" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"/><meta name="msapplication-square150x150logo" content="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon.png"/><meta name="baidu_union_verify" content="bcf7fd80dca60d53d46d5b46e1b990ca"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="/feeds/blogs"><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/css/global.css"/><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/blog/css/blog.css"/><link rel="stylesheet" href="https://cdn.segmentfault.com/v-5cc2cd8e/global/css/responsive.css"/><script type='text/javascript' src='https://sponsor.segmentfault.com/spcjs.php?id=1&block=1&repu=0&tag=前端,面试,javascript'></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6330872677300335",
+            enable_page_level_ads: true
+        });
+    </script></head><!-- 推荐引擎 --><script charset="utf-8" id="ParadigmSDK" src="https://nbrecsys.4paradigm.com/sdk/js/ParadigmSDK_v2.js" data="216" defSI="594"></script><script>
+    ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
+    ParadigmSDK.trackDetailPageShow();
+</script><body data-mod="blog"
+    class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/touch-icon-512.png"><div id="gridMapHoverBox" style="position:absolute; border: 1px solid #009a61; z-index:99; font-size: 10px; background:#fff"></div><div class="global-nav sf-header sf-header--index"><div class="bottom-nav visible-xs visible-sm "><div class="opts"><a class="opts-group " href="/"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a><a class="opts-group " href="/questions"><i class="fa fa-comments" aria-hidden="true"></i><span>问答</span></a><a class="opts-group active" href="/blogs"><i class="fa fa-pencil-square" aria-hidden="true"></i><span>专栏</span></a><a class="opts-group " href="/lives"><i class="fa fa-play-circle" aria-hidden="true"></i><span>讲堂</span></a><div class="opts-group"><div class="btn-group dropup"><i class="fa fa-bars dropdown hoverDropdown" data-toggle="dropdown" aria-hidden="true"><span>更多</span></i><ul class="dropdown-menu"><li><a href="/jobs">职位</a></li><li><a href="/events">活动</a></li><li><a href="/tags">标签</a></li><li><a href="/badges">徽章</a></li></ul></div></div></div></div><nav class="container nav"><div class="visible-xs visible-sm header-response"><a href="/search" style="display:block"><i class="fa fa-search" aria-hidden="true"></i></a><div class="sf-header__logo sf-header__logo--response"><h1><a href="/" style="height:24px; background-size: auto 24px;"></a></h1></div><a href="/user/login" class="pull-right login-btn"><i class="fa fa-user" aria-hidden="true"></i></a></div><script>
+mobileScroll(
+    function(direction) { 
+        try {
+            if (direction === 'down') {
+                document.querySelector('.bottom-nav').classList.add('hidden')
+            } else {
+                document.querySelector('.bottom-nav').classList.remove('hidden')
+            }
+        } catch(err) {}
+    }
+);    
+function mobileScroll( fn ) {
+    var beforeScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+        fn = fn || function() {};
+    window.addEventListener("scroll", function() {
+        var afterScrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+            delta = afterScrollTop - beforeScrollTop;
+        if( delta === 0 ) return false;
+        fn( delta > 0 ? "down" : "up" );
+        beforeScrollTop = afterScrollTop;
+    }, false);
+}
+</script><div class="row hidden-xs hidden-sm"><div class="col-sm-8 col-md-9 col-lg-9"><div class="sf-header__logo"><h1><a href="/">SegmentFault</a></h1></div><div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="/" class="">首页</a></li><li class="menu__item"><a href="/questions" class="">问答</a></li><li class="menu__item"><a href="/blogs" class="active-nav">专栏</a></li><li class="menu__item"><a class=" " href="/lives" class="">课程</a></li><li class="menu__item"><a href="/groups" class="">圈子</a></li><li class="menu__item menu__item--more dropdown"><a href="##" class="dropdown-toggle dropdownBtn" data-toggle="dropdown">
+                                        发现<i class="fa fa-caret-down" style="font-size: 14px;margin-left: 5px;" aria-hidden="true"></i></a><div class="dropdown-block hidden"><ul class="dropdown-content-menu"><li><a href="/events">活动</a></li><li><a href="/tags">标签</a></li><li><a href="/groups?tab=jobs">酷工作</a></li><li><a href="/users">排行榜</a></li><li><a href="/badges">徽章</a></li><li><a href="/notes">笔记</a></li><li><a href="https://docs.segmentfault.com" target="_blank">开发手册<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li><li><a href="https://business.segmentfault.com/ads?utm_source=sf-header" target="_blank">广告投放<i style="line-height: 20px;font-size: 12px;color: #F5A623;" class="ml10 fa fa-external-link-square"></i></a></li></ul></div></li><li class="menu__item visible-sm-inline-block"><a href="/search"><span class="glyphicon glyphicon-search" style="vertical-align: middle;"></span></a></li></ul><form action="/search" class="header-search  hidden-sm hidden-xs pull-right" ><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text"  placeholder="搜索问题或关键字" class="form-control" value="" /></form></div></div><div class="col-sm-4 col-md-3 col-lg-3 text-right"><ul class="opts list-inline hidden-xs"><li class="opts__item"><a href="/user/login" class="SFRegister btn-signin" style="margin-bottom:2px;">立即登录</a><a href="/user/register" class="SFLogin ml10 btn-signup"
+                                       onClick="_gaq.push(['_trackEvent', 'Button', 'Click', 'Login']);">免费注册</a></li></ul></div></div></nav></div>
+    
+<input id="articleId" value="1190000019496107" class="hidden" />
+
+<div class="wrap" data-blogid="1200000017750220">
+
+    <div class="text-center block hidden-xs">
+        <script type="text/javascript">
+            OA_show(2);
+        </script>
+    </div>
+    
+    <div class="container mt15" style="position:relative">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+                                <ol class="breadcrumb mb15">
+                    <li><a href="/blogs">专栏</a></li>
+                                        <li><a href="/blog/conardli">code秘密花园</a></li>
+                                        <li class="active">文章详情</li>
+                </ol>
+                                <div class="post-topheader custom- pt0">
+                    <div class="mb20">
+                        <div class="block-for-right-border">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                
+
+                                    <div class="post-topheader__info" data-username="ConardLi"
+                                         data-userslug="conardli"
+                                         data-useravatar="https://avatar-static.segmentfault.com/112/194/1121942874-5bb3745dd5586_big64">
+
+
+                                        <div class="article__author clearfix">
+                                            <div class="article__authorleft">
+                                                <a href="/u/conardli">
+                                                    <img class="avatar-40" src="https://avatar-static.segmentfault.com/112/194/1121942874-5bb3745dd5586_big64" alt="ConardLi">
+                                                </a>
+                                            </div>
+                                            <div class="article__authorright">
+                                                <div class="article__authormeta">
+                                                <a href="/u/conardli" class="mr5"><strong>ConardLi</strong></a>
+                                        
+                                                
+                                                                                                <img src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/rp.svg" class="mr5"><span style="color:#BF7158" class="mr10">6.6k</span>
+
+                                                                                                发布于
+                                                <a href="/blog/conardli">code秘密花园</a>
+                                                
+                                                
+                                                <span class="hidden-xs">
+                                                                                                                                                          <button type="button"
+                                                               class="btn btn-xs btn-success follow-article ml10"
+                                                               data-do="follow"
+                                                               data-type="blog"
+                                                               data-id="1200000017750220">关注专栏
+                                                       </button>
+                                                                                                                                                   </span>
+                                                </div>
+                                                
+                                                <span style="display: block">
+                                                    1 天前发布
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <h1 class="h1 post-topheader__info--title" id="articleTitle" data-id="1190000019496107">
+                                            <a href="/a/1190000019496107"> [译]送你43道JavaScript面试题</a>
+                                        </h1>
+
+                                        <div class="content__tech hidden-xs">
+                                            <a href="https://github.com/ConardLi/javascript-questions" class="blog-type-common blog-type-3-before" target="_blank" data-content="
+                                                                                        翻译自 github.com/ConardLi/javascript-questions
+                                                                                        "></a>
+                                            
+                                            <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                                                                    <li class="tagPopup mb5">
+                                                        <a class="tag" href="/t/%E5%89%8D%E7%AB%AF/blogs" data-toggle="popover"
+                                                                                data-img="https://avatar-static.segmentfault.com/330/484/3304844401-1040000000089899_big64" data-placement="top"
+                                                                                data-original-title="前端"
+                                                                                data-id="1040000000089899">
+                                                                                                                      前端
+                                                        </a>
+                                                    </li>
+                                                                                                    <li class="tagPopup mb5">
+                                                        <a class="tag" href="/t/%E9%9D%A2%E8%AF%95/blogs" data-toggle="popover"
+                                                                                data-img="" data-placement="top"
+                                                                                data-original-title="面试"
+                                                                                data-id="1040000000089406">
+                                                                                                                      面试
+                                                        </a>
+                                                    </li>
+                                                                                                    <li class="tagPopup mb5">
+                                                        <a class="tag" href="/t/javascript/blogs" data-toggle="popover"
+                                                                                data-img="https://avatar-static.segmentfault.com/195/823/1958237468-1040000000089436_big64" data-placement="top"
+                                                                                data-original-title="javascript"
+                                                                                data-id="1040000000089436">
+                                                                                                                      javascript
+                                                        </a>
+                                                    </li>
+                                                                                            </ul>
+
+                                            <span>
+                                                626 次阅读
+                                                &nbsp;&middot;&nbsp;
+                                                读完需要 74 分钟 
+                                                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end .post-topheader -->
+
+                <div class="visible-lg">
+                    <div class="side-widget">
+                        <div class="stream__item-zan btn btn-default mt0 mb15 ml0 mr0 pt0 pb0 pl0 pr0 " id="side-widget-votes-btn">
+                            <span class="stream__item-zan-icon"></span>
+                            <span class="stream__item-zan-number" id="side-widget-votes-num">64</span>
+                        </div>
+
+                        <i class="fa fa-bookmark item " id="side-widget-bookmarks-btn"></i>
+                        <i class="fa fa-weibo item"></i>
+                        <i class="fa fa-weixin item" data-toggle="popover" data-placement="right"></i>
+                        <i class="fa fa-twitter item"></i>
+                        <i class="fa fa-facebook item"></i>
+                        <i class="fa fa-arrow-up item hidden"></i>
+                    </div>
+                </div>
+
+                
+                <div class="article fmt article__content" data-id="1190000019496107" data-license="cc">
+                    
+<h2>导读</h2>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496110?w=1514&amp;h=452" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<p>这两天的<code>GitHub Trending repositories</code>被一个名叫 <code>javascript-questions</code>的项目霸榜了，项目中记录了一些<code>JavaScript</code>题目。</p>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496111?w=1806&amp;h=862" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<p>我大概从头到尾看了一遍，都是一些基础的题目，我大概花了半个小时（有些题很简单，可以一扫而过）把这些题做完了，虽然题目很简单，但是每道题都对应一个知识点，如果这个知识点你没有接触过，那肯定会做错，如果你接触过这些知识点，那么这些题对你来说就很容易。</p>
+<p>建议大家也花半个小时来做一做，以便查漏补缺。</p>
+<p>为方便大家能够更快的做题，而不把时间浪费在翻译上，我又花了几个小时把它们翻译成了中文，当然已经获得了作者授权。</p>
+<p><span class="img-wrap"><img data-src="/img/remote/1460000019496112?w=2860&amp;h=1952" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="" title=""></span></p>
+<blockquote>文中有些点作者解释的不太完整，为了更好的理解，我在文中添加了一些个人解释。<p>仓库地址：<a href="https://github.com/lydiahallie/javascript-questions" rel="nofollow noreferrer">https://github.com/lydiahalli...</a></p>
+</blockquote>
+<h2>JavaScript 进阶问题列表</h2>
+<p>我在我的<a href="https://www.instagram.com/theavocoder" rel="nofollow noreferrer">Instagram</a>上发布了每日<code>JavaScript</code>选择题，我也会在这里发布！</p>
+<p>从基础到高级：测试您对<code>JavaScript</code>的了解程度，刷新您的知识，或为您的编码面试做好准备！💪 🚀我每周用新问题更新这个项目。</p>
+<p>答案位于问题下方的折叠部分，只需单击它们即可展开。 祝你好运❤️</p>
+<hr>
+<h3>1. 下面代码的输出是什么？</h3>
+<pre><code class="javascript">function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = "Lydia";
+  let age = 21;
+}
+
+sayHi();</code></pre>
+<ul>
+<li>A: <code>Lydia</code> 和 <code>undefined</code>
+</li>
+<li>B: <code>Lydia</code> 和 <code>ReferenceError</code>
+</li>
+<li>C: <code>ReferenceError</code> 和 <code>21</code>
+</li>
+<li>D: <code>undefined</code> 和 <code>ReferenceError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: D</h4>
+<p>在函数中，我们首先使用<code>var</code>关键字声明了<code>name</code>变量。 这意味着变量在创建阶段会被提升（<code>JavaScript</code>会在创建变量创建阶段为其分配内存空间），默认值为<code>undefined</code>，直到我们实际执行到使用该变量的行。 我们还没有为<code>name</code>变量赋值，所以它仍然保持<code>undefined</code>的值。</p>
+<p>使用<code>let</code>关键字（和<code>const</code>）声明的变量也会存在变量提升，但与<code>var</code>不同，初始化没有被提升。 在我们声明（初始化）它们之前，它们是不可访问的。 这被称为“暂时死区”。 当我们在声明变量之前尝试访问变量时，<code>JavaScript</code>会抛出一个<code>ReferenceError</code>。</p>
+<p>译者注：</p>
+<p>关于<code>let</code>的是否存在变量提升，我们何以用下面的例子来验证：</p>
+<pre><code class="js">let name = 'ConardLi'
+{
+  console.log(name) // Uncaught ReferenceError: name is not defined
+  let name = 'code秘密花园'
+}</code></pre>
+<p><code>let</code>变量如果不存在变量提升，<code>console.log(name)</code>就会输出<code>ConardLi</code>，结果却抛出了<code>ReferenceError</code>���那么这很好的说明了，<code>let</code>也存在变量提升，但是它存在一个“暂时死区”，在变量未初始化或赋值前不允许访问。</p>
+<p>变量的赋值可以分为三个阶段：</p>
+<ul>
+<li>创建变量，在内存中开辟空间</li>
+<li>初始化变量，将变量初始化为<code>undefined</code>
+</li>
+<li>真正赋值</li>
+</ul>
+<p>关于<code>let</code>、<code>var</code>和<code>function</code>：</p>
+<ul>
+<li>
+<code>let</code> 的「创建」过程被提升了，但是初始化没有提升。</li>
+<li>
+<code>var</code> 的「创建」和「初始化」都被提升了。</li>
+<li>
+<code>function</code> 的「创建」「初始化」和「赋值」都被提升了。</li>
+</ul>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>2. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">for (var i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 1);
+}
+
+for (let i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 1);
+}</code></pre>
+<ul>
+<li>A: <code>0 1 2</code> and <code>0 1 2</code>
+</li>
+<li>B: <code>0 1 2</code> and <code>3 3 3</code>
+</li>
+<li>C: <code>3 3 3</code> and <code>0 1 2</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>由于<code>JavaScript</code>中的事件执行机制��<code>setTimeout</code>函数真正被执行时，循环已经走完。 由于第一个循环中的变量<code>i</code>是使用<code>var</code>关键字声明的，因此该值是全局的。 在循环期间，我们每次使用一元运算符<code>++</code>都会将<code>i</code>的值增加<code>1</code>。 因此在第一个例子中，当调用<code>setTimeout</code>函数时，<code>i</code>已经被赋值为<code>3</code>。</p>
+<p>在第二个循环中，使用<code>let</code>关键字声明变量<code>i</code>：使用<code>let</code>（和<code>const</code>）关键字声明的变量是具有块作用域的（块是<code>{}</code>之间的任何东西）。 在每次迭代期间，<code>i</code>将被创建为一个新值，并且每个值都会存在于循环内的块级作用域。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>3. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () =&gt; 2 * Math.PI * this.radius
+};
+
+shape.diameter();
+shape.perimeter();</code></pre>
+<ul>
+<li>A: <code>20</code> and <code>62.83185307179586</code>
+</li>
+<li>B: <code>20</code> and <code>NaN</code>
+</li>
+<li>C: <code>20</code> and <code>63</code>
+</li>
+<li>D: <code>NaN</code> and <code>63</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p>请注意，<code>diameter</code>是普通函数，而<code>perimeter</code>是箭头函数。</p>
+<p>对于箭头函数，<code>this</code>关键字指向是它所在上下文（定义时的位置）的环境，与普通函数不同！ 这意味着当我们调用<code>perimeter</code>时，它不是指向<code>shape</code>对象，而是指其定义时的环境（window）。没有值<code>radius</code>属性，返回<code>undefined</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>4. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">+true;
+!"Lydia";</code></pre>
+<ul>
+<li>A: <code>1</code> and <code>false</code>
+</li>
+<li>B: <code>false</code> and <code>NaN</code>
+</li>
+<li>C: <code>false</code> and <code>false</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>一元加号会尝试将<code>boolean</code>类型转换为数字类型。 <code>true</code>被转换为<code>1</code>，<code>false</code>被转换为<code>0</code>。</p>
+<p>字符串<code>'Lydia'</code>是一个真值。 我们实际上要问的是“这个真值是假的吗？”。 这会返回<code>false</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>5. 哪个选项是���正确的?</h3>
+<pre><code class="javascript">const bird = {
+  size: "small"
+};
+
+const mouse = {
+  name: "Mickey",
+  small: true
+};</code></pre>
+<ul>
+<li>A: <code>mouse.bird.size</code>
+</li>
+<li>B: <code>mouse[bird.size]</code>
+</li>
+<li>C: <code>mouse[bird["size"]]</code>
+</li>
+<li>D: All of them are valid</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>在<code>JavaScript</code>中，所有对象键都是字符串（除了<code>Symbol</code>）。尽管有时我们可能不会给定字符串类型，但它们总是被转换为字符串。</p>
+<p><code>JavaScript</code>解释语句。当我们使用方括号表示法时，它会看到第一个左括号<code>[</code>，然后继续，直到找到右括号<code>]</code>。只有在那个时候，它才会对这个语句求值。</p>
+<p><code>mouse [bird.size]</code>：首先它会对<code>bird.size</code>求值，得到<code>small</code>。 <code>mouse [“small”]</code>返回<code>true</code>。</p>
+<p>但是，使用点表示法，这不会发生。 <code>mouse</code>没有名为<code>bird</code>的键，这意味着<code>mouse.bird</code>是<code>undefined</code>。 然后，我们使用点符号来询问<code>size</code>：<code>mouse.bird.size</code>。 由于<code>mouse.bird</code>是<code>undefined</code>，我们实际上是在询问<code>undefined.size</code>。 这是无效的，并将抛出<code>Cannot read property "size" of undefined</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<hr>
+<h3>6. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">let c = { greeting: "Hey!" };
+let d;
+
+d = c;
+c.greeting = "Hello";
+console.log(d.greeting);</code></pre>
+<ul>
+<li>A: <code>Hello</code>
+</li>
+<li>B: <code>undefined</code>
+</li>
+<li>C: <code>ReferenceError</code>
+</li>
+<li>D: <code>TypeError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>在<code>JavaScript</code>中，当设置它们彼此相等时，所有对象都通过引用进行交互。</p>
+<p>首先，变量<code>c</code>为对象保存一个值。 之后，我们将<code>d</code>指定为<code>c</code>与对象相同的引用。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c84b0b91a7?w=446&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=342&amp;f=png&amp;s=18779" width="200"&gt;</p>
+<p>更改一个对象时，可以更改所有对象。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>7. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">let a = 3;
+let b = new Number(3);
+let c = 3;
+
+console.log(a == b);
+console.log(a === b);
+console.log(b === c);</code></pre>
+<ul>
+<li>A: <code>true</code> <code>false</code> <code>true</code>
+</li>
+<li>B: <code>false</code> <code>false</code> <code>true</code>
+</li>
+<li>C: <code>true</code> <code>false</code> <code>false</code>
+</li>
+<li>D: <code>false</code> <code>true</code> <code>true</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p><code>new Number（）</code>是一个内置的函数构造函数。 虽然它看起来像一个数字，但它并不是一个真正的数字：它有一堆额外的功能，是一个对象。</p>
+<p>当我们使用<code>==</code>运算符时，它只检查它是否具有相同的值。 他们都有<code>3</code>的值，所以它返回<code>true</code>。</p>
+<blockquote>译者注：<code>==</code>会引发隐式类型转换，右侧的对象类型会自动拆箱为<code>Number</code>类型。</blockquote>
+<p>然而，当我们使用<code>===</code>操作符时，类型和值都需要相等，<code>new Number()</code>不是一个数字，是一个对象类型。两者都返回 <code>false</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>8. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">class Chameleon {
+  static colorChange(newColor) {
+    this.newColor = newColor;
+  }
+
+  constructor({ newColor = "green" } = {}) {
+    this.newColor = newColor;
+  }
+}
+
+const freddie = new Chameleon({ newColor: "purple" });
+freddie.colorChange("orange");</code></pre>
+<ul>
+<li>A: <code>orange</code>
+</li>
+<li>B: <code>purple</code>
+</li>
+<li>C: <code>green</code>
+</li>
+<li>D: <code>TypeError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: D</h4>
+<p><code>colorChange</code>方法是静态的。 静态方法仅在创建它们的构造函数中存在，并且不能传递给任何子级。 由于<code>freddie</code>是一个子级对象，函数不会传递，所以在<code>freddie</code>实例上不存在<code>freddie</code>方法：抛出<code>TypeError</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>9. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">let greeting;
+greetign = {}; // Typo!
+console.log(greetign);</code></pre>
+<ul>
+<li>A: <code>{}</code>
+</li>
+<li>B: <code>ReferenceError: greetign is not defined</code>
+</li>
+<li>C: <code>undefined</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>控制台会输出空对象，因为我们刚刚在全局对象上创建了一个空对象！ 当我们错误地将<code>greeting</code>输入为<code>greetign</code>时，JS解释器实际上在浏览器中将其视为<code>global.greetign = {}</code>（或<code>window.greetign = {}</code>）。</p>
+<p>为了避免这种情况，我们可以使用<code>“use strict”</code>。 这可以确保在将变量赋值之前必须声明变量。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>10. 当我们这样做时会发生什么?</h3>
+<pre><code class="javascript">function bark() {
+  console.log("Woof!");
+}
+
+bark.animal = "dog";</code></pre>
+<ul>
+<li>A: Nothing, this is totally fine!</li>
+<li>B: <code>SyntaxError</code>. You cannot add properties to a function this way.</li>
+<li>C: <code>undefined</code>
+</li>
+<li>D: <code>ReferenceError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>这在<code>JavaScript</code>中是可能的，因为函数也是对象！（原始类型之外的所有东西都是对象）</p>
+<p>函数是一种特殊类型的对象。您自己编写的代码并不是实际的函数。 该函数是具有属性的对象，此属性是可调用的。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>11. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const member = new Person("Lydia", "Hallie");
+Person.getFullName = () =&gt; this.firstName + this.lastName;
+
+console.log(member.getFullName());</code></pre>
+<ul>
+<li>A: <code>TypeError</code>
+</li>
+<li>B: <code>SyntaxError</code>
+</li>
+<li>C: <code>Lydia Hallie</code>
+</li>
+<li>D: <code>undefined</code> <code>undefined</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>您不能像使用常规对象那样向构造函数添加属性。 如果要一次向所有对象添加功���，则必须使用原型。 所以在这种情况下应该这样写：</p>
+<pre><code class="js">Person.prototype.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+}</code></pre>
+<p>这样会使<code>member.getFullName()</code>是可用的，为什么样做是对的？ 假设我们将此方法添加到构造函数本身。 也许不是每个<code>Person</code>实例都需要这种方法。这会浪费大量内存空间，因为它们仍然具有该属性，这占用了每个实例的内存空间。 相反，如果我们只将它添加到原型中，我们只需将它放在内存中的一个位置，但它们都可以访问它！</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>12. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const lydia = new Person("Lydia", "Hallie");
+const sarah = Person("Sarah", "Smith");
+
+console.log(lydia);
+console.log(sarah);</code></pre>
+<ul>
+<li>A: <code>Person {firstName: "Lydia", lastName: "Hallie"}</code> and <code>undefined</code>
+</li>
+<li>B: <code>Person {firstName: "Lydia", lastName: "Hallie"}</code> and <code>Person {firstName: "Sarah", lastName: "Smith"}</code>
+</li>
+<li>C: <code>Person {firstName: "Lydia", lastName: "Hallie"}</code> and <code>{}</code>
+</li>
+<li>D:<code>Person {firstName: "Lydia", lastName: "Hallie"}</code> and <code>ReferenceError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>对于<code>sarah</code>，我们没有使用<code>new</code>关键字。 使用<code>new</code>时，它指的是我们创建的新空对象。 但是，如果你不添加<code>new</code>它指的是全局对象！</p>
+<p>我们指定了<code>this.firstName</code>等于<code>'Sarah</code>和<code>this.lastName</code>等于<code>Smith</code>。 我们实际做的是定义<code>global.firstName ='Sarah'</code>和<code>global.lastName ='Smith</code>。 <code>sarah</code>本身的返回值是<code>undefined</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>12. ���件传播的三个阶段是什么？?</h3>
+<ul>
+<li>A: 目标 &gt; 捕获 &gt; 冒泡</li>
+<li>B: 冒泡 &gt; 目标 &gt; 捕获</li>
+<li>C: 目标 &gt; 冒泡 &gt; 捕获</li>
+<li>D: 捕获 &gt; 目标 &gt; 冒泡</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: D</h4>
+<p>在捕获阶段，事件通过父元素向下传递到目标元素。 然后它到达目标元素，冒泡开始。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c8479da5e3?w=496&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=272&amp;f=png&amp;s=24320" width="200"&gt;</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>13. 所有对象都有原型.</h3>
+<ul>
+<li>A: 对</li>
+<li>B: 错误</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p>除<strong>基础对象</strong>外，所有对象都有原型。 基础对象可以访问某些方法和属性，例如<code>.toString</code>。 这就是您可以使用内置<code>JavaScript</code>方法的原因！ 所有这些方法都可以在原型上找到。 虽然<code>JavaScript</code>无法直接在您的对象上找到它，但它会沿着原型链向下寻找并在那里找到它，这使您可以访问它。</p>
+<p>译者注：基础对象��原型链终点的对象。基础对象的原型是<code>null</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>14. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function sum(a, b) {
+  return a + b;
+}
+
+sum(1, "2");</code></pre>
+<ul>
+<li>A: <code>NaN</code>
+</li>
+<li>B: <code>TypeError</code>
+</li>
+<li>C: <code>"12"</code>
+</li>
+<li>D: <code>3</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p><code>JavaScript</code>是一种<strong>动态类型语言</strong>：我们没有指定某些变量的类型。 在您不知情的情况下，值可以自动转换为另一种类型，称为隐式类型转换。 <strong>强制</strong>从一种类型转换为另一种类型。</p>
+<p>在此示例中，<code>JavaScript</code>将数字<code>1</code>转换为字符串，以使函数有意义并返回值。 在让数字类型（<code>1</code>）和字符串类型（<code>'2'</code>）相加时，该数字被视为字符串。 我们可以连接像<code>“Hello”+“World”</code>这样的字符串，所以这里发生的是<code>“1”+“2”</code>返回<code>“12”</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>15. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">let number = 0;
+console.log(number++);
+console.log(++number);
+console.log(number);</code></pre>
+<ul>
+<li>A: <code>1</code> <code>1</code> <code>2</code>
+</li>
+<li>B: <code>1</code> <code>2</code> <code>2</code>
+</li>
+<li>C: <code>0</code> <code>2</code> <code>2</code>
+</li>
+<li>D: <code>0</code> <code>1</code> <code>2</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p><strong>后缀</strong>一元运算符<code>++</code>：</p>
+<ol>
+<li>返回值（返回<code>0</code>）</li>
+<li>增加值（数字现在是<code>1</code>）</li>
+</ol>
+<p><strong>前缀</strong>一元运算符<code>++</code>：</p>
+<ol>
+<li>增加值（数字现在是<code>2</code>）</li>
+<li>返回值（返回<code>2</code>）</li>
+</ol>
+<p>所以返回<code>0 2 2</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>16. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function getPersonInfo(one, two, three) {
+  console.log(one);
+  console.log(two);
+  console.log(three);
+}
+
+const person = "Lydia";
+const age = 21;
+
+getPersonInfo`${person} is ${age} years old`;</code></pre>
+<ul>
+<li>A: <code>Lydia</code> <code>21</code> <code>["", "is", "years old"]</code>
+</li>
+<li>B: <code>["", "is", "years old"]</code> <code>Lydia</code> <code>21</code>
+</li>
+<li>C: <code>Lydia</code> <code>["", "is", "years old"]</code> <code>21</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p>如果使用标记的模板字符串，则第一个参数的值始终是字符串值的数组。 其余参数获取传递到模板字符串中的表达式的值！</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>17. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log("You are an adult!");
+  } else if (data == { age: 18 }) {
+    console.log("You are still an adult.");
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });</code></pre>
+<ul>
+<li>A: <code>You are an adult!</code>
+</li>
+<li>B: <code>You are still an adult.</code>
+</li>
+<li>C: <code>Hmm.. You don't have an age I guess</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>在比较相等性，原始类型通过它们的值进行比较，而对象通过它们的引用进行比较。<code>JavaScript</code>检查对象是否具有对内存中相同位置的引用。</p>
+<p>我们作为参数传递的对象和我们用于检查相等性的对象在内存中位于不同位置，所以它们的引用是不同的。</p>
+<p>这就是为什么<code>{ age: 18 } === { age: 18 }</code>和 <code>{ age: 18 } == { age: 18 }</code> 返回 <code>false</code>的原因。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>18. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function getAge(...args) {
+  console.log(typeof args);
+}
+
+getAge(21);</code></pre>
+<ul>
+<li>A: <code>"number"</code>
+</li>
+<li>B: <code>"array"</code>
+</li>
+<li>C: <code>"object"</code>
+</li>
+<li>D: <code>"NaN"</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>扩展运算符（<code>... args</code>）返回一个带参数的数组。 数组是一个对象，因此<code>typeof args</code>返回<code>object</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>20. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function getAge() {
+  "use strict";
+  age = 21;
+  console.log(age);
+}
+
+getAge();</code></pre>
+<ul>
+<li>A: <code>21</code>
+</li>
+<li>B: <code>undefined</code>
+</li>
+<li>C: <code>ReferenceError</code>
+</li>
+<li>D: <code>TypeError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>使用<code>“use strict”</code>，可以确保不会意外地声明全局变量。 我们从未声明变量<code>age</code>，因为我们使��<code>`use strict'</code>，它会引发一个<code>ReferenceError</code>。 如果我们不使用<code>“use strict”</code>，它就会起作用，因为属性<code>age</code>会被添加到全局对象中。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>21. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const sum = eval("10*10+5");</code></pre>
+<ul>
+<li>A: <code>105</code>
+</li>
+<li>B: <code>"105"</code>
+</li>
+<li>C: <code>TypeError</code>
+</li>
+<li>D: <code>"10*10+5"</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p><code>eval</code>会为字符串传递的代码求值。 如果它是一个表达式，就像在这种情况下一样，它会计算表达式。 表达式为<code>10 * 10 + 5</code>计算得到<code>105</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>22. cool_secret可以访问多长时间?</h3>
+<pre><code class="javascript">sessionStorage.setItem("cool_secret", 123);</code></pre>
+<ul>
+<li>A：永远，数据不会丢失。</li>
+<li>B：用户关闭选项卡时。</li>
+<li>C：当用户关闭整个浏览器时，不仅是选项卡。</li>
+<li>D：用户关闭计算机时。</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p>关闭选项卡���，将删除存储在<code>sessionStorage</code>中的数据。</p>
+<p>如果使用<code>localStorage</code>，数据将永远存在，除非例如调用<code>localStorage.clear()</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>23. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">var num = 8;
+var num = 10;
+
+console.log(num);</code></pre>
+<ul>
+<li>A: <code>8</code>
+</li>
+<li>B: <code>10</code>
+</li>
+<li>C: <code>SyntaxError</code>
+</li>
+<li>D: <code>ReferenceError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p>使用<code>var</code>关键字，您可以用相同的名称声明多个变量。然后变量将保存最新的值。</p>
+<p>您不能使用<code>let</code>或<code>const</code>来实现这一点，因为它们是块作用域的。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>24. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const obj = { 1: "a", 2: "b", 3: "c" };
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty("1");
+obj.hasOwnProperty(1);
+set.has("1");
+set.has(1);</code></pre>
+<ul>
+<li>A: <code>false</code> <code>true</code> <code>false</code> <code>true</code>
+</li>
+<li>B: <code>false</code> <code>true</code> <code>true</code> <code>true</code>
+</li>
+<li>C: <code>true</code> <code>true</code> <code>false</code> <code>true</code>
+</li>
+<li>D: <code>true</code> <code>true</code> <code>true</code> <code>true</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>所有对象键（不包括<code>Symbols</code>）都会被存储为字符串，即使你没有给定字符串类型的键。 这就是为什么<code>obj.hasOwnProperty（'1'）</code>也返回<code>true</code>。</p>
+<p>上面的说法不适用于<code>Set</code>。 在我们的<code>Set</code>中没有<code>“1”</code>：<code>set.has（'1'）</code>返回<code>false</code>。 它有数字类型<code>1</code>，<code>set.has（1）</code>返回<code>true</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>25. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const obj = { a: "one", b: "two", a: "three" };
+console.log(obj);</code></pre>
+<ul>
+<li>A: <code>{ a: "one", b: "two" }</code>
+</li>
+<li>B: <code>{ b: "two", a: "three" }</code>
+</li>
+<li>C: <code>{ a: "three", b: "two" }</code>
+</li>
+<li>D: <code>SyntaxError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>如果对象有两个具有相同名称的键，则将替前面的键。它仍将处于第一个位置，但具有最��指定的值。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>26. JavaScript全局执行上下文为你创建了两个东西:全局对象和this关键字.</h3>
+<ul>
+<li>A: 对</li>
+<li>B: 错误</li>
+<li>C: 视情况而定</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>基本执行上下文是全局执行上下文:它是代码中随处可访问的内容。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>27. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">for (let i = 1; i &lt; 5; i++) {
+  if (i === 3) continue;
+  console.log(i);
+}</code></pre>
+<ul>
+<li>A: <code>1</code> <code>2</code>
+</li>
+<li>B: <code>1</code> <code>2</code> <code>3</code>
+</li>
+<li>C: <code>1</code> <code>2</code> <code>4</code>
+</li>
+<li>D: <code>1</code> <code>3</code> <code>4</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>如果某个条件返回<code>true</code>，则<code>continue</code>语句跳过迭代。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>28. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">String.prototype.giveLydiaPizza = () =&gt; {
+  return "Just give Lydia pizza already!";
+};
+
+const name = "Lydia";
+
+name.giveLydiaPizza();</code></pre>
+<ul>
+<li>A: <code>"Just give Lydia pizza already!"</code>
+</li>
+<li>B: <code>TypeError: not a function</code>
+</li>
+<li>C: <code>SyntaxError</code>
+</li>
+<li>D: <code>undefined</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p><code>String</code>是一个内置的构造函数，我们可以为它添加属性。 我刚给它的原型添加了一个方法。 原始类型的字符串自动转换为字符串对象，由字符串原型函数生成。 因此，所有字符串（字符串对象）都可以访问该方法！</p>
+<p>译者注：</p>
+<p>当使用基本类型的字符串调用<code>giveLydiaPizza</code>时，实际上发生了下面的过程：</p>
+<ul>
+<li>创建一个<code>String</code>的包装类型实例</li>
+<li>在实例上调用<code>substring</code>方法</li>
+<li>销毁实例</li>
+</ul>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>29. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const a = {};
+const b = { key: "b" };
+const c = { key: "c" };
+
+a[b] = 123;
+a[c] = 456;
+
+console.log(a[b]);</code></pre>
+<ul>
+<li>A: <code>123</code>
+</li>
+<li>B: <code>456</code>
+</li>
+<li>C: <code>undefined</code>
+</li>
+<li>D: <code>ReferenceError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答���: B</h4>
+<p>对象键自动转换为字符串。我们试图将一个对象设置为对象<code>a</code>的键，其值为<code>123</code>。</p>
+<p>但是，当对象自动转换为字符串化时，它变成了<code>[Object object]</code>。 所以我们在这里说的是<code>a["Object object"] = 123</code>。 然后，我们可以尝试再次做同样的事情。 <code>c</code>对象同样会发生隐式类型转换。那么，<code>a["Object object"] = 456</code>。</p>
+<p>然后，我们打印<code>a[b]</code>，它实际上是<code>a["Object object"]</code>。 我们将其设置为<code>456</code>，因此返回<code>456</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>30. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const foo = () =&gt; console.log("First");
+const bar = () =&gt; setTimeout(() =&gt; console.log("Second"));
+const baz = () =&gt; console.log("Third");
+
+bar();
+foo();
+baz();</code></pre>
+<ul>
+<li>A: <code>First</code> <code>Second</code> <code>Third</code>
+</li>
+<li>B: <code>First</code> <code>Third</code> <code>Second</code>
+</li>
+<li>C: <code>Second</code> <code>First</code> <code>Third</code>
+</li>
+<li>D: <code>Second</code> <code>Third</code> <code>First</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答��: B</h4>
+<p>我们有一个<code>setTimeout</code>函数并首先调用它。 然而却最后打印了它。</p>
+<p>这是因为在浏览器中，我们不只有运行时引擎，我们还有一个叫做<code>WebAPI</code>的东西。<code>WebAPI</code>为我们提供了<code>setTimeout</code>函数，例如<code>DOM</code>。</p>
+<p>将<code>callback</code>推送到<code>WebAPI</code>后，<code>setTimeout</code>函数本身（但不是回调！）从堆栈中弹出。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c8846da018?w=572&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=592&amp;f=png&amp;s=33812" width="200"&gt;</p>
+<p>现在，调用<code>foo</code>，并打印<code>First</code>。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c86d92d1cd?w=566&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=592&amp;f=png&amp;s=27983" width="200"&gt;</p>
+<p><code>foo</code>从堆栈弹出，<code>baz</code>被调用，并打印<code>Third</code>。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607baa7c1afee?w=568&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=600&amp;f=png&amp;s=28037" width="200"&gt;</p>
+<p><code>WebAPI</code>不能只是在准备就绪时将内容添加��堆栈中。 相反，它将回调函数推送到一个称为<code>任务队列</code>的东西。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c8472a5516?w=556&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=580&amp;f=png&amp;s=24682" width="200"&gt;</p>
+<p>这是事件循环开始工作的地方。 <strong>事件循环</strong>查看堆栈和任务队列。 如果堆栈为空，则会占用队列中的第一个内容并将其推送到堆栈中。</p>
+<p>&lt;img src="<a href="https://user-gold-cdn.xitu.io/2019/6/16/16b607c848f4ea78?w=564&amp;amp" rel="nofollow noreferrer">https://user-gold-cdn.xitu.io...</a>;h=596&amp;f=png&amp;s=24825" width="200"&gt;</p>
+<p><code>bar</code>被调用，<code>Second</code>被打印，它从栈中弹出。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>31. 单击按钮时event.target是什么?</h3>
+<pre><code class="html">&lt;div onclick="console.log('first div')"&gt;
+  &lt;div onclick="console.log('second div')"&gt;
+    &lt;button onclick="console.log('button')"&gt;
+      Click!
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<ul>
+<li>A: <code>div</code>外部</li>
+<li>B: <code>div</code>内部</li>
+<li>C: <code>button</code>
+</li>
+<li>D: 所有嵌套元素的数组.</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>导致事件的最深嵌套元素是事件的目标。 你可以通过<code>event.stopPropagation</code>停止冒泡</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>32. 单击下面的html片段打印的内容是什么?</h3>
+<pre><code class="html">&lt;div onclick="console.log('div')"&gt;
+  &lt;p onclick="console.log('p')"&gt;
+    Click here!
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<ul>
+<li>A: <code>p</code> <code>div</code>
+</li>
+<li>B: <code>div</code> <code>p</code>
+</li>
+<li>C: <code>p</code>
+</li>
+<li>D: <code>div</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>如果我们单击<code>p</code>，我们会看到两个日志：<code>p</code>和<code>div</code>。在事件传播期间，有三个阶段：捕获，目标和冒泡。 默认情况下，事件处理程序在冒泡阶段执行（除非您将<code>useCapture</code>设置为<code>true</code>）。 它从最深的嵌套元素向外延伸。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>33. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const person = { name: "Lydia" };
+
+function sayHi(age) {
+  console.log(`${this.name} is ${age}`);
+}
+
+sayHi.call(person, 21);
+sayHi.bind(person, 21);</code></pre>
+<ul>
+<li>A: <code>undefined is 21</code> <code>Lydia is 21</code>
+</li>
+<li>B: <code>function</code> <code>function</code>
+</li>
+<li>C: <code>Lydia is 21</code> <code>Lydia is 21</code>
+</li>
+<li>D: <code>Lydia is 21</code> <code>function</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: D</h4>
+<p>使用两者，我们可以传递我们想要<code>this</code>关键字引用的对象。 但是，<code>.call</code>方法会立即执行！</p>
+<p><code>.bind</code>方法会返回函数的拷贝值，但带有绑定的上下文！ 它不会立即执行。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>34. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">function sayHi() {
+  return (() =&gt; 0)();
+}
+
+typeof sayHi();</code></pre>
+<ul>
+<li>A: <code>"object"</code>
+</li>
+<li>B: <code>"number"</code>
+</li>
+<li>C: <code>"function"</code>
+</li>
+<li>D: <code>"undefined"</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p><code>sayHi</code>函数返回立即调用的函数（<code>IIFE</code>）的返回值。 该函数返回<code>0</code>，类型为<code>数字</code>。</p>
+<p>仅供参考：只有7种内置类型：<code>null</code>，<code>undefined</code>，<code>boolean</code>，<code>number</code>，<code>string</code>，<code>object</code>和<code>symbol</code>。 <code>function</code>不是一个类型，因为函数是对象，它的类型是<code>object</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>35. 下面这些值哪些是假值?</h3>
+<pre><code class="javascript">0;
+new Number(0);
+("");
+(" ");
+new Boolean(false);
+undefined;</code></pre>
+<ul>
+<li>A: <code>0</code>, <code>''</code>, <code>undefined</code>
+</li>
+<li>B: <code>0</code>, <code>new Number(0)</code>, <code>''</code>, <code>new Boolean(false)</code>, <code>undefined</code>
+</li>
+<li>C: <code>0</code>, <code>''</code>, <code>new Boolean(false)</code>, <code>undefined</code>
+</li>
+<li>D: 所有都是假值</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p><code>JavaScript</code>中只有6个假值：</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>NaN</code></li>
+<li><code>0</code></li>
+<li>
+<code>''</code> (empty string)</li>
+<li><code>false</code></li>
+</ul>
+<p>函数构造函数，如<code>new Number</code>和<code>new Boolean</code>都是真值。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>36. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">console.log(typeof typeof 1);</code></pre>
+<ul>
+<li>A: <code>"number"</code>
+</li>
+<li>B: <code>"string"</code>
+</li>
+<li>C: <code>"object"</code>
+</li>
+<li>D: <code>"undefined"</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p><code>typeof 1</code> 返回 <code>"number"</code>.<br><code>typeof "number"</code> 返回 <code>"string"</code></p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>37. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers);</code></pre>
+<ul>
+<li>A: <code>[1, 2, 3, 7 x null, 11]</code>
+</li>
+<li>B: <code>[1, 2, 3, 11]</code>
+</li>
+<li>C: <code>[1, 2, 3, 7 x empty, 11]</code>
+</li>
+<li>D: <code>SyntaxError</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p>当你为数组中的元素设置一个超过数组长度的值时，<code>JavaScript</code>会创建一个名为“空插槽”的东西。 这些位置的值实际上是<code>undefined</code>，但你会看到类似的东西：</p>
+<p><code>[1, 2, 3, 7 x empty, 11]</code></p>
+<p>这取决于你运行它的位置（每个浏览器有可能不同）。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>38. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">(() =&gt; {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();</code></pre>
+<ul>
+<li>A: <code>1</code> <code>undefined</code> <code>2</code>
+</li>
+<li>B: <code>undefined</code> <code>undefined</code> <code>undefined</code>
+</li>
+<li>C: <code>1</code> <code>1</code> <code>2</code>
+</li>
+<li>D: <code>1</code> <code>undefined</code> <code>undefined</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p><code>catch</code>块接收参数<code>x</code>。当我们传递参数时，这与变量的<code>x</code>不同。这个变量<code>x</code>是属于<code>catch</code>作用域的。</p>
+<p>之后，我们将这个块级作用域的变量设置为<code>1</code>，并设置变量<code>y</code>的值。 现在，我们打印块级作用域的变量<code>x</code>，它等于<code>1</code>。</p>
+<p>在<code>catch</code>块之外，<code>x</code>仍然是<code>undefined</code>，而<code>y</code>是<code>2</code>。 当我们想在<code>catch</code>块之外的<code>console.log(x)</code>时，它返回<code>undefined</code>，而<code>y</code>返回<code>2</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>39. JavaScript中的所有内容都是...</h3>
+<ul>
+<li>A：原始或对象</li>
+<li>B：函数或对���</li>
+<li>C：技巧问题！只有对象</li>
+<li>D：数字或对象</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p><code>JavaScript</code>只有原始类型和对象。</p>
+<p>原始类型是<code>boolean</code>，<code>null</code>，<code>undefined</code>，<code>bigint</code>，<code>number</code>，<code>string</code>和<code>symbol</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>40. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">[[0, 1], [2, 3]].reduce(
+  (acc, cur) =&gt; {
+    return acc.concat(cur);
+  },
+  [1, 2]
+);</code></pre>
+<ul>
+<li>A: <code>[0, 1, 2, 3, 1, 2]</code>
+</li>
+<li>B: <code>[6, 1, 2]</code>
+</li>
+<li>C: <code>[1, 2, 0, 1, 2, 3]</code>
+</li>
+<li>D: <code>[1, 2, 6]</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: C</h4>
+<p><code>[1,2]</code>是我们的初始值。 这是我们开始执行<code>reduce</code>函数的初始值，以及第一个<code>acc</code>的值。 在第一轮中，<code>acc</code>是<code>[1,2]</code>，<code>cur</code>是<code>[0,1]</code>。 我们将它们连接起来，结果是<code>[1,2,0,1]</code>。</p>
+<p>然后，<code>acc</code>的值为<code>[1,2,0,1]</code>，<code>cur</code>的值为<code>[2,3]</code>。 我们将它们连接起来，得到<code>[1,2,0,1,2,3]</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>41. 下面代码的输出是什么?</h3>
+<pre><code class="javascript">!!null;
+!!"";
+!!1;</code></pre>
+<ul>
+<li>A: <code>false</code> <code>true</code> <code>false</code>
+</li>
+<li>B: <code>false</code> <code>false</code> <code>true</code>
+</li>
+<li>C: <code>false</code> <code>true</code> <code>true</code>
+</li>
+<li>D: <code>true</code> <code>true</code> <code>false</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: B</h4>
+<p><code>null</code>是假值。 <code>!null</code>返回<code>true</code>。 <code>!true</code>返回<code>false</code>。</p>
+<p><code>""</code>是假值。 <code>!""</code>返回<code>true</code>。 <code>!true</code>返回<code>false</code>。</p>
+<p><code>1</code>是真值。 <code>!1</code>返回<code>false</code>。 <code>!false</code>返回<code>true</code>。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>42. <code>setInterval</code>方法的返回值什么?</h3>
+<pre><code class="javascript">setInterval(() =&gt; console.log("Hi"), 1000);</code></pre>
+<ul>
+<li>A：一个唯一的<code>id</code>
+</li>
+<li>B：指定的毫秒数</li>
+<li>C：传递的函数</li>
+<li>D：<code>undefined</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>它返回一个唯一的<code>id</code>。 此<code>id</code>可用于使用<code>clearInterval()</code>函数清除该定时器。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<hr>
+<h3>43. 下面代码的返回值是什么?</h3>
+<pre><code class="javascript">[..."Lydia"];</code></pre>
+<ul>
+<li>A: <code>["L", "y", "d", "i", "a"]</code>
+</li>
+<li>B: <code>["Lydia"]</code>
+</li>
+<li>C: <code>[[], "Lydia"]</code>
+</li>
+<li>D: <code>[["L", "y", "d", "i", "a"]]</code>
+</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;<b>答案</b>&lt;/summary&gt;<br>&lt;p&gt;</p>
+<h4>答案: A</h4>
+<p>字符串是可迭代的。 扩展运算符将迭代的每个字符映射到一个元素。</p>
+<p>&lt;/p&gt;<br>&lt;/details&gt;</p>
+<h2>小结</h2>
+<p>希望你阅读本篇文章后可以达到以下几点：</p>
+<ul>
+<li>了解<code>Electron</code>的基本运行原理</li>
+<li>掌握<code>Electron</code>开发的核心基础知识</li>
+<li>了解<code>Electron</code>关于弹框、打印、保护、打包等功能的基本使用</li>
+</ul>
+<p>文中如有错误，欢迎在评论区指正，如果这篇文章帮助到了你，欢迎点赞和关注。</p>
+<p>想阅读更多优质文章、可关注我的<a href="https://github.com/ConardLi/ConardLi.github.io" rel="nofollow noreferrer"><code>github</code>博客</a>，你的star✨、点赞和关注是我持续创作的动力！</p>
+<p>推荐大家使用<a href="https://www.fundebug.com/?utm_source=conardli" rel="nofollow noreferrer">Fundebug</a>，一款很好用的BUG监控工具~</p>
+<p>推荐关注我的微信公众号【code秘密花园】，每天推送高质量文章，我们一起交流成长。</p>
+<p><span class="img-wrap"><img data-src="/img/bVbtbT2?w=1332&amp;h=602" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/squares.svg" alt="图片描述" title="图片描述"></span></p>
+<blockquote>关注公众号后回复【加群】拉你进入优质前端交流群。</blockquote>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+                    <ul class="article-operation list-inline pull-left mt15"><li><a target="_blank"href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img class="mb5" src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/creativecommons-cc.svg" height="20"/></a></li><li class="hidden-xs"><a href="https://github.com/ConardLi/javascript-questions" target="_blank">阅读原文</a></li><li class="dropdown js__content-ops hidden-xs" data-module="article"
+                                data-id="1190000019496107"
+                                data-typetext="文章"><a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a><ul class="dropdown-menu dropdown-menu-left"><li><a href="#911"
+                                           data-toggle="modal"
+                                           data-target="#911"
+                                           data-action="report"
+                                        >举报</a></li></ul></li></ul>
+                    <div class="pull-right mt-10 hidden-xs">
+                        <div class="widget-share__full" data-text="[译]送你43道JavaScript面试题"
+ data-url="https://segmentfault.com/a/1190000019496107" data-shorturl="http://sfau.lt/b5btXZv"></div>
+
+
+                    </div>
+                </div>
+                <div class="mt10 text-center mb30"><button type="button" id="mainLike" data-id="1190000019496107"
+                                    class="btn btn-success btn-lg mr15 "><span id="mainLikeText">赞</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;
+                                <span id="mainLikeNum">64 </span></button><button type="button" id="mainBookmark" data-type="article" data-id="1190000019496107"
+                                    class="btn btn-default btn-lg "><span id="mainBookmarkText">收藏</span>&nbsp;&nbsp;<span class="seprator">|</span>&nbsp;&nbsp;<span id="mainBookmarkNum">47</span></button><br><button type="button" data-id="1190000019496107"
+                                        class="btn btn-danger btn-lg mt15 article__reward-btn">
+                                    赞赏支持
+                                </button></div><div class="mt30 mb30 text-center article__reward-info"><span class="mr10">如果觉得我的文章对你有用，请随意赞赏</span></div>                
+                <script type='text/javascript'>
+                    OA_show(3);
+                </script>
+
+                <h4 class="pt20 mb15 mt0 border-top">你可能感兴趣的</h4>
+
+                                <div id="paradigm-article-related"></div>
+
+                
+        <div class="comments--news comments--default comments--article 
+    " 
+    data-id="1190000019496107" data-user-id="" data-author-id="1030000013084144 "
+         data-is-admin="null" id="goToReplyArea">
+                    <div class="mb10 clearfix">
+                <strong class="comments-stat pull-left mr10">1 条评论</strong>
+
+                                                    <div class="btn-group btn-group-xs pull-right comments-sort btn-group-menu" role="menu">
+                        <a href="javascript:;" 
+                           class="btn btn-default active" data-sort="default">默认排序</a>
+                        <a href="javascript:;" 
+                           class="btn btn-default" data-sort="desc">时间排序</a>
+                    </div>
+                            </div>
+                <div class="comments-container">
+                                <div class="comments-list">
+                <div class="comments-item" data-id="1050000019499389">
+            <div class="pull-left">
+                <a href="/u/jiakesi_5cb84ad20c0e5" target="_blank"><img class="avatar-32 " src="https://avatar-static.segmentfault.com/209/914/2099143756-5ccfdf4e09af4_big64" alt=""></a>
+            </div>
+            <div class="comments-content">
+                <div class="comment-trigger">
+                    <div class="pull-right comment-option">
+                                                <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-action="report" data-action-text="举报" data-module="comment" data-id="1050000019499389" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                                            </div>
+                    <strong><a target="_blank" href="/u/jiakesi_5cb84ad20c0e5">贾克斯</a></strong>
+                    <span class="comments-isAuthor hide"></span>
+                    <span class="comments-date">  ·  1 天前</span>
+                </div>
+
+                <div class="fmt mb10"><p>下面代码的输出是什么?</p></div>
+
+                <form action="/api/comment/1050000019499389/edit">
+                    <div class="form-group">
+                        <textarea class="editTextarea mono form-control mb10 hidden" rows="1" name="text" style="height: 28px; overflow: hidden; word-wrap: break-word;" >下面代码的输出是什么?</textarea>
+                    </div>
+                </form>
+
+                <p class="comment-ops not-reply">
+                    <span class="comments-zan ">
+                        <i class="fa fa-thumbs-up mr4" aria-hidden="true"></i>
+                        <span class="comments-zan-text">赞</span>
+                        <span class="comments-zan-value"></span>
+                    </span>
+                    
+                    <span class="ml15 comments-reply-btn">回复</span>
+
+                    <span class="pull-right editBtns hidden">
+                      <button class="btn btn-link btn-xs cancel" type="button">取消</button>
+                      <button class="btn btn-primary btn-xs edit ml10" type="button">保存</button>
+                    </span>
+                </p>
+
+                <div class="reply-list reply-list--empty">
+
+                    
+                    <div class="reply-item reply-item--ops" data-obj="obj">
+                        <a class="reply-inner-btn" href="javascript:;">添加回复</a>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+            </div>
+    <div class="comments-loading hide">载入中...</div>
+        <div class="comments-more hide"><a href="javascript:;">显示更多评论</a></div>
+    
+
+                                    <div class="comments-box" id="goToReplyEditor">
+                <div class="pull-left">
+                    <img class="avatar-32 "
+                         src="https://cdn.segmentfault.com/v-5cc2cd8e/global/img/user-128.png"
+                         alt=""/>
+                </div>
+                <div class="comments-box-content">
+                    <form action="/api/article/1190000019496107/comments/add">
+                        <div class="form-group mb0">
+                            <textarea name="text" rows="3" class="form-control"placeholder="文明社会，理性评论"></textarea>
+                            <div class="mt15 text-right">
+                                <button type="button" class="hide"></button>
+                                <button class=" btn btn-primary" type="button">发布评论</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                                                        </div>
+    </div>
+
+
+                                    
+                
+                
+
+            </div><!-- /.main -->
+
+
+            <div class="col-md-3 side hidden-sm hidden-xs mt30">
+                                                
+                <div class="mb25 hidden-md hidden-sm hidden-xs">
+    <img src="https://static.segmentfault.com/sponsor/20190618.png" alt="Planets" usemap ="#gridsMap" width=255 height=136>
+    <map name="gridsMap" id="gridsMap"></map>
+    <div style="text-align: center;"><a style="text-align:center; color:#9E9E9E; font-size:12px" href="/sponsor">想在上方展示你的广告？</a></div>
+            <script async src="https://static.segmentfault.com/sponsor/20190618.js"></script>
+    </div>
+
+                                <style>
+                    .job-recommend-area a:not(:last-of-type) {margin-bottom:10px; display: block}
+                    .job-recommend-area a:hover {text-decoration: none;}
+                </style>
+                <div class="hidden-md">
+                    <div class="job-recommend">
+                      <h3 class="job-title">���广链接</h3>
+                      <div class="job-recommend-area">
+                        <script type='text/javascript'>
+                            OA_show(7);
+                            OA_show(9);
+                            OA_show(10);
+                            OA_show(15);
+                            OA_show(16);
+                        </script>
+                      </div>
+                    </div>
+                    <style>
+                    .job-recommend {margin-bottom: 30px;}
+                    .job-title {
+                        font-size: 14px;
+                        color: #017E66;
+                        font-weight: 500;
+                        background: #BFE6D7;
+                        margin: 0;
+                        padding-top: 6px;
+                        padding-bottom: 6px;
+                        text-align: center;
+                    }
+                    .job-recommend-area {
+                      padding: 13px;
+                      border: 3px solid #EBF7F3;
+                      border-top: none;
+                    }
+                    </style>
+                </div>
+
+                                
+                <div class="hidden-md ad-should-be-fixed">
+                    <div class="mb25 block">
+                        <script type='text/javascript'>
+                            OA_show(1);
+                        </script>
+                    </div>
+                </div>
+                <div class="post-nav hidden-xs">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="overflow:scroll">
+                                <div class="highlight-title"></div>
+                                <ul class="articleIndex"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="" id="shareLink" class="btn btn-primary done-btn" target="_blank"
+                   onclick="$('#shareToWeiboModal').modal('hide')">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal widget-911" id="911" tabindex='-1'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal widget-seo" id="seo" tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+            </div>
+            <div class="modal-body">
+                <form id="seoForm">
+                    <!-- 后台返回信息 -->
+                    <p class="alert alert-warning" data-model="returnMsg"></p>
+                    <div data-role="base">
+                        <div class="form-group">
+                            <label>SEO标题：</label><textarea style="min-height: 35px; width: 100%; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="title" class="form-control" rows="1" placeholder="请输入SEO标题"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>SEO描述：</label><textarea style="min-height: 35px; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="desc" class="form-control" rows="1" placeholder="请输入SEO描述"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>SEO keywords：</label><textarea style="min-height: 35px; max-height: 132px; overflow: hidden; overflow-wrap: break-word; height: 32px;" name="keywords" class="form-control" rows="1" placeholder="请输入SEO keywords"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+                <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div id="loginBanner"  class="hidden-sm hidden-xs loginBanner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-7">
+                <h1 class="title">在 SegmentFault，学习技能、解决问题</h1>
+                <p class="desc">每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+            </div>
+            <div class="col-lg-3 col-lg-offset-3 col-md-4 col-md-offset-1">
+                <form class="register-form clearfix" action="/api/user/phone/register">
+
+                    
+                    <a href="/user/register" class="SFLogin btn btn-lg btn-primary mr15">免费注册</a>
+                    <a href="/user/login" class="SFRegister btn btn-lg btn-primary">立即登录</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<script type='text/javascript'>
+    OA_show(4);
+</script>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>产品</dt>
+                                <dd><a href="/questions/hottest?utm_source=sf-footer" target="_blank">热门问答</a></dd>
+                                <dd><a href="/blogs/hottest?utm_source=sf-footer" target="_blank">热门专栏</a></dd>
+                                <dd><a href="/lives?utm_source=sf-footer" target="_blank">热门课程</a></dd>
+                                <dd><a href="/events?utm_source=sf-footer" target="_blank">最新活动</a></dd>
+                                <dd><a href="/groups?utm_source=sf-footer" target="_blank">技术圈</a></dd>
+                                <dd><a href="/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">酷工作</a></dd>
+                                <dd><a href="/app?utm_source=sf-footer" target="_blank">移动客户端</a></dd>
+                            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>课程</dt>
+                                <dd><a href="/lives/edu?tag=java&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Java 开发课程</a></dd>
+                                <dd><a href="/lives/edu?tag=php&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">PHP 开发课程</a></dd>
+                                <dd><a href="/lives/edu?tag=python&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Python 开发课程</a></dd>
+                                <dd><a href="/lives/edu?category=1&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">前端开发课程</a></dd>
+                                <dd><a href="/lives/study?category=3&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">移动开发课程</a></dd>
+                            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>资源</dt>
+                                <dd><a href="/weekly?utm_source=sf-footer" target="_blank">每周精选</a></dd>
+                                <dd><a href="/users?utm_source=sf-footer" target="_blank">用户排行榜</a></dd>
+                                <dd><a href="/badges?utm_source=sf-footer" target="_blank">徽章</a></dd>
+                                <dd><a href="/faq?utm_source=sf-footer" target="_blank">帮助中心</a></dd>
+                                <dd><a href="/repu?utm_source=sf-footer" target="_blank">声望与权限</a></dd>
+                                <dd><a href="/community?utm_source=sf-footer" target="_blank">社区服务中心</a></dd>
+                            </dl>
+            
+            <dl class="col-sm-2 site-link">
+                <dt>合作</dt>
+                                <dd><a href="https://about.segmentfault.com/?utm_source=sf-footer" target="_blank">关于我们</a></dd>
+                                <dd><a href="https://business.segmentfault.com/ads?utm_source=sf-footer" target="_blank">广告投放</a></dd>
+                                <dd><a href="/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">职位发布</a></dd>
+                                <dd><a href="/lives/apply?utm_source=sf-footer" target="_blank">讲师招募</a></dd>
+                                <dd><a href="https://about.segmentfault.com/contact.html?utm_source=sf-footer" target="_blank">联系我们</a></dd>
+                            </dl>
+
+            <dl class="col-sm-2 site-link">
+                <dt>关注</dt>
+                                <dd><a href="/blog/segmentfault?utm_source=sf-footer" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="/blog/community_admin?utm_source=sf-footer" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="/blog/segmentfault_news?utm_source=sf-footer" target="_blank">市场运营日志</a></dd>
+                                <dd><a href="/blog/segmentfault_team?utm_source=sf-footer" target="_blank">团队日志</a></dd>
+                                <dd><a href="/blog/interview?utm_source=sf-footer" target="_blank">社区访谈</a></dd>
+                                <dd>
+                    <ul class="sn-inline">
+                        <li>
+                            <a class="entypo-wechart icon-sn-weixin weixin-popover-qrcode" data-toggle="popover" data-placement="top"  data-content="">微信</a>
+                        </li>
+                        <li>
+                            <a href="http://weibo.com/segmentfault" target="_blank" class="entypo-weibo icon-sn-weibo" >新浪微博</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/SegmentFault" target="_blank" class="entypo-facebook icon-sn-github">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/segment_fault" target="_blank" class="entypo-twitter icon-sn-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <dl class="col-sm-2 site-link" id="license">
+                <dt>条款</dt>
+                                <dd><a href="/tos?utm_source=sf-footer" target="_blank">服务条款</a></dd>
+                                <dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">内容许可</a></dd>
+                                <dd>
+                    <a href="/app" class="clearfix mt10 block"><img src="https://cdn.segmentfault.com/v-5cc2cd8e/page/img/app/appQrcode.png" class="app-qrcode"></a>
+                    <div class="app-download-desc">
+                        <p>扫一扫下载 App</p>
+                    </div>
+                    
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2011-2019 SegmentFault. 当前呈现版本 19.02.27<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+            <P class="mt30">CDN 存储服务由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&utm_medium=link&utm_campaign=upyun&md=segmentfault">又拍云</a> 赞助提供 </p>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="hidden border-bottom" href="#">回顶部</a>
+</div>
+
+    <script id="loginModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/login" method="POST" role="form" class="mt15">
+                <div class="form-group hidden">
+                                        <input type="text" class="form-control" name="remember" value="1"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="username" class="control-label">手机号 或 Email</label>
+                    <input type="text" class="form-control" name="username" tabindex="1" required placeholder="11 位手机号 或 Email"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">密码</label><span class="pull-right"><a
+                                href="/user/forgot" tabindex="4">忘记密码</a></span>
+                    <input type="password" class="form-control" name="password" tabindex="2" required placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <a
+                            
+                                                    href="/user/phoneLogin"
+                            class="phoneLogin"
+                                            >手机验证码登录</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+    <script id="registerModal" type="text/template">
+    <div class="row bg-white login-modal">
+        <div class="col-md-12 login-wrap">
+            
+            <form action="/api/user/register" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="name" class="control-label">你的名字</label>
+                    <input type="text" class="form-control" name="name" required placeholder="真实姓名或常用昵称">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mail" class="control-label">手机号</label>
+                    <input type="text" class="form-control" id="login-name" name="mail" required placeholder="11 位手机号">
+                </div>
+                
+                <input type="text" class="hidden" name="register_type" value="mail">
+
+                <div class="form-group">
+                    <div class="captchaInput mb10">
+                        <input type="text" class="form-control" name="cap" placeholder="右侧的验证码" style="width:50%; display: inline; margin-right: 15px;">
+                        <span class="mt10">
+                                <a id="loginReloadCaptcha" href="javascript:void(0)">
+                                <img src="/user/captcha?w=135&h=34" class="cap" width="135" height="34"/></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="phone-register-only hidden">
+                        <div class="input-group">
+                            <input name="code" type="text" class="form-control js-user-login__phone-code-value" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default js-user-login__phone-vaild-btn" style="width:96px;" type="button">
+                                获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="control-label">密码</label>
+                    <input type="password" class="form-control" name="password" required placeholder="不少于 6 位的密码">
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pl20 pr20 pull-right"
+                            onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册
+                    </button>
+                </div>
+                                <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFRegister
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    已有账号登录
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>            </form>
+        </div>
+    </div>
+</script>
+    <script id="phoneLoginModal" type="text/template">
+
+    <div class="row bg-white login-modal phonelogin-modal">
+        <div class="col-md-12 login-wrap">
+            <form action="/api/user/phonelogin" method="POST" role="form" class="mt15">
+                <div class="form-group">
+                    <label for="phone" class="control-label required">手机号</label>
+                    <input type="text" class="form-control phonelogin--phone" name="phone" tabindex="1" required placeholder="11 位手机号"
+                           autocomplete="off">
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="authCode" class="control-label required">验证码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control bindphone--code" name="authCode" placeholder="短信验证码">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                        </span>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+                <div class="form-group">
+                    <a 
+                                                            href="/user/login"
+                                class="SFRegister"
+                                                >密码登录（手机号或 Email）</a>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn-block btn btn-primary pull-right pl20 pr20" tabindex="3"
+                            onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录
+                    </button>
+                </div>
+            </form>
+            <div class="text-muted text-center more-login-area">
+    <span class="more-login-words">更多登录方式</span>
+</div>
+<div class="widget-login mb15 text-center">
+    <a href="/user/oauth/google" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span
+                class="icon-sn-google"></span></a>
+    <a href="/user/oauth/github" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span
+                class="icon-sn-github"></span></a>
+    <a href="/user/oauth/weibo" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span
+                class="icon-sn-weibo"></span></a>
+    <a href="/user/oauth/qq" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-qq"></span></a>
+    <a href="/user/oauth/weixin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span
+                class="icon-sn-weixin"></span></a>
+    <a href="/user/oauth/linkedin" class=""
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "linkedin"});'><span
+                class="icon-sn-linkedin"></span></a>
+    <span id="loginShowMore" style="cursor: pointer" class="mb5"><span class="icon-sn-dotted"></span></span>
+    <a href="/user/oauth/twitter" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span
+                class="icon-sn-twitter"></span></a>
+    <a href="/user/oauth/facebook" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span
+                class="icon-sn-facebook"></span></a>
+    <a href="/user/oauth/douban" class=" hidden"
+       onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span
+                class="icon-sn-douban"></span></a>
+</div>
+<div class="form-group clearfix">
+    <a class="btn-block btn btn-default pull-right pl20 pr20 
+                        SFLogin
+             "
+
+            
+        onclick='ga("send", "event", "email login button", "clicked", "login modal");'>
+                    注册新账号
+            </a>
+</div>
+<p class="text-muted text-center mb15">登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a></p>        </div>
+    </div>
+</script>
+<script id="bindPhoneModal" type="text/template">
+    <div class="bg-white bindphone-model">
+        <div class="alert alert-warning" role="alert">
+            为了保证账号安全，请先绑定手机
+        </div>
+        <div>
+            <form class="form-horizontal form__bindphone-apply" style="background-color:#fff;padding:0;">
+                <div class="form-group ">
+                    <label for="phoneNumber" class="col-sm-3 control-label required" >手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control bindphone--phone" id="phoneNumber" name="phone" placeholder="仅只支持大���手机号">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label for="authCode" class="col-sm-3 control-label required">验证码</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control bindphone--code" name="code" placeholder="短信验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default user-bind__phone-vaild-btn" type="button">获取验证码</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</script>
+
+
+<script>
+    window.serverTime = 1560861608000;
+</script>
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://cdn.segmentfault.com/v-5cc2cd8e"
+        };
+        w.SF.token = (function () {
+    var _9Jg1Fq2 = //'kh'
+'d30'+//'0x'
+'5f'+'53'//'7N'
++'530'//'aRN'
++//'Fx'
+'1'+'aO'//'aO'
++''///*'Bm'*/'Bm'
++'3a'//'62n'
++'f'//'T'
++'ccb'//'EwP'
++'3'//'sg'
++'d6'//'NF'
++//'Y'
+'Y'+//'IyZ'
+'b7'+//'Ap'
+'8'+//'Ro'
+'b67'+//'U'
+'U'+//'8g8'
+'81c'+'92'//'ze'
++'4'//'MT'
+, _gSkdMVf = [[11,13],[20,21],[26,27]];
+
+    for (var i = 0; i < _gSkdMVf.length; i ++) {
+        _9Jg1Fq2 = _9Jg1Fq2.substring(0, _gSkdMVf[i][0]) + _9Jg1Fq2.substring(_gSkdMVf[i][1]);
+    }
+
+    return _9Jg1Fq2;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+
+        var ddosMode = false;
+    
+        (function (currentUrl) {
+        if (typeof URL != 'undefined') {
+            var baseUrl = new URL('https://segmentfault.com');
+
+            if (baseUrl.protocol != currentUrl.protocol
+                || baseUrl.host != currentUrl.host) {
+                window.location.href = baseUrl.protocol + '//' + baseUrl.host
+                    + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+            }
+        }
+    })(window.location);
+    </script>
+
+             <script crossorigin src="https://cdn.segmentfault.com/v-5cc2cd8e/3rd/assets.js"></script>
+                 
+        <script crossorigin src="https://cdn.segmentfault.com/v-5cc2cd8e/blog/script/post.min.js"></script>
+            
+
+<script>
+if (!!navigator.userAgent.match(/MicroMessenger/i)) {
+    require.config({
+        paths: { weixin_jsapi: '//res.wx.qq.com/open/js/jweixin-1.2.0' }
+    });
+
+    require(['weixin_jsapi'], function (wx) {
+        var share = {"title":"[\u8bd1]\u9001\u4f6043\u9053JavaScript\u9762\u8bd5\u9898","desc":"\u8fd9\u4e24\u5929\u7684GitHub Trending repositories\u88ab\u4e00\u4e2a\u540d\u53eb javascript-questions\u7684\u9879\u76ee\u9738\u699c\u4e86\uff0c\u9879\u76ee\u4e2d\u8bb0\u5f55\u4e86\u4e00\u4e9bJavaScript\u9898\u76ee\u3002","link":"https:\/\/segmentfault.com\/a\/1190000019496107","imgUrl":"https:\/\/segmentfault.com\/img\/remote\/1460000019496110?w=1514&amp;h=452"};
+        share.title += ' - SegmentFault 思否';
+
+        $.getJSON('/api/util/weixin/jsapi', function (o) {
+            methods = o.data.jsApiList.slice();
+
+            wx.config(o.data);
+            wx.error(console.error);
+            wx.ready(function () {
+                methods.forEach(function (method) {
+                    wx[method](share);
+                });
+            });
+        });
+    });
+}
+</script>
+
+<script src="https://cdn.segmentfault.com/v-5cc2cd8e/global/script/ads.min.js" type="text/javascript"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                
+        
+
+                
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1560861609,
+        'allowLinker'
+    : true });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['docs.segmentfault.com'] );
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+        if(document.getElementById('UGTKzPZbRoOS')){
+        UGTKzPZbRoOS='No';
+    } else {
+        UGTKzPZbRoOS='Yes';
+    }
+
+    if(typeof ga !=='undefined'){
+        ga('send','event','Blocking Ads',UGTKzPZbRoOS,{'nonInteraction':1});
+    } else if(typeof _gaq !=='undefined'){
+        _gaq.push(['_trackEvent','Blocking Ads',UGTKzPZbRoOS,undefined,undefined,true]);
+    }
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+</body>
+</html>
+
