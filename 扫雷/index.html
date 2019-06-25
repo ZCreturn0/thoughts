@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扫雷</title>
+    <style>
+        #scene{
+            width: 270px;
+            height: 270px;
+            box-sizing: content-box;
+            position: relative;
+            margin: 200px auto;
+            border: 5px solid #ccc;
+        }
+        .tube{
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="scene">
+            <template v-for="line in tubes">
+                <div class="tube" v-for="tube in line" :style="{left: tube.dis_x,top: tube.dis_y}">{{tube.x}},{{tube.y}}</div>
+            </template>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 尺寸
+        const X = 9;
+        const Y = 9;
+        // 坐标点
+        class Point{
+            constructor(x, y){
+                this.x = x;
+                this.y = y;
+                this.dis_x = x * 30 + 'px';
+                this.dis_y = y * 30 + 'px';
+            }
+        }
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    tubes: []
+                }
+            },
+            methods: {
+                
+            },
+            created(){
+                for(let i = 0; i < X; i++){
+                    this.tubes[i] = [];
+                    for(let j = 0; j < Y; j++){
+                        this.tubes[i].push(new Point(i, j));
+                    }
+                }
+                console.log(this.tubes);
+            }
+        });
+    </script>
+</body>
+</html>
