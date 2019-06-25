@@ -20,6 +20,8 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
             position: absolute;
+            text-align: center;
+            line-height: 30px;
         }
     </style>
 </head>
@@ -27,7 +29,7 @@
     <div id="app">
         <div id="scene">
             <template v-for="line in tubes">
-                <div class="tube" v-for="tube in line" :style="{left: tube.dis_x,top: tube.dis_y}">{{tube.x}},{{tube.y}}</div>
+                <div class="tube" v-for="tube in line" :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" :key="tube.id">{{tube.point.x}},{{tube.point.y}}</div>
             </template>
         </div>
     </div>
@@ -36,13 +38,14 @@
         // 尺寸
         const X = 9;
         const Y = 9;
+        // 雷的总个数
+        const MINE = 10;
         // 坐标点
         class Point{
             constructor(x, y){
                 this.x = x;
                 this.y = y;
-                this.dis_x = x * 30 + 'px';
-                this.dis_y = y * 30 + 'px';
+                this.id = '' + x + y;
             }
         }
         new Vue({
@@ -53,13 +56,36 @@
                 }
             },
             methods: {
-                
+                initScene(currentMineNumber){
+                    let _this = this;
+                    // 当前未布置的地雷数
+                    let currentMineNumber = currentMineNumber || MINE;
+                    // 没雷的坐标
+                    let emptyPoint = [];
+                    for(let i = 0; i < X; i++){
+                        for(let j = 0; j < Y; j++){
+                            if(!this.tubes[i][j].mine){
+                                emptyPoint.push({
+                                    x: _this.tubes[i][j].point.x,
+                                    y: _this.tubes[i][j].point.y
+                                });
+                            }
+                        }
+                    }
+                    let index = Math.floor(Math.random() * emptyPoint.length);
+                }
             },
             created(){
                 for(let i = 0; i < X; i++){
                     this.tubes[i] = [];
                     for(let j = 0; j < Y; j++){
-                        this.tubes[i].push(new Point(i, j));
+                        this.tubes[i].push({
+                            point: new Point(i, j),
+                            // 是否已经显示
+                            show: false,
+                            // 是否是地雷
+                            mine: false
+                        });
                     }
                 }
                 console.log(this.tubes);
