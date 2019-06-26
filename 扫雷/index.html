@@ -107,12 +107,15 @@
                     // 未排除的地雷个数
                     restMine: MINE,
                     // 可插旗数量
-                    flag: MINE
+                    flag: MINE,
+                    restTubes: 0
                 }
             },
             methods: {
                 // 初始化tubes
                 init(){
+                    this.flag = MINE;
+                    this.restTubes = X * Y;
                     for (let i = 0; i < X; i++) {
                         this.tubes[i] = [];
                         for (let j = 0; j < Y; j++) {
@@ -255,6 +258,11 @@
                         }
                     }
                     this.tubes.splice(0,0);
+                    if (this.gameComplte()) {
+                        alert('恭喜你通关!!');
+                        this.gameStart();
+                        this.tubes.splice(0, 0);
+                    }
                 },
                 // 点击方块
                 dig(tube){
@@ -264,6 +272,7 @@
                             alert('游戏结束');
                             this.gameStart();
                             this.tubes.splice(0, 0);
+                            return;
                         }
                         else if(tube.number != 0){
                             this.clickTube(tube.point.x, tube.point.y);
@@ -296,14 +305,25 @@
                             }
                         }
                     }
+                    if(this.gameComplte()){
+                        alert('恭喜你通关!!');
+                        this.gameStart();
+                        this.tubes.splice(0, 0);
+                    }
                 },
                 // 单个方块处理
                 clickTube(x, y){
                     // this.$set(this.tubes[x][y], 'show', true);
                     this.tubes[x][y].show = true;
+                    // 剩余方块-1
+                    this.restTubes--;
                     // 激活view层更新
                     this.tubes.splice(0, 0);
-                }                
+                },             
+                // 游戏完成
+                gameComplte(){
+                    return (this.restMine == 0 && this.flag == 0) || this.restTubes == MINE;
+                }
             },
             created(){
                 this.gameStart();
