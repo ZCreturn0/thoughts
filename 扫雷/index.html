@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>扫雷</title>
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
     <style>
         #scene{
             width: 270px;
@@ -42,6 +42,16 @@
         .mine{
             border-color: red;
         }
+        .cart{
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border: 5px solid red;
+            border-top-width: 0px;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -53,17 +63,18 @@
                     :style="{left: tube.point.y * 30 + 'px',top: tube.point.x * 30 + 'px'}" 
                     :class="{ mine: tube.mine, tube: !tube.show, clicked: tube.show }"
                     :key="tube.id"
-                    @contextmenu.prevent="setItMine()"
+                    @contextmenu.prevent="setItMine(tube)"
                     @click="dig(tube)">
                     <span v-if="tube.show && tube.number != 0" :style="{color: numberColor[tube.number]}">
                         {{tube.number}}
                     </span>
+                    <span v-else-if="tube.flaged" class="cart"></span>
                 </div>
             </template>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
     <script>
         // 尺寸
         const X = 9;
@@ -92,7 +103,11 @@
                         '6': '#82b53c',
                         '7': '#83543c',
                         '8': '#83ffd7'
-                    }
+                    },
+                    // 未排除的地雷个数
+                    restMine: MINE,
+                    // 可插旗数量
+                    flag: MINE
                 }
             },
             methods: {
@@ -216,12 +231,34 @@
                     return number;
                 },
                 // 右键设成地雷
-                setItMine(){
-                    
+                setItMine(tube){
+                    // 未显示的方块才能插旗
+                    if(!tube.show){
+                        tube.flaged = !tube.flaged;
+                    }
+                    // 如果插上了旗
+                    if(tube.flaged){
+                        // 可插的旗-1
+                        this.flag--;
+                        // 如果这个方块有地雷,剩余的地雷-1
+                        if(tube.mine){
+                            this.restMine--;
+                        }
+                    }
+                    // 如果取消了插旗
+                    else{
+                        // 可插的旗+1
+                        this.flag++;
+                        // 如果这个方块有地雷,剩余的地雷+1
+                        if(tube.mine){
+                            this.restMine++;
+                        }
+                    }
+                    this.tubes.splice(0,0);
                 },
                 // 点击方块
                 dig(tube){
-                    if(!tube.show){
+                    if(!tube.show && !(typeof tube.flaged === 'boolean' && tube.flaged)){
                         // 点到地雷,游戏结束;后续做效果及判断重开
                         if(tube.mine){
                             alert('游戏结束');
