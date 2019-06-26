@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>扫雷</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
     <style>
         #scene{
             width: 270px;
@@ -40,18 +41,20 @@
                 <div 
                     class="tube" 
                     v-for="tube in line" 
-                    :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" 
+                    :style="{left: tube.point.y * 30 + 'px',top: tube.point.x * 30 + 'px'}" 
                     :class="{ mine: tube.mine }" 
                     :key="tube.id"
-                    @contextmenu.prevent="setItMine()">
-                    <span v-if="!tube.mine">
-                        <!-- {{tube.number}} -->
+                    @contextmenu.prevent="setItMine()"
+                    @click="dig(tube)">
+                    <span v-if="tube.show">
+                        {{tube.number}}
                     </span>
                 </div>
             </template>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
     <script>
         // 尺寸
         const X = 9;
@@ -95,7 +98,9 @@
                     let index = Math.floor(Math.random() * emptyPoint.length);
                     let x = emptyPoint[index].x;
                     let y = emptyPoint[index].y;
-                    this.tubes[x][y].mine = true;
+                    // 使用$set以触view层更新
+                    this.$set(this.tubes[x][y], 'mine', true);
+                    // this.tubes[x][y].mine = true;
                     // 未布置的地雷-1
                     currentMineNumber--;
                     // 剩余未布置的地雷不为0,递归调用,继续随机布置地雷
@@ -110,7 +115,8 @@
                             // 非地雷才需填入数字
                             if(!this.tubes[i][j].mine){
                                 // 判断周围8个方块里地雷个数
-                                this.tubes[i][j].number = this.getNumber(i, j);
+                                this.$set(this.tubes[i][j], 'number', this.getNumber(i, j));
+                                // this.tubes[i][j].number = this.getNumber(i, j);
                             }
                         }
                     }
@@ -175,7 +181,17 @@
                 // 右键设成地雷
                 setItMine(){
                     
-                }
+                },
+                // 点击方块
+                dig(tube){
+                    this.clickTube(tube.point.x, tube.point.y);
+                },
+                // 单个方块处理
+                clickTube(x, y){
+                    this.$set(this.tubes[x][y], 'show', true);
+                    // 激活view层更新
+                    this.tubes.splice(0, 0);
+                }                
             },
             created(){
                 for(let i = 0; i < X; i++){
@@ -193,6 +209,14 @@
                 this.initScene();
                 this.fillNumber();
                 console.log(this.tubes);
+            },
+            watch: {
+                tubes:{
+                    handler(newVal, oldVal){
+                        console.log(newVal)
+                    },
+                    deep: true
+                }
             }
         });
     </script>
