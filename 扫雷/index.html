@@ -40,7 +40,7 @@
             background: #afe0f9;
         }
         .mine{
-            /* border-color: red; */
+            border-color: red;
         }
     </style>
 </head>
@@ -55,7 +55,7 @@
                     :key="tube.id"
                     @contextmenu.prevent="setItMine()"
                     @click="dig(tube)">
-                    <span v-if="tube.show && tube.number != 0" :class="{color: numberColor[tube.number]}">
+                    <span v-if="tube.show && tube.number != 0" :style="{color: numberColor[tube.number]}">
                         {{tube.number}}
                     </span>
                 </div>
@@ -85,7 +85,7 @@
                     tubes: [],
                     numberColor: {
                         '1': '#4050be',
-                        '2': '#5188948',
+                        '2': '#518948',
                         '3': '#ff254a',
                         '4': '#010182',
                         '5': 'ffb04a',
@@ -152,6 +152,12 @@
                         }
                     }
                 },
+                // 游戏开始
+                gameStart(){
+                    this.init();
+                    this.initScene();
+                    this.fillNumber();
+                },
                 // 坐标是否超出界外
                 inRange(x, y){
                     return x < X && x >= 0 && y < Y && y >= 0;
@@ -215,15 +221,11 @@
                 },
                 // 点击方块
                 dig(tube){
-                    console.log(tube)
-                    console.log(tube.point.x, tube.point.y)
                     if(!tube.show){
                         // 点到地雷,游戏结束;后续做效果及判断重开
                         if(tube.mine){
                             alert('游戏结束');
-                            this.init();
-                            this.initScene();
-                            this.fillNumber();
+                            this.gameStart();
                             this.tubes.splice(0, 0);
                         }
                         else if(tube.number != 0){
@@ -267,10 +269,7 @@
                 }                
             },
             created(){
-                this.init();
-                this.initScene();
-                this.fillNumber();
-                console.log(this.tubes);
+                this.gameStart();
             }
         });
     </script>
