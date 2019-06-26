@@ -29,7 +29,7 @@
             background: #afe0f9;
         }
         .mine{
-            background: red;
+            border-color: red;
         }
     </style>
 </head>
@@ -37,7 +37,17 @@
     <div id="app">
         <div id="scene">
             <template v-for="line in tubes">
-                <div class="tube" v-for="tube in line" :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" :class="{ mine: tube.mine }" :key="tube.id"></div>
+                <div 
+                    class="tube" 
+                    v-for="tube in line" 
+                    :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" 
+                    :class="{ mine: tube.mine }" 
+                    :key="tube.id"
+                    @contextmenu.prevent="setItMine()">
+                    <span v-if="!tube.mine">
+                        <!-- {{tube.number}} -->
+                    </span>
+                </div>
             </template>
         </div>
     </div>
@@ -92,6 +102,79 @@
                     if(currentMineNumber != 0){
                         this.initScene(currentMineNumber);
                     }
+                },
+                // 填入数字
+                fillNumber(){
+                    for(let i = 0; i < X; i++){
+                        for(let j = 0; j < Y; j++){
+                            // 非地雷才需填入数字
+                            if(!this.tubes[i][j].mine){
+                                // 判断周围8个方块里地雷个数
+                                this.tubes[i][j].number = this.getNumber(i, j);
+                            }
+                        }
+                    }
+                },
+                // 坐标是否超出界外
+                inRange(x, y){
+                    return x < X && x >= 0 && y < Y && y >= 0;
+                },
+                // 获取当前方块的值
+                getNumber(x, y){
+                    let number = 0;
+                    // 左上
+                    if(this.inRange(x - 1, y - 1)){
+                        if(this.tubes[x-1][y-1].mine){
+                            number++;
+                        }
+                    }
+                    // 上
+                    if(this.inRange(x - 1, y)){
+                        if(this.tubes[x-1][y].mine){
+                            number++;
+                        }
+                    }
+                    // 右上
+                    if(this.inRange(x - 1, y + 1)){
+                        if(this.tubes[x-1][y+1].mine){
+                            number++;
+                        }
+                    }
+                    // 左
+                    if(this.inRange(x, y - 1)){
+                        if(this.tubes[x][y-1].mine){
+                            number++;
+                        }
+                    }
+                    // 右
+                    if(this.inRange(x, y + 1)){
+                        if(this.tubes[x][y+1].mine){
+                            number++;
+                        }
+                    }
+                    // 左下
+                    if(this.inRange(x + 1, y - 1)){
+                        if(this.tubes[x+1][y-1].mine){
+                            number++;
+                        }
+                    }
+                    // 下
+                    if(this.inRange(x + 1, y)){
+                        if(this.tubes[x+1][y].mine){
+                            number++;
+                        }
+                    }
+                    // 右下
+                    if(this.inRange(x + 1, y + 1)){
+                        if(this.tubes[x+1][y+1].mine){
+                            number++;
+                        }
+                    }
+                    return number;
+                },
+                // 右键设成地雷
+                setItMine(){
+                    
                 }
             },
             created(){
@@ -108,6 +191,7 @@
                     }
                 }
                 this.initScene();
+                this.fillNumber();
                 console.log(this.tubes);
             }
         });
