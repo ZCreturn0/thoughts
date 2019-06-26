@@ -22,6 +22,14 @@
             position: absolute;
             text-align: center;
             line-height: 30px;
+            border-radius: 6px;
+            box-shadow:0px 0px 2px #000;
+        }
+        .tube:hover{
+            background: #afe0f9;
+        }
+        .mine{
+            background: red;
         }
     </style>
 </head>
@@ -29,7 +37,7 @@
     <div id="app">
         <div id="scene">
             <template v-for="line in tubes">
-                <div class="tube" v-for="tube in line" :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" :key="tube.id">{{tube.point.x}},{{tube.point.y}}</div>
+                <div class="tube" v-for="tube in line" :style="{left: tube.point.x * 30 + 'px',top: tube.point.y * 30 + 'px'}" :class="{ mine: tube.mine }" :key="tube.id"></div>
             </template>
         </div>
     </div>
@@ -56,10 +64,11 @@
                 }
             },
             methods: {
-                initScene(currentMineNumber){
+                // 随机布置地雷
+                initScene(mineNumber){
                     let _this = this;
                     // 当前未布置的地雷数
-                    let currentMineNumber = currentMineNumber || MINE;
+                    let currentMineNumber = mineNumber || MINE;
                     // 没雷的坐标
                     let emptyPoint = [];
                     for(let i = 0; i < X; i++){
@@ -72,7 +81,17 @@
                             }
                         }
                     }
+                    // 随机获取一个没雷的坐标设置雷
                     let index = Math.floor(Math.random() * emptyPoint.length);
+                    let x = emptyPoint[index].x;
+                    let y = emptyPoint[index].y;
+                    this.tubes[x][y].mine = true;
+                    // 未布置的地雷-1
+                    currentMineNumber--;
+                    // 剩余未布置的地雷不为0,递归调用,继续随机布置地雷
+                    if(currentMineNumber != 0){
+                        this.initScene(currentMineNumber);
+                    }
                 }
             },
             created(){
@@ -88,6 +107,7 @@
                         });
                     }
                 }
+                this.initScene();
                 console.log(this.tubes);
             }
         });
