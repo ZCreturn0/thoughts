@@ -24,6 +24,7 @@
             text-align: center;
             line-height: 30px;
             border-radius: 6px;
+            background: #ffd3d3;
             box-shadow:0px 0px 2px #000;
         }
         .clicked{
@@ -39,7 +40,7 @@
             background: #afe0f9;
         }
         .mine{
-            border-color: red;
+            /* border-color: red; */
         }
     </style>
 </head>
@@ -54,7 +55,7 @@
                     :key="tube.id"
                     @contextmenu.prevent="setItMine()"
                     @click="dig(tube)">
-                    <span v-if="tube.show">
+                    <span v-if="tube.show && tube.number != 0" :class="{color: numberColor[tube.number]}">
                         {{tube.number}}
                     </span>
                 </div>
@@ -81,10 +82,35 @@
             el: '#app',
             data() {
                 return {
-                    tubes: []
+                    tubes: [],
+                    numberColor: {
+                        '1': '#4050be',
+                        '2': '#5188948',
+                        '3': '#ff254a',
+                        '4': '#010182',
+                        '5': 'ffb04a',
+                        '6': '#82b53c',
+                        '7': '#83543c',
+                        '8': '#83ffd7'
+                    }
                 }
             },
             methods: {
+                // 初始化tubes
+                init(){
+                    for (let i = 0; i < X; i++) {
+                        this.tubes[i] = [];
+                        for (let j = 0; j < Y; j++) {
+                            this.tubes[i].push({
+                                point: new Point(i, j),
+                                // 是否已经显示
+                                show: false,
+                                // 是否是地雷
+                                mine: false
+                            });
+                        }
+                    }
+                },
                 // 随机布置地雷
                 initScene(mineNumber){
                     let _this = this;
@@ -195,6 +221,10 @@
                         // 点到地雷,游戏结束;后续做效果及判断重开
                         if(tube.mine){
                             alert('游戏结束');
+                            this.init();
+                            this.initScene();
+                            this.fillNumber();
+                            this.tubes.splice(0, 0);
                         }
                         else if(tube.number != 0){
                             this.clickTube(tube.point.x, tube.point.y);
@@ -237,29 +267,10 @@
                 }                
             },
             created(){
-                for(let i = 0; i < X; i++){
-                    this.tubes[i] = [];
-                    for(let j = 0; j < Y; j++){
-                        this.tubes[i].push({
-                            point: new Point(i, j),
-                            // 是否已经显示
-                            show: false,
-                            // 是否是地雷
-                            mine: false
-                        });
-                    }
-                }
+                this.init();
                 this.initScene();
                 this.fillNumber();
                 console.log(this.tubes);
-            },
-            watch: {
-                tubes:{
-                    handler(newVal, oldVal){
-                        console.log(newVal)
-                    },
-                    deep: true
-                }
             }
         });
     </script>
