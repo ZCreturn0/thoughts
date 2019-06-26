@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>扫雷</title>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <style>
         #scene{
             width: 270px;
@@ -26,6 +26,15 @@
             border-radius: 6px;
             box-shadow:0px 0px 2px #000;
         }
+        .clicked{
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            position: absolute;
+            text-align: center;
+            line-height: 30px;
+        }
         .tube:hover{
             background: #afe0f9;
         }
@@ -39,10 +48,9 @@
         <div id="scene">
             <template v-for="line in tubes">
                 <div 
-                    class="tube" 
                     v-for="tube in line" 
                     :style="{left: tube.point.y * 30 + 'px',top: tube.point.x * 30 + 'px'}" 
-                    :class="{ mine: tube.mine }" 
+                    :class="{ mine: tube.mine, tube: !tube.show, clicked: tube.show }"
                     :key="tube.id"
                     @contextmenu.prevent="setItMine()"
                     @click="dig(tube)">
@@ -54,7 +62,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script>
         // 尺寸
         const X = 9;
@@ -98,9 +106,7 @@
                     let index = Math.floor(Math.random() * emptyPoint.length);
                     let x = emptyPoint[index].x;
                     let y = emptyPoint[index].y;
-                    // 使用$set以触view层更新
-                    this.$set(this.tubes[x][y], 'mine', true);
-                    // this.tubes[x][y].mine = true;
+                    this.tubes[x][y].mine = true;
                     // 未布置的地雷-1
                     currentMineNumber--;
                     // 剩余未布置的地雷不为0,递归调用,继续随机布置地雷
@@ -115,8 +121,7 @@
                             // 非地雷才需填入数字
                             if(!this.tubes[i][j].mine){
                                 // 判断周围8个方块里地雷个数
-                                this.$set(this.tubes[i][j], 'number', this.getNumber(i, j));
-                                // this.tubes[i][j].number = this.getNumber(i, j);
+                                this.tubes[i][j].number = this.getNumber(i, j);
                             }
                         }
                     }
@@ -184,11 +189,49 @@
                 },
                 // 点击方块
                 dig(tube){
-                    this.clickTube(tube.point.x, tube.point.y);
+                    console.log(tube)
+                    console.log(tube.point.x, tube.point.y)
+                    if(!tube.show){
+                        // 点到地雷,游戏结束;后续做效果及判断重开
+                        if(tube.mine){
+                            alert('游戏结束');
+                        }
+                        else if(tube.number != 0){
+                            this.clickTube(tube.point.x, tube.point.y);
+                        }
+                        else if(tube.number == 0){
+                            this.clickTube(tube.point.x, tube.point.y);
+                            if(this.inRange(tube.point.x - 1, tube.point.y - 1)){
+                                this.dig(this.tubes[tube.point.x - 1][tube.point.y - 1]);
+                            }
+                            if(this.inRange(tube.point.x - 1, tube.point.y)){
+                                this.dig(this.tubes[tube.point.x - 1][tube.point.y]);
+                            }
+                            if(this.inRange(tube.point.x - 1, tube.point.y + 1)){
+                                this.dig(this.tubes[tube.point.x - 1][tube.point.y + 1]);
+                            }
+                            if(this.inRange(tube.point.x, tube.point.y - 1)){
+                                this.dig(this.tubes[tube.point.x][tube.point.y - 1]);
+                            }
+                            if(this.inRange(tube.point.x, tube.point.y + 1)){
+                                this.dig(this.tubes[tube.point.x][tube.point.y + 1]);
+                            }
+                            if(this.inRange(tube.point.x + 1, tube.point.y - 1)){
+                                this.dig(this.tubes[tube.point.x + 1][tube.point.y - 1]);
+                            }
+                            if(this.inRange(tube.point.x + 1, tube.point.y)){
+                                this.dig(this.tubes[tube.point.x + 1][tube.point.y]);
+                            }
+                            if(this.inRange(tube.point.x + 1, tube.point.y + 1)){
+                                this.dig(this.tubes[tube.point.x + 1][tube.point.y + 1]);
+                            }
+                        }
+                    }
                 },
                 // 单个方块处理
                 clickTube(x, y){
-                    this.$set(this.tubes[x][y], 'show', true);
+                    // this.$set(this.tubes[x][y], 'show', true);
+                    this.tubes[x][y].show = true;
                     // 激活view层更新
                     this.tubes.splice(0, 0);
                 }                
