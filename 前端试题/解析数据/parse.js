@@ -6,8 +6,8 @@ const http = require('http');
 function filterCharacter(str){
     // var resultStr = str.replace(/\ +/g, "");     //去掉空格
     // resultStr = resultStr.replace(/[ ]/g, "");   //去掉空格
-    // var resultStr = str.replace(/[\n]/g, "");       //去掉换行
-    var resultStr = str.replace(/[\r]/g, "");     //去掉回车
+    // var resultStr = str.replace(/[\n]/g, "");    //去掉换行
+    var resultStr = str.replace(/[\r]/g, "");       //去掉回车
     resultStr = resultStr.replace(/[\\]/g, "");     //去掉\
     resultStr = resultStr.replace(/[\"]/g, "");     //去掉\
     return resultStr;
