@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zc</title>
+</head>
+<body>
+    <script>
+        function timesUsingSplit(str, substr){
+            return str.split(substr).length - 1;
+        }
+        function timesUsingReplace(str, substr){
+            var len = str.length;
+            var subLen = substr.length;
+            eval(`var pattern = /${substr}/g`);
+            return (len - [...str.replace(pattern, '')].length) / subLen;
+        }
+        console.log(timesUsingSplit('assdfdsdsdfffwe','s'));
+        console.log(timesUsingReplace('assdfdsdsdfffwe','s'));
+    </script>
+</body>
+</html>
