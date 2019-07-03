@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>水波效果</title>
+        <style>
+            .wave {
+                width: 0px;
+                height: 0px;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                background: url('./bg.jpg');
+                background-attachment: fixed;
+                background-position: center center;
+            }
+
+            @keyframes expand {
+                0% {
+                    width: 30px;
+                    height: 30px;
+                    top: calc((100% - 30px) / 2);
+                    left: calc((100% - 30px) / 2);
+                }
+
+                100% {
+                    width: 300px;
+                    height: 300px;
+                    top: calc((100% - 300px) / 2);
+                    left: calc((100% - 300px) / 2);
+                }
+            }
+
+            .wave0 {
+                background-color: #111;
+                z-index: 2;
+                animation: expand .5s forwards;
+                background-size: auto 106%;
+            }
+
+            .wave1 {
+                background-color: rgb(71, 58, 58);
+                z-index: 3;
+                animation: expand .5s 0.2s forwards;
+                background-size: auto 102%;
+            }
+
+            .wave2 {
+                background-color: rgb(49, 74, 88);
+                z-index: 4;
+                animation: expand .5s 0.4s forwards;
+                background-size: auto 104%;
+            }
+
+            .wave3 {
+                background-color: rgb(52, 102, 56);
+                z-index: 5;
+                animation: expand .5s 0.6s forwards;
+                background-size: auto 101%;
+            }
+
+            .wave4 {
+                background-color: rgb(140, 153, 19);
+                z-index: 6;
+                animation: expand .5s 0.8s forwards;
+                background-size: auto 102%;
+            }
+
+            .wave5 {
+                background-color: rgb(31, 32, 146);
+                z-index: 7;
+                animation: expand .5s 1.0s forwards;
+                background-size: auto 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wave wave5"></div>
+        <div class="wave wave4"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave1"></div>
+        <div class="wave wave0"></div>
+    </body>
+
+</html>
