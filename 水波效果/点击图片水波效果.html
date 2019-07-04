@@ -82,10 +82,25 @@
                 background-image: url('./bg.jpg');
                 margin: 0 auto;
             }
+            #test{
+                width: 100px;
+                height: 100px;
+                top: 85px;
+                left: 85px;
+                /* border-radius: 50%; */
+                background-size: 658px 411px;
+                background-image: url('./bg.jpg');
+                background-repeat: no-repeat;
+                background-attachment:fixed;
+                background-position: 100px 100px;
+                position: absolute;
+            }
         </style>
     </head>
     <body>
-        <div id="pic"></div>
+        <div id="pic">
+            <div id="test"></div>
+        </div>
         <script>
             var pic = document.getElementById('pic');
             var index = 100;
