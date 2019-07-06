@@ -12,6 +12,7 @@
                 height: 0px;
                 border-radius: 50%;
                 position: absolute;
+                border: 1px solid red;
                 top: 50%;
                 left: 50%;
                 background: url('./bg.jpg');
@@ -19,7 +20,7 @@
                 background-position: center center;
             }
 
-            @keyframes expand {
+            /* @keyframes expand {
                 0% {
                     width: 30px;
                     height: 30px;
@@ -33,48 +34,48 @@
                     top: calc((100% - 300px) / 2);
                     left: calc((100% - 300px) / 2);
                 }
-            }
+            } */
 
             .wave0 {
                 background-color: #111;
                 z-index: 2;
-                animation: expand .5s forwards;
-                background-size: auto 106%;
+                /* animation: expand .5s forwards; */
+                background-size: auto 450px;
             }
 
             .wave1 {
                 background-color: rgb(71, 58, 58);
                 z-index: 3;
-                animation: expand .5s 0.2s forwards;
-                background-size: auto 102%;
+                /* animation: expand .5s 0.2s forwards; */
+                background-size: auto 430px;
             }
 
             .wave2 {
                 background-color: rgb(49, 74, 88);
                 z-index: 4;
-                animation: expand .5s 0.4s forwards;
-                background-size: auto 104%;
+                /* animation: expand .5s 0.4s forwards; */
+                background-size: auto 440px;
             }
 
             .wave3 {
                 background-color: rgb(52, 102, 56);
                 z-index: 5;
-                animation: expand .5s 0.6s forwards;
-                background-size: auto 101%;
+                /* animation: expand .5s 0.6s forwards; */
+                background-size: auto 420px;
             }
 
             .wave4 {
                 background-color: rgb(140, 153, 19);
                 z-index: 6;
-                animation: expand .5s 0.8s forwards;
-                background-size: auto 102%;
+                /* animation: expand .5s 0.8s forwards; */
+                background-size: auto 430px;
             }
 
             .wave5 {
                 background-color: rgb(31, 32, 146);
                 z-index: 7;
-                animation: expand .5s 1.0s forwards;
-                background-size: auto 100%;
+                /* animation: expand .5s 1.0s forwards; */
+                background-size: auto 411px;
             }
             #pic{
                 position: relative;
@@ -99,17 +100,59 @@
     </head>
     <body>
         <div id="pic">
-            <div id="test"></div>
+            <!-- <div id="test"></div> -->
+            <!-- <div class="wave wave5"></div>
+            <div class="wave wave4"></div>
+            <div class="wave wave3"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave1"></div>
+            <div class="wave wave0"></div> -->
         </div>
         <script>
             var pic = document.getElementById('pic');
             var index = 100;
+            function setPosition(el, x, y){
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+            }
+            function init(el){
+                el.style.width = '30px';
+                el.style.height = '30px';
+                el.style.left = el.style.left - 15 + 'px';
+                el.style.top = el.style.top - 15 + 'px';
+            }
             function wave(x, y, z){
-                
+                var wave0 = document.createElement('div');
+                wave0.classList = 'wave wave0';
+                setPosition(wave0, x, y);
+                var wave1 = document.createElement('div');
+                wave1.classList = 'wave wave1';
+                setPosition(wave1, x, y);
+                var wave2 = document.createElement('div');
+                wave2.classList = 'wave wave2';
+                setPosition(wave2, x, y);
+                var wave3 = document.createElement('div');
+                wave3.classList = 'wave wave3';
+                setPosition(wave3, x, y);
+                var wave4 = document.createElement('div');
+                wave4.classList = 'wave wave4';
+                setPosition(wave4, x, y);
+                var wave5 = document.createElement('div');
+                wave5.classList = 'wave wave5';
+                setPosition(wave5, x, y);
+                pic.appendChild(wave0);
+                pic.appendChild(wave1);
+                pic.appendChild(wave2);
+                pic.appendChild(wave3);
+                pic.appendChild(wave4);
+                pic.appendChild(wave5);
+                setTimeout(() => {
+                    init(wave0);
+                }, 0);
             }
             pic.addEventListener('click', function(e){
                 console.log(e.pageX, e.pageY);
-                wave(e.pageX, e.pageY, index++);
+                wave(e.offsetX, e.offsetY, index++);
             }, false);
         </script>
     </body>
