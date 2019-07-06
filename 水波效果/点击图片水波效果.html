@@ -40,37 +40,43 @@
             .wave0 {
                 z-index: 2;
                 /* animation: expand .5s forwards; */
-                background-size: auto 450px;
+                /* background-size: auto 470px; */
+                background-size: 100% 100%;
             }
 
             .wave1 {
                 z-index: 3;
                 /* animation: expand .5s 0.2s forwards; */
-                background-size: auto 430px;
+                /* background-size: auto 440px; */
+                background-size: 100% 100%;
             }
 
             .wave2 {
                 z-index: 4;
                 /* animation: expand .5s 0.4s forwards; */
-                background-size: auto 440px;
+                /* background-size: auto 460px; */
+                background-size: 100% 100%;
             }
 
             .wave3 {
                 z-index: 5;
                 /* animation: expand .5s 0.6s forwards; */
-                background-size: auto 420px;
+                /* background-size: auto 430px; */
+                background-size: 100% 100%;
             }
 
             .wave4 {
                 z-index: 6;
                 /* animation: expand .5s 0.8s forwards; */
-                background-size: auto 430px;
+                /* background-size: auto 440px; */
+                background-size: 100% 100%;
             }
 
             .wave5 {
                 z-index: 7;
                 /* animation: expand .5s 1.0s forwards; */
-                background-size: auto 411px;
+                /* background-size: auto 411px; */
+                background-size: 100% 100%;
             }
             #pic{
                 position: relative;
@@ -96,7 +102,7 @@
     </head>
     <body>
         <div id="pic">
-            <div id="test"></div>
+            <!-- <div id="test"></div> -->
             <!-- <div class="wave wave5"></div>
             <div class="wave wave4"></div>
             <div class="wave wave3"></div>
@@ -110,18 +116,20 @@
             function setPosition(el, x, y){
                 el.style.left = x + 'px';
                 el.style.top = y + 'px';
+                el.style.zIndex = index++;
             }
             function init(el){
                 el.style.width = '30px';
                 el.style.height = '30px';
                 el.style.left = parseInt(el.style.left) - 15 + 'px';
                 el.style.top = parseInt(el.style.top) - 15 + 'px';
-                el.style.backgroundPosition = `${el.style.left} ${el.style.top}`;
-                console.log(el.style.backgroundPosition)
+                // el.style.backgroundPosition = `${el.style.left} ${el.style.top}`;
             }
             function expand(el){
                 el.style.width = '300px';
                 el.style.height = '300px';
+                el.style.left = parseInt(el.style.left) - 150 + 'px';
+                el.style.top = parseInt(el.style.top) - 150 + 'px';
             }
             function wave(x, y, z){
                 var wave0 = document.createElement('div');
@@ -154,18 +162,23 @@
                 }, 0);
                 setTimeout(() => {
                     init(wave1);
+                    expand(wave1);
                 }, 200);
                 setTimeout(() => {
                     init(wave2);
+                    expand(wave2);
                 }, 400);
                 setTimeout(() => {
                     init(wave3);
+                    expand(wave3);
                 }, 600);
                 setTimeout(() => {
                     init(wave4);
+                    expand(wave4);
                 }, 800);
                 setTimeout(() => {
                     init(wave5);
+                    expand(wave5);
                 }, 1000);
             }
             pic.addEventListener('click', function(e){
