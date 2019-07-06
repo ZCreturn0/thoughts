@@ -8,16 +8,17 @@
         <title>水波效果</title>
         <style>
             .wave {
-                width: 0px;
-                height: 0px;
+                width: 30px;
+                height: 30px;
                 border-radius: 50%;
                 position: absolute;
                 border: 1px solid red;
-                top: 50%;
-                left: 50%;
-                background: url('./bg.jpg');
-                background-attachment: fixed;
+                top: calc(50% - 15px);
+                left: calc(50% - 15px);
+                background: url('./bg.jpg') no-repeat;
+                /* background-attachment: fixed; */
                 background-position: center center;
+                transition: all .5s;
             }
 
             /* @keyframes expand {
@@ -37,42 +38,36 @@
             } */
 
             .wave0 {
-                background-color: #111;
                 z-index: 2;
                 /* animation: expand .5s forwards; */
                 background-size: auto 450px;
             }
 
             .wave1 {
-                background-color: rgb(71, 58, 58);
                 z-index: 3;
                 /* animation: expand .5s 0.2s forwards; */
                 background-size: auto 430px;
             }
 
             .wave2 {
-                background-color: rgb(49, 74, 88);
                 z-index: 4;
                 /* animation: expand .5s 0.4s forwards; */
                 background-size: auto 440px;
             }
 
             .wave3 {
-                background-color: rgb(52, 102, 56);
                 z-index: 5;
                 /* animation: expand .5s 0.6s forwards; */
                 background-size: auto 420px;
             }
 
             .wave4 {
-                background-color: rgb(140, 153, 19);
                 z-index: 6;
                 /* animation: expand .5s 0.8s forwards; */
                 background-size: auto 430px;
             }
 
             .wave5 {
-                background-color: rgb(31, 32, 146);
                 z-index: 7;
                 /* animation: expand .5s 1.0s forwards; */
                 background-size: auto 411px;
@@ -83,6 +78,7 @@
                 height: 411px;
                 background-image: url('./bg.jpg');
                 margin: 0 auto;
+                overflow: hidden;
             }
             #test{
                 border: 1px solid red;
@@ -100,7 +96,7 @@
     </head>
     <body>
         <div id="pic">
-            <!-- <div id="test"></div> -->
+            <div id="test"></div>
             <!-- <div class="wave wave5"></div>
             <div class="wave wave4"></div>
             <div class="wave wave3"></div>
@@ -118,8 +114,14 @@
             function init(el){
                 el.style.width = '30px';
                 el.style.height = '30px';
-                el.style.left = el.style.left - 15 + 'px';
-                el.style.top = el.style.top - 15 + 'px';
+                el.style.left = parseInt(el.style.left) - 15 + 'px';
+                el.style.top = parseInt(el.style.top) - 15 + 'px';
+                el.style.backgroundPosition = `${el.style.left} ${el.style.top}`;
+                console.log(el.style.backgroundPosition)
+            }
+            function expand(el){
+                el.style.width = '300px';
+                el.style.height = '300px';
             }
             function wave(x, y, z){
                 var wave0 = document.createElement('div');
@@ -141,17 +143,33 @@
                 wave5.classList = 'wave wave5';
                 setPosition(wave5, x, y);
                 pic.appendChild(wave0);
-                pic.appendChild(wave1);
-                pic.appendChild(wave2);
-                pic.appendChild(wave3);
-                pic.appendChild(wave4);
-                pic.appendChild(wave5);
+                // pic.appendChild(wave1);
+                // pic.appendChild(wave2);
+                // pic.appendChild(wave3);
+                // pic.appendChild(wave4);
+                // pic.appendChild(wave5);
                 setTimeout(() => {
                     init(wave0);
+                    expand(wave0);
                 }, 0);
+                setTimeout(() => {
+                    init(wave1);
+                }, 200);
+                setTimeout(() => {
+                    init(wave2);
+                }, 400);
+                setTimeout(() => {
+                    init(wave3);
+                }, 600);
+                setTimeout(() => {
+                    init(wave4);
+                }, 800);
+                setTimeout(() => {
+                    init(wave5);
+                }, 1000);
             }
             pic.addEventListener('click', function(e){
-                console.log(e.pageX, e.pageY);
+                console.log(e.offsetX, e.offsetY);
                 wave(e.offsetX, e.offsetY, index++);
             }, false);
         </script>
