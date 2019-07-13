@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var data = [
+            { value: 1, label: 'aaa'},
+            { value: 2, label: 'bbb'},
+            { value: 3, label: 'ccc'}
+        ]
+        function toDirectory(data){
+            var result = {};
+            for(var item of data){
+                result[item.value] = item.label;
+            }
+            return result;
+        }
+        var directory = toDirectory(data);
+        var returnValue = 2;
+        console.log(directory);
+        console.log(directory[returnValue]);
+    </script>
+</body>
+</html>
