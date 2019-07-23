@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function curry(fn){
+            var args = [].slice.call(arguments, 1);
+            return function(){
+                var innerArgs = [].slice.call(arguments);
+                var finalArgs = args.concat(innerArgs);
+                return fn.apply(null, finalArgs);
+            }
+        }
+        // 进制转换
+        // radix: 进制        num: 要转换的数字
+        var nary = function(radix, num){
+            return num.toString(radix);
+        }
+        // 转成二进制
+        var nary2 = curry(nary, 2);
+        console.log(nary2(10));
+        // 转成八进制
+        var nary8 = curry(nary, 8);
+        console.log(nary8(10));
+        // 使用柯里化实现先换一个确定的值(在这个例子中是进制radix),再传另一个不确定的数(num)
+    </script>
+</body>
+</html>
