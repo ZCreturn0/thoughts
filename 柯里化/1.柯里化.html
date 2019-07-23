@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function curry(fn){
+            // args 存参数(a,b)  fn存函数(add)
+            var args = [].slice.call(arguments, 1);
+            return function(){
+                // 这里的 arguments 与 13行的 arguments 不是同一对象
+                // 13行的 arguments 指向 curry函数的参数 (即 add, 4, 6)
+                // 这里的 arguments 指向柯里化后的函数(26行的func)的参数(100, 200)
+                var innerArgs = [].slice.call(arguments);       // 把 arguments 从类数组转成数组
+                var finalArgs = args.concat(innerArgs);         // finalArgs 存了所有的参数(a, b, 100, 200)
+                return fn.apply(null, finalArgs);               // 等同于 return fn(...finalArgs); 100 和 200 这两个参数没用,所以在这里看不出innerArgs的作用
+            }
+        }
+        var add = function(a, b){
+            return a + b;
+        }
+        var func = curry(add, 4, 6);
+        console.log(func(100, 200));
+    </script>
+</body>
+</html>
