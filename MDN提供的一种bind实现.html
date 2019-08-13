@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // if (!Function.prototype.bind) {    
+            Function.prototype.bind = function(oThis) {    
+                if (typeof this !== "function") {         
+                // 与 ECMAScript 5 最接近的     
+                // 内部 IsCallable 函数         
+                    throw new TypeError(             
+                        "Function.prototype.bind - what is trying " +   
+                        "to be bound is not callable"     ); 
+                } 
+                
+                // 参数
+                var aArgs = Array.prototype.slice.call( arguments, 1 );
+                // 方法       
+                var fToBind = this;
+                var fNOP = function(){};
+                console.log(fToBind instanceof fNOP)
+                var fBound = function(){
+                    // arguments指向fBound
+                    return fToBind.apply(
+                        ( this instanceof fNOP && oThis ? this : oThis  ),
+                        aArgs.concat( Array.prototype.slice.call( arguments )  )
+                    );
+                };
+                fNOP.prototype = this.prototype;
+                fBound.prototype = new fNOP();
+                return fBound;
+            };  
+        // }
+        var obj = {
+            name: 'aaaaa'
+        }
+        function say(a, b, c){
+            console.log(this)
+            console.log(this.name);
+            console.log(a, b, c);
+        }
+        var talk = say.bind(null, 'a', 'b');
+        talk(111111);
+
+
+
+
+        // function func(val){
+        //     this.a = val;
+        // }
+        // var obj = {};
+        // var myFunc = func.bind(obj);
+        // var myFunc2 = func.bind(obj);
+        // myFunc(2);
+        // console.log(obj.a);         // 2
+        // myFunc2(5);
+        // console.log(obj.a);         // 5
+        // var myObj = new myFunc(3);
+        // console.log(myObj);         // 3
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
