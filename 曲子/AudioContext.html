@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="play()">click</button>
+    <script>
+        function play(){
+            // 创建音频上下文
+            var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            // 音调控制对象
+            var oscillator = audioCtx.createOscillator();
+            // 音量控制对象
+            var gainNode = audioCtx.createGain();
+            // 音调关联音量
+            oscillator.connect(gainNode);
+            // 音量关联设备
+            gainNode.connect(audioCtx.destination);
+            // 指定音调为正弦波
+            oscillator.type = 'sine';
+            // 设置音调频率(关键)
+            oscillator.frequency.value = 400;
+            // 音量设为0
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            // 0.01s内音量从0变到1
+            gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
+            // 声音开始
+            oscillator.start(audioCtx.currentTime);
+        }
+    </script>
+</body>
+</html>
