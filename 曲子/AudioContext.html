@@ -5,10 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .btn{
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            color: #606266;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        .level0{
+            color: #fff;
+            background-color: #909399;
+            border-color: #909399;
+        }
+        .level1{
+            color: #fff;
+            background-color: #409eff;
+            border-color: #409eff;
+        }
+        .level2{
+            color: #fff;
+            background-color: #e6a23c;
+            border-color: #e6a23c;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="play()">click</button>
+    <!-- <button onclick="play()">click</button> -->
     <script>
+        // 音名与频率映射
+        const VOICE_MAP = {
+            // 低音频
+            0: [261.63, 293.67, 329.63, 349.23, 391.99, 440, 493.88],
+            // 中音频
+            1: [523.25, 587.33, 659.26, 698.46, 783.99, 880, 987.77],
+            // 高音频
+            2: [1046.5, 1174.66, 1318.51, 1396.92, 1567.98, 1760, 1975.52]
+        }
+        // 渲染各级音频按钮
+        function renderBtns(level){
+            var i = 0;
+            var html = '';
+            var levelText = '';
+            switch(level){
+                case 0:
+                    levelText = '低音频';
+                    break;
+                case 1:
+                    levelText = '中音频';
+                    break;
+                case 2:
+                    levelText = '高音频';
+                    break;
+            }
+            while(i < 7){
+                html += `<span 
+                            class="btn level${level}" 
+                            data-index="${i + 1}" 
+                            data-frequency="${VOICE_MAP[level][i]}">${levelText}${i + 1}</span>`;
+                i++;
+            }
+            var section = document.createElement('section');
+            section.classList = 'container';
+            section.innerHTML = html;
+            document.body.append(section);
+        }
+        renderBtns(0);
+        renderBtns(1);
+        renderBtns(2);
         function play(){
             // 创建音频上下文
             var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -30,6 +111,8 @@
             gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
             // 声音开始
             oscillator.start(audioCtx.currentTime);
+            // 声音停止
+            oscillator.stop(audioCtx.currentTime + 1);
         }
     </script>
 </body>
