@@ -126,14 +126,14 @@
             // 音量设为0
             this.gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
             // 0.01s内音量从0变到1
-            this.gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
+            this.gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 1);
             // 声音开始
             this.oscillator.start(audioCtx.currentTime);
         }
         function stopAudio(){
-            // 0.5s停止声音,防止突然停止造成突兀
-            this.gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-            this.oscillator.stop(audioCtx.currentTime + 0.5);
+            // 0.1s停止声音,防止突然停止造成突兀
+            this.gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            this.oscillator.stop(audioCtx.currentTime + 0.1);
             // 声音停止后清空音量,音调对象
             this.gainNode = null;
             this.oscillator = null;
