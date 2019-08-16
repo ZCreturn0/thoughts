@@ -50,6 +50,8 @@
 <body>
     <!-- <button onclick="play()">click</button> -->
     <script>
+        // 当前按键
+        var currentTarget;
         // 音名与频率映射
         const VOICE_MAP = {
             // 低音频
@@ -86,33 +88,66 @@
             section.classList = 'container';
             section.innerHTML = html;
             document.body.append(section);
+            // 点击按钮开始播放
+            section.addEventListener('mousedown', e => {
+                currentTarget = e.target;
+                if(currentTarget.dataset.index){
+                    // 设置当前按钮
+                    currentTarget = e.target;
+                    // 发送开始播放命令
+                    handleStart(level);
+                }
+            });
+            // 鼠标取消点击停止播放
+            section.addEventListener('mouseup', e => {
+                handleStop();
+            });
         }
         renderBtns(0);
         renderBtns(1);
         renderBtns(2);
-        function play(){
-            // 创建音频上下文
-            var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // 创建音频上下文
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playAudio(index, level){
             // 音调控制对象
-            var oscillator = audioCtx.createOscillator();
+            this.oscillator = audioCtx.createOscillator();
             // 音量控制对象
-            var gainNode = audioCtx.createGain();
+            this.gainNode = audioCtx.createGain();
             // 音调关联音量
-            oscillator.connect(gainNode);
+            this.oscillator.connect(this.gainNode);
             // 音量关联设备
-            gainNode.connect(audioCtx.destination);
+            this.gainNode.connect(audioCtx.destination);
             // 指定音调为正弦波
-            oscillator.type = 'sine';
+            this.oscillator.type = 'sine';
+            // 通过 level 和 index 获取频率
+            var frequency = VOICE_MAP[level][index - 1];
             // 设置音调频率(关键)
-            oscillator.frequency.value = 400;
+            this.oscillator.frequency.value = frequency;
             // 音量设为0
-            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            this.gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
             // 0.01s内音量从0变到1
-            gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
+            this.gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
             // 声音开始
-            oscillator.start(audioCtx.currentTime);
-            // 声音停止
-            oscillator.stop(audioCtx.currentTime + 1);
+            this.oscillator.start(audioCtx.currentTime);
+        }
+        function stopAudio(){
+            // 0.5s停止声音,防止突然停止造成突兀
+            this.gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+            this.oscillator.stop(audioCtx.currentTime + 0.5);
+            // 声音停止后清空音量,音调对象
+            this.gainNode = null;
+            this.oscillator = null;
+            // 当前按键重设为 null
+            currentTarget = null;
+        }
+        function handleStart(level){
+            // 音阶
+            var index = currentTarget.dataset.index;
+            // 开始播放,AudioContext与按钮绑定
+            playAudio.call(currentTarget, index, level);
+        }
+        function handleStop(){
+            stopAudio.call(currentTarget);
         }
     </script>
 </body>
