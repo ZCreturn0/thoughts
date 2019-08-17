@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sleep(delay){
+            return new Promise(r => {
+                setTimeout(() => {
+                    r();
+                }, delay);
+            });
+        }
+        async function play(){
+            await sleep(1000);
+            console.log(11111);
+            await sleep(1000);
+            console.log(22222);
+            await sleep(3000);
+            console.log(33333);
+        }
+        play();
+    </script>
+</body>
+</html>
