@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .btn{
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            color: #606266;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        .level0{
+            color: #fff;
+            background-color: #909399;
+            border-color: #909399;
+        }
+        .level1{
+            color: #fff;
+            background-color: #409eff;
+            border-color: #409eff;
+        }
+        .level2{
+            color: #fff;
+            background-color: #e6a23c;
+            border-color: #e6a23c;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button onclick="play()">click</button> -->
+    <script>
+        // 当前按键
+        var currentTarget;
+        // 音名与频率映射
+        const VOICE_MAP = {
+            // 低音频
+            0: [261.63, 293.67, 329.63, 349.23, 391.99, 440, 493.88],
+            // 中音频
+            1: [523.25, 587.33, 659.26, 698.46, 783.99, 880, 987.77],
+            // 高音频
+            2: [1046.5, 1174.66, 1318.51, 1396.92, 1567.98, 1760, 1975.52]
+        }
+        // 渲染各级音频按钮
+        function renderBtns(level){
+            var i = 0;
+            var html = '';
+            var levelText = '';
+            switch(level){
+                case 0:
+                    levelText = '低音频';
+                    break;
+                case 1:
+                    levelText = '中音频';
+                    break;
+                case 2:
+                    levelText = '高音频';
+                    break;
+            }
+            while(i < 7){
+                html += `<span 
+                            class="btn level${level}" 
+                            data-index="${i + 1}" 
+                            data-frequency="${VOICE_MAP[level][i]}">${levelText}${i + 1}</span>`;
+                i++;
+            }
+            var section = document.createElement('section');
+            section.classList = 'container';
+            section.innerHTML = html;
+            document.body.append(section);
+            // 点击按钮开始播放
+            section.addEventListener('mousedown', e => {
+                currentTarget = e.target;
+                if(currentTarget.dataset.index){
+                    // 设置当前按钮
+                    currentTarget = e.target;
+                    // 发送开始播放命令
+                    handleStart(level);
+                }
+            });
+            // 鼠标取消点击停止播放
+            section.addEventListener('mouseup', e => {
+                handleStop();
+            });
+        }
+        renderBtns(0);
+        renderBtns(1);
+        renderBtns(2);
+        // 创建音频上下文
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playAudio(index, level){
+            // 音调控制对象
+            this.oscillator = audioCtx.createOscillator();
+            // 音量控制对象
+            this.gainNode = audioCtx.createGain();
+            // 音调关联音量
+            this.oscillator.connect(this.gainNode);
+            // 音量关联设备
+            this.gainNode.connect(audioCtx.destination);
+            // 指定音调为正弦波
+            this.oscillator.type = 'sine';
+            // 通过 level 和 index 获取频率
+            var frequency = VOICE_MAP[level][index - 1];
+            // 设置音调频率(关键)
+            this.oscillator.frequency.value = frequency;
+            // 音量设为0
+            this.gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+            // 0.01s内音量从0变到1
+            this.gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 1);
+            // 声音开始
+            this.oscillator.start(audioCtx.currentTime);
+        }
+        function stopAudio(){
+            // 0.1s停止声音,防止突然停止造成突兀
+            this.gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            this.oscillator.stop(audioCtx.currentTime + 0.1);
+            // 声音停止后清空音量,音调对象
+            this.gainNode = null;
+            this.oscillator = null;
+            // 当前按键重设为 null
+            currentTarget = null;
+        }
+        function handleStart(level){
+            // 音阶
+            var index = currentTarget.dataset.index;
+            // 开始播放,AudioContext与按钮绑定
+            playAudio.call(currentTarget, index, level);
+        }
+        function handleStop(){
+            stopAudio.call(currentTarget);
+        }
+        // 延时
+        function sleep(delay = 80){
+            return new Promise(r => {
+                setTimeout(() => {
+                    r();
+                }, delay);
+            });
+        }
+        async function autoPlay(arr){
+            // 复制一份乐谱数据
+            var order = [...arr];
+            // 用于获取当前按键
+            var container = document.getElementsByClassName('container');
+            // 当前按键
+            let ele;
+            while(order.length){
+                // 停顿等上一个音结束
+                await sleep(350);
+                // 获取第一个音并从数组删除
+                var current = order.shift();
+                // 要延长上个音的持续时间,结束这轮循环返回到上个sleep(300)
+                if(current.delay){
+                    continue;
+                }
+                // 开始下个音之前停下当前音
+                if(ele){
+                    // js 触发事件停止播放
+                    var evPre = document.createEvent("MouseEvents");
+                    evPre.initMouseEvent("mouseup", true, true, window);
+                    ele.dispatchEvent(evPre);
+                }
+                // 当前没有音播放,continue后为等待下个音
+                if(current.stop){
+                    continue;
+                }
+                // 每个音之间的间隔
+                await sleep(80);
+                // js 事件启动播放
+                var ev = document.createEvent("MouseEvents");
+                ele = container[current.level].children[current.index - 1];
+                ev.initMouseEvent("mousedown", true, true, window);
+                ele.dispatchEvent(ev);
+            }
+        }
+        var song = [
+            { level: 1, index: 3 }, // 我听见雨落在青青草地
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { delay: true },
+            { stop: true },
+            { level: 1, index: 6 }, // 我听见远方下课钟声响起
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { level: 2, index: 3 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 5 },
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { delay: true },
+
+            { level: 1, index: 3 },// 可是我没有听见你的声音
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { level: 2, index: 1 },
+            { delay: true },
+
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { delay: true },
+
+            { level: 1, index: 6 }, // 认真呼唤我姓名
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { stop: true },
+            { stop: true },
+            { level: 1, index: 3 },// 爱上你的时候不懂感情
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { delay: true },
+            { stop: true },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { level: 2, index: 3 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 5 },
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { delay: true },
+            { stop: true },
+            { level: 1, index: 3 },
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { delay: true },
+            { stop: true },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { delay: true },
+            { stop: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { stop: true },
+            { stop: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 6 },
+            { stop: true },
+            { stop: true },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { delay: true },
+            { level: 1, index: 3 },
+            { level: 1, index: 5 },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { delay: true },
+            { stop: true },
+            { stop: true },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 1, index: 5 },
+            { level: 1, index: 5 },
+            { level: 1, index: 1 },
+            { level: 1, index: 3 },
+            { level: 1, index: 2 },
+            { level: 1, index: 6 },
+            { delay: true },
+            { stop: true },
+            { stop: true },
+            { level: 1, index: 6 },
+            { delay: true },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 1, index: 6 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 1, index: 6 },
+            { level: 2, index: 1 },
+            { level: 1, index: 6 },
+            { delay: true },
+            { stop: true },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 2, index: 2 },
+
+            { delay: true },
+            { delay: true },
+            { stop: true },
+            { level: 1, index: 5 },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 1, index: 5 },
+            { level: 2, index: 2 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 1, index: 5 },
+            { level: 2, index: 2 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 2, index: 2 },
+            { level: 2, index: 3 },
+            { level: 2, index: 4 },
+            // { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 1, index: 7 },
+            // { stop: true },
+            { level: 2, index: 1 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { level: 1, index: 7 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { level: 2, index: 5 },
+            { level: 2, index: 3 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { level: 1, index: 6 },
+            { level: 2, index: 4 },
+            { level: 2, index: 4 },
+            { delay: true },
+            { level: 2, index: 5 },
+            { level: 2, index: 4 },
+            { level: 2, index: 3 },
+            { level: 1, index: 5 },
+            { level: 2, index: 3 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 4 },
+            { level: 2, index: 3 },
+            { level: 2, index: 1 },
+            { level: 1, index: 4 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 2 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 1, index: 5 },
+            { level: 2, index: 2 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 1, index: 5 },
+            { level: 2, index: 2 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 4 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 2, index: 1 },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 2, index: 1 },
+            { delay: true },
+            { level: 1, index: 3 },
+            { level: 1, index: 6 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 7 },
+            { level: 1, index: 7 },
+            { level: 2, index: 3 },
+            { level: 2, index: 5 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 1 },
+            { level: 1, index: 7 },
+            { delay: true },
+            { level: 1, index: 6 },
+            { level: 2, index: 4 },
+            { level: 2, index: 4 },
+            { delay: true },
+            { stop: true },
+            { level: 2, index: 5 },
+            { level: 2, index: 4 },
+            { level: 2, index: 3 },
+            { level: 2, index: 5 },
+            { level: 2, index: 3 },
+            { delay: true },
+            { level: 2, index: 3 },
+            { delay: true },
+            { stop: true },
+            { level: 2, index: 4 },
+            { level: 2, index: 3 },
+            { level: 2, index: 1 },
+            { level: 2, index: 4 },
+            { level: 2, index: 2 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { delay: true },
+            { level: 2, index: 3 },
+            { level: 2, index: 1 },
+            { level: 2, index: 1 },
+            { level: 2, index: 3 },
+            { level: 2, index: 2 },
+            { delay: true },
+            { level: 2, index: 1 },
+            { delay: true }
+        ]
+        autoPlay(song);
+    </script>
+</body>
+</html>
