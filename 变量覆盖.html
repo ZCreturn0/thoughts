@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function aaa(){}
+        var aaa;
+        // 函数声明会覆盖变量声明
+        console.log(typeof aaa);        // 'function'
+
+        function bbb(){}
+        var bbb = 1;
+        // 不会覆盖变量赋值
+        console.log(typeof bbb);        // 'number'
+
+        var ccc = 1;
+        function ccc(){}
+        console.log(typeof ccc);        // 'number'
+        console.log(ccc);
+    </script>
+</body>
+</html>
