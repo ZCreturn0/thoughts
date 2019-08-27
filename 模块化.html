@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getPlayer(){
+            var step = 2;
+            var pos = 0;
+            function move(){
+                pos += step;
+            }
+            function speedUp(){
+                step += 1;
+            }
+            function slowDown(){
+                step -= 1;
+            }
+            function showPos(){
+                console.log(pos);
+            }
+            return {
+                move, speedUp, slowDown, showPos
+            }
+        }
+        var player = getPlayer();
+        player.showPos();
+        player.move();
+        player.speedUp();
+        player.move();
+        player.showPos();
+    </script>
+</body>
+</html>
