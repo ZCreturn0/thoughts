@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.MyMap = function(fn){
+            var result = [];
+            // this 指向数组
+            for(var i=0;i<this.length;i++){
+                result.push(fn(this[i]));
+            }
+            return result;
+        }
+        var arr = [1,2,3,4,5];
+        console.log(arr.MyMap(item => {
+            return item * item;
+        }))
+    </script>
+</body>
+</html>
