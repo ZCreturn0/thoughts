@@ -5,21 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            font-size: 12px;
+            font-family: simsun;
+        }
+        pre {
+            font-size: 12px;
+            height: 12px;
+            margin: 0;
+            width: 500px;
+            float: left;
+        }
+        #text{
+            width: 400px;
+            height: 225px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <video id="video" controls width="400" autoplay>
+    <video id="video" controls width="400">
         <source src="video.mp4" type='video/mp4'>
     </video>
     <canvas id="canvas" width="400" height="225"></canvas>
+    <div id="text"></div>
     <script>
         var video = document.getElementById("video");
         var canvas = document.getElementById("canvas");
+        var text = document.getElementById("text");
         var ctx = canvas.getContext('2d');
         var timer;
+
+        // 根据灰度值生成字符
+        function toText(g) {
+            if (g <= 30) {
+                return '#';
+            } else if (g > 30 && g <= 60) {
+                return '&';
+            } else if (g > 60 && g <= 120) {
+                return '$';
+            }  else if (g > 120 && g <= 150) {
+                return '*';
+            } else if (g > 150 && g <= 180) {
+                return 'o';
+            } else if (g > 180 && g <= 210) {
+                return '!';
+            } else if (g > 210 && g <= 240) {
+                return ';';
+            }  else {
+                return ' ';
+            }
+        }
+
+        // rgb 转灰度值
+        function getGray(r, g, b) {
+            return 0.299 * r + 0.578 * g + 0.114 * b;
+        }
 
         video.addEventListener('play', function(){
             timer = setInterval(function(){
                 ctx.drawImage(video, 0, 0, 400, 225);
+                var imageData = ctx.getImageData(0, 0, 400, 225).data;
+                var html = '';
+                for (h = 0; h < 225; h +=12) {
+                    var pre = '<pre>';
+                    for (w = 0; w < 400; w +=6) {
+                        var index = (w + 400 * h) * 4;
+                        var r = imageData[index + 0];
+                        var g = imageData[index + 1];
+                        var b = imageData[index + 2];
+                        var gray = getGray(r, g, b);
+                        pre += toText(gray);
+                    }
+                    pre += '</pre>';
+                    html += pre;
+                }
+                text.innerHTML = html;
             },20);
         }, false);
         video.addEventListener('pause',function(){
