@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 假如楼梯有n个台阶，每次可以走1个或2个台阶，请问走完这n个台阶有几种走法
+         * 使用递归解决
+         * 终止条件: 1.只有一个台阶有1种走法  2.2个台阶有2种走法
+         * 递归: n个台阶走法等于 n-1个台阶的走法加上 n-2个台阶的走法
+        */
+       function downStairs(n){
+           if(n === 1){
+               return 1;
+           }
+           if(n === 2){
+               return 2;
+           }
+           return downStairs(n - 1) + downStairs(n - 2);
+       }
+       console.log(downStairs(1));
+       console.log(downStairs(2));
+       console.log(downStairs(3));
+       console.log(downStairs(4));
+    </script>
+</body>
+</html>
