@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .singleLine{
+            position: relative;
+            display: inline-block;
+        }
+        .singleLineInput{
+            outline: none;
+            border: none;
+            background: #fafafa;
+        }
+        .singleLineInput ~ span{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 1px;
+            background: #262626;
+            transform: scale(0);
+            transform-origin: right center;
+            transition: transform .3s ease-in-out;
+        }
+        .singleLineInput:focus ~ span{
+            transform-origin: left center;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="singleLine">
+        <input class="singleLineInput" type="text" placeholder="input" />
+        <span></span>
+    </div>
+</body>
+</html>
