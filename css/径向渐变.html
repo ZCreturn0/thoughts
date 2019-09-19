@@ -25,6 +25,14 @@
         .circleWithRadius{
             background: radial-gradient(223px circle, yellow, red);
         }
+        /* 指定渐变起始点 */
+        .circleOrigin{
+            background: radial-gradient(circle at 50px 50px, yellow, red);
+        }
+        /* 指定渐变起始点(百分比) */
+        .circleOriginWithPercentage{
+            background: radial-gradient(circle at 0 50%, yellow, red);
+        }
     </style>
 </head>
 <body>
@@ -34,5 +42,9 @@
     <div class="box circle"></div>
     <p>指定渐变半径:</p>
     <div class="box circleWithRadius"></div>
+    <p>指定渐变起始点:</p>
+    <div class="box circleOrigin"></div>
+    <p>指定渐变起始点(百分比):</p>
+    <div class="box circleOriginWithPercentage"></div>
 </body>
 </html>
