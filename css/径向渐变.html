@@ -33,6 +33,25 @@
         .circleOriginWithPercentage{
             background: radial-gradient(circle at 0 50%, yellow, red);
         }
+        /* 指定渐变终止点 */
+        /**
+         * closest-side 渐变中心距离容器最近的边作为终止位置。
+         * closest-corner 渐变中心距离容器最近的角作为终止位置。
+         * farthest-side 渐变中心距离容器最远的边作为终止位置。
+         * farthest-corner 渐变中心距离容器最远的角作为终止位置。
+         */
+        .circleEnd0{
+            background: radial-gradient(closest-side circle at 50px 50px, yellow, red);
+        }
+        .circleEnd1{
+            background: radial-gradient(closest-corner circle at 50px 50px, yellow, red);
+        }
+        .circleEnd2{
+            background: radial-gradient(farthest-side circle at 50px 50px, yellow, red);
+        }
+        .circleEnd3{
+            background: radial-gradient(farthest-corner circle at 50px 50px, yellow, red);
+        }
     </style>
 </head>
 <body>
@@ -46,5 +65,10 @@
     <div class="box circleOrigin"></div>
     <p>指定渐变起始点(百分比):</p>
     <div class="box circleOriginWithPercentage"></div>
+    <p>指定渐变终止点:</p>
+    <div class="box circleEnd0"></div>
+    <div class="box circleEnd1"></div>
+    <div class="box circleEnd2"></div>
+    <div class="box circleEnd3"></div>
 </body>
 </html>
