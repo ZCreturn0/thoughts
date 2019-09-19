@@ -9,14 +9,30 @@
         .box{
             width: 400px;
             height: 200px;
+            margin-top: 20px;
         }
         /* 基本用法 */
+        /* 默认是元素边界为终点 */
         .basic{
             background: radial-gradient(yellow, red);
+        }
+        /* 圆形渐变 */
+        /* 以最远点为半径 */
+        .circle{
+            background: radial-gradient(circle, yellow, red);
+        }
+        /* 指定渐变半径 */
+        .circleWithRadius{
+            background: radial-gradient(223px circle, yellow, red);
         }
     </style>
 </head>
 <body>
+    <p>基本用法:</p>
     <div class="box basic"></div>
+    <p>圆形渐变:</p>
+    <div class="box circle"></div>
+    <p>指定渐变半径:</p>
+    <div class="box circleWithRadius"></div>
 </body>
 </html>
