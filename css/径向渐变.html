@@ -56,6 +56,10 @@
         .mutiColor{
             background: radial-gradient(red, orange, yellow, green, blue, purple);
         }
+        /* 指定渐变区域 */
+        .mutiColorRange{
+            background: radial-gradient(red, orange 20%, yellow 40%, green 50%, blue 60%, purple);
+        }
     </style>
 </head>
 <body>
@@ -76,5 +80,7 @@
     <div class="box circleEnd3"></div>
     <p>多色渐变:</p>
     <div class="box mutiColor"></div>
+    <p>指定渐变区域:</p>
+    <div class="box mutiColorRange"></div>
 </body>
 </html>
