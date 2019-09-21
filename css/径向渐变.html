@@ -60,6 +60,11 @@
         .mutiColorRange{
             background: radial-gradient(red, orange 20%, yellow 40%, green 50%, blue 60%, purple);
         }
+        /* 椭圆渐变 */
+        /* 椭圆需要指定2个半径 */
+        .ellipse{
+            background: radial-gradient(200px 50px ellipse, transparent 40px, yellow 50px, red);
+        }
     </style>
 </head>
 <body>
@@ -82,5 +87,7 @@
     <div class="box mutiColor"></div>
     <p>指定渐变区域:</p>
     <div class="box mutiColorRange"></div>
+    <p>椭圆渐变:</p>
+    <div class="box ellipse"></div>
 </body>
 </html>
