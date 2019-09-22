@@ -11,6 +11,11 @@
             height: 200px;
             margin-top: 20px;
         }
+        .rect{
+            width: 200px;
+            height: 400px;
+            margin-top: 20px;
+        }
         /* 基本用法 */
         /* 默认是元素边界为终点 */
         .basic{
@@ -65,6 +70,12 @@
         .ellipse{
             background: radial-gradient(200px 50px ellipse, transparent 40px, yellow 50px, red);
         }
+        /* 可叠加的渐变 */
+        .add{
+            background: radial-gradient(75px 200px ellipse, #472913 5px, #35190D 6px, transparent 7px),
+                        radial-gradient(75px 200px ellipse, #A45E3C 7px, #A45E3C 70px, transparent 71px),
+                        radial-gradient(75px 200px ellipse, #200B04 71px, #200B04 74px, transparent);
+        }
     </style>
 </head>
 <body>
@@ -89,5 +100,7 @@
     <div class="box mutiColorRange"></div>
     <p>椭圆渐变:</p>
     <div class="box ellipse"></div>
+    <p>可叠加的渐变:</p>
+    <div class="rect add"></div>
 </body>
 </html>
