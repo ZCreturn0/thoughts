@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        /* 横向 */
         .box{
             width: 400px;
             height: 200px;
             margin-top: 20px;
         }
+        /* 竖向 */
         .rect{
             width: 200px;
             height: 400px;
@@ -71,10 +73,21 @@
             background: radial-gradient(200px 50px ellipse, transparent 40px, yellow 50px, red);
         }
         /* 可叠加的渐变 */
+        /* 叠加时最先出现的语句优先级最高 */
         .add{
             background: radial-gradient(75px 200px ellipse, #472913 5px, #35190D 6px, transparent 7px),
                         radial-gradient(75px 200px ellipse, #A45E3C 7px, #A45E3C 70px, transparent 71px),
                         radial-gradient(75px 200px ellipse, #200B04 71px, #200B04 74px, transparent);
+        }
+        /* 尺寸 */
+        .size{
+            background: radial-gradient(20px 40px ellipse, transparent 2px, #A45E3C 3px, #A45E3C 15px, transparent 15px),
+                        radial-gradient(2px circle, #472913, #35190D 2px, transparent);
+            background-size: 20px 40px;
+            /* width: 200px; height: 200px;
+            background: radial-gradient(5px 10px ellipse, transparent 4px, yellow 5px, red 6px, transparent 7px),
+            radial-gradient(3px circle, red, red 3px, transparent 4px);
+            background-size: 25px 25px; */
         }
     </style>
 </head>
@@ -102,5 +115,7 @@
     <div class="box ellipse"></div>
     <p>可叠加的渐变:</p>
     <div class="rect add"></div>
+    <p>size:</p>
+    <div class="rect size"></div>
 </body>
 </html>
