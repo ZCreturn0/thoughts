@@ -30,7 +30,7 @@
                 return downStairs(n - 1) + downStairs(n - 2);
             }
             console.time('no cache');
-            console.log(downStairs(20));
+            console.log(downStairs(30));
             console.timeEnd('no cache');
             // 使用缓存
             let cache = {};
@@ -44,13 +44,13 @@
                 if(!cache[n - 1]){
                     cache[n - 1] = downStairs(n - 1);
                 }
-                if(cache[n - 2]){
+                if(!cache[n - 2]){
                     cache[n - 2] = downStairs(n - 2);
                 }
-                return downStairs(n - 1) + downStairs(n - 2);
+                return cache[n - 1] + cache[n - 2];
             }
             console.time('with cache');
-            console.log(downStairsWithCache(20));
+            console.log(downStairsWithCache(30));
             console.timeEnd('with cache');
         </script>
     </body>
