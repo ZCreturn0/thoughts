@@ -27,6 +27,10 @@
        console.log(downStairs(2));
        console.log(downStairs(3));
        console.log(downStairs(4));
+       /**
+        * 分析: 有大量重复的计算; 如: f(10) = f(9) + f(8); f(9) = f(8) + f(7); f(8) = f(7) + f(6); ...
+        * 为求得 f(10) 需先求得 f(9) 和 f(8), 而 f(9) = f(8) + f(7); 这里求了2次 f(8),属于重复计算
+       */
     </script>
 </body>
 </html>
