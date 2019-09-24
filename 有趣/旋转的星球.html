@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #000;
+        }
+        .container{
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .ring{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(red, yellow, green, aqua, blue, magenta, red);
+            transform: rotateX(100deg) rotateY(15deg);
+            animation: move 1s linear infinite;
+        }
+        @keyframes move{
+            to{
+                transform: rotateX(100deg) rotateY(15deg) rotateZ(-360deg);
+            }
+        }
+        .ring::before{
+            content: '';
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #000;
+            transform: translate(25px, 25px);
+        }
+        .ball{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 24px 0px magenta inset;
+            transform: translate(50px, 50px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ring"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+</html>
