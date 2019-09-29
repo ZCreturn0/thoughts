@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="text"></textarea>
+    <button onclick="copy()">复制</button>
+    <script>
+        function copy(){
+            let text = document.getElementById('text');
+            text.select();
+            text.setSelectionRange(0, text.value.length);
+            document.execCommand('Copy');
+        }
+    </script>
+</body>
+</html>
