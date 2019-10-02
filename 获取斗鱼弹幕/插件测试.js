@@ -1,5 +1,5 @@
 const douyu_danmu = require('douyu-danmu')
-const roomid = '101'
+const roomid = '286993'
 const client = new douyu_danmu(roomid)
 
 client.on('connect', () => {
