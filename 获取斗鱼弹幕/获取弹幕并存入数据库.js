@@ -1,10 +1,10 @@
 const douyu_danmu = require('douyu-danmu');
 const mysql = require('mysql');
-const roomid = '286993';
+const roomid = '2550505';
 const client = new douyu_danmu(roomid);
 const dbConfig = require('./dbConfig.json');
 // 每次插入数据库的数据数量
-const INSERT_NUMBER = 10;
+const INSERT_NUMBER = 30;
 
 // root@localhost: ijuh-bkzH4xF
 
@@ -22,7 +22,8 @@ client.on('message', msg => {
         case 'chat':
             unsavedBarrages.push({
                 user: msg.from.name,
-                msg: msg.content
+                msg: msg.content,
+                time: dateFormat('YYYY-mm-dd HH:MM:SS', new Date())
             });
             console.log(`[${msg.from.name}]:${msg.content}`)
         break
@@ -59,14 +60,14 @@ setInterval(() => {
         insertData = unsavedBarrages.splice(0, INSERT_NUMBER);
     }
     insertList(insertData);
-}, 5 * 1000);
+}, 3 * 1000);
 
 client.start();
 
 function insertList(list){
-    let addSql = 'INSERT INTO barrage(user,msg) VALUES(?,?)';
+    let addSql = 'INSERT INTO barrage(user,msg,time) VALUES(?,?,?)';
     list.forEach(item => {
-        let data = [item.user, item.msg];
+        let data = [item.user, item.msg, item.time];
         connection.query(addSql, data, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -74,4 +75,24 @@ function insertList(list){
             }
         });
     });
+}
+
+function dateFormat(fmt, date) {
+    let ret;
+    let opt = {
+        "Y+": date.getFullYear().toString(), // 年
+        "m+": (date.getMonth() + 1).toString(), // 月
+        "d+": date.getDate().toString(), // 日
+        "H+": date.getHours().toString(), // 时
+        "M+": date.getMinutes().toString(), // 分
+        "S+": date.getSeconds().toString() // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
 }
