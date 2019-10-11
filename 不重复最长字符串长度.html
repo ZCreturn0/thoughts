@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function longestLength(str){
+            let start = 0,
+                end = 1,
+                max = 0,
+                len = str.length;
+            while(end < len){
+                let subStr = str.substr(start, end);
+                if(~subStr.indexOf(str[end])){
+                    max = Math.max(max, end - start);
+                    start++;
+                }
+                end++;
+            }
+            return max;
+        }
+        console.log(longestLength('bbbbb'));
+        console.log(longestLength('abcahskjfassc'));
+    </script>
+</body>
+</html>
