@@ -14,17 +14,22 @@
                 max = 0,
                 len = str.length;
             while(end < len){
-                let subStr = str.substr(start, end);
+                let subStr = str.slice(start, end);
                 if(~subStr.indexOf(str[end])){
                     max = Math.max(max, end - start);
-                    start++;
+                    start = start + subStr.indexOf(str[end]) + 1;
+                    end++;
                 }
-                end++;
+                else{
+                    end++;
+                }
             }
             return max;
         }
         console.log(longestLength('bbbbb'));
         console.log(longestLength('abcahskjfassc'));
+        console.log(longestLength('abcabcbb'));
+        console.log(longestLength('pwwkew'));
     </script>
 </body>
 </html>
