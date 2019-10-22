@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="num"></p>
+    <button id="toggleNum">切换数字</button>
+    <p id="str"></p>
+    <button id="toggleStr">切换字符串</button>
+    <script>
+        let num1 = 10;
+        let num2 = 20;
+        let num = num1;
+        let toggleNum = document.getElementById('toggleNum');
+        let numShow = document.getElementById('num');
+        numShow.innerText = num;
+        toggleNum.onclick = () => {
+            num = num ^ num1 && num1 || num2;
+            numShow.innerText = num;
+        };
+
+        let str = {
+            10: 'aaaa',
+            20: 'bbbb'
+        };
+        let index = 10;
+        let toggleStr = document.getElementById('toggleStr');
+        let strShow = document.getElementById('str');
+        strShow.innerText = str[index];
+        toggleStr.onclick = () => {
+            index = index ^ 10 && 10 || 20;
+            strShow.innerText = str[index];
+        };
+    </script>
+</body>
+</html>
