@@ -1,0 +1,301 @@
+.home.index {
+    font-family: "微软雅黑";
+}
+
+body {
+    background-color: #edeff5;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    margin: 0;
+}
+
+.home-header {
+    background: transparent;
+    border: 0px;
+    margin-bottom: 0;
+    overflow: hidden;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+}
+
+.navbar-fixed-top {
+    top: 0;
+}
+
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.navbar:before,
+.navbar:after {
+    content: " ";
+    display: table;
+}
+
+.navbar:after {
+    clear: both;
+}
+
+.navbar:before,
+.navbar:after {
+    content: " ";
+    display: table;
+}
+
+/* @media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+} */
+
+.container {
+    width: 85%;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+.nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.navbar-nav>li {
+    float: left;
+}
+
+.nav>li {
+    position: relative;
+    display: block;
+    padding-top: 20px;
+}
+
+.home-header .navbar-nav>li>a {
+    color: #FFF;
+}
+
+.home-logo li a {
+    padding: 0;
+    line-height: 75px;
+}
+
+.nav-list {
+    padding-top: 11px;
+}
+
+.nav-second {
+    margin-left: 50px;
+}
+
+.navbar-nav>li {
+    float: left;
+}
+
+.home-header .navbar-nav>li>a {
+    color: #FFF;
+}
+
+.navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: -15px;
+}
+
+.nav-second a {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.navbar-right>li>a {
+    font-size: 18px;
+    font-family: "微软雅黑";
+    font-size: 1.2rem;
+    padding: 15px;
+    text-shadow: none;
+    line-height: 20px;
+}
+
+.home-sign-btn {
+    padding: 8px 15px !important;
+    margin-top: 7px;
+    margin-right: 15px;
+    border: 1px solid #fff;
+    background: transparent;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.home-header .navbar-nav>li>a.green-mark {
+    padding: 8px 15px;
+    margin-top: 7px;
+    border: 1px solid #Fb6c45;
+    color: #fff;
+    background: #fb6c45;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar:before,
+.navbar:after {
+    content: " ";
+    display: table;
+}
+
+.navbar:after {
+    clear: both;
+}
+
+.home-banner {
+    height: 590px;
+    background: url('../images/bg0.jpg') no-repeat center;
+    background-size: cover;
+    transition: background 1s;
+}
+
+.home-banner .main-title-box {
+    max-width: 665px;
+    width: 100%;
+    height: 312px;
+    margin: 0 auto;
+    margin-top: 35px;
+    background: url('../images/main-title.png') no-repeat top;
+    text-align: center;
+    color: #FFF;
+    padding: 14px;
+    font-family: "微软雅黑";
+}
+
+.home-banner .main-title-box .main-title-top {
+    margin-top: 50px;
+    font-size: 32px;
+}
+
+.home-banner .main-title-box p {
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+}
+
+.home-banner .main-title-box h1 {
+    font-weight: bold;
+    font-size: 70px;
+    margin: 0;
+    font-style: italic;
+    color: #ff544a;
+    border-bottom: 1px solid #595863;
+}
+
+.home-banner .main-title-box .main-title-bottom {
+    font-size: 35px;
+}
+
+.home-banner .main-title-box p {
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+}
+
+.home-banner .intro-box {
+    width: 566px;
+    max-width: 100%;
+    margin: 10px auto 0 auto;
+}
+
+.home-banner .intro-box .lump {
+    width: 25%;
+    height: 100px;
+    float: left;
+    background: url('../images/intro.png') no-repeat center;
+    position: relative;
+    text-align: center;
+    color: #FFF;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.home-banner .intro-box .lump img {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.home-banner .footer-title-box {
+    margin-top: 30px;
+}
+
+.home-banner .intro-box:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.home-banner .footer-title-box p {
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+}
+
+.home-banner .btn-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-main-btn {
+    height: 64px;
+    max-width: 310px;
+    width: 100%;
+    line-height: 64px;
+    color: #FFF;
+    font-size: 30px;
+    border-radius: 50px;
+    padding: 0;
+    background: #f97a42;
+    background: linear-gradient(to right, #f97a42, #ff544a);
+    background: -webkit-linear-gradient(to right, #f97a42, #ff544a);
+    box-shadow: 3px 3px 9px rgba(251, 107, 69, 0.7);
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
