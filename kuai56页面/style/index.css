@@ -127,6 +127,11 @@ body {
     color: #FFF;
 }
 
+.home-header .navbar-nav>li>a:hover{
+    color: #Fb6c45;
+    border-color: #Fb6c45;
+}
+
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
