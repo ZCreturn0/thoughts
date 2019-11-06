@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <script>
+        var a = {
+            value: 1,
+            [Symbol.toPrimitive]() {
+                return this.value++;
+            }
+        }
+        console.log(a == 1 && a == 2 && a == 3);
+
+        var b_value = 1;
+        Object.defineProperty(window, 'b', {
+            get: function(){
+                return b_value++;
+            }
+        })
+        console.log(b === 1 && b === 2 && b === 3);
+
+        var c = new Proxy({i: 1}, {
+            get: function(target, name){
+                return name === Symbol.toPrimitive ? () => target.i++ : target[name];
+            }
+        });
+        console.log(c == 1 && c == 2 && c == 3);
+
+        var d = 1;
+        with({
+            get dd(){
+                return d++;
+            }
+        }){
+            console.log(dd === 1 && dd === 2 && dd === 3);
+        }
+
+        var str = ['这里', '可以是', '任意字符串'];
+        str.join = str.shift;
+        console.log(str == '这里' && str == '可以是' && str == '任意字符串');
+
+        var e = 100000000000000000000000000;
+        console.log(e === 100000000000000000000000001 && e === 100000000000000000000000002 && e === 100000000000000000000000003);
+    </script>
+</body>
+</html>
