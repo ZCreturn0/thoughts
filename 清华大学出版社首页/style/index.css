@@ -1,0 +1,296 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.nav {
+    width: 100%;
+    min-width: 1040px;
+}
+
+.logo {
+    width: 100%;
+    min-width: 1040px;
+    overflow: hidden;
+    height: 100px;
+    background: #fff;
+}
+
+.logo .logo1 {
+    width: 1040px;
+    height: 30px;
+    margin: 0 auto;
+    text-align: right;
+    list-style-type: none;
+    /* background: red; */
+    line-height: 30px;
+    line-height: 31px\0;
+    position: relative;
+    z-index: 10;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.logo1 li {
+    float: right;
+    margin-right: 10px;
+}
+
+.logo1 li {
+    float: right;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.logo1 .logofh {
+    width: 12px;
+    height: 12px;
+    /* margin-left: 10px; */
+    float: left;
+    color: #fff;
+    text-align: center;
+    line-height: 10px;
+    margin-top: 10px;
+    background: #471b69;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: #000;
+}
+
+.logo .logo2 {
+    width: 1040px;
+    margin: 0 auto;
+    height: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo2 .logo21 {
+    width: 600px;
+    height: 60px;
+    float: left;
+}
+
+.logo2 .logo22 {
+    width: 360px;
+    height: 60px;
+    float: right;
+}
+
+.logo22{
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.logo22 .logo22-1 {
+    width: 60px;
+    height: 38px;
+    float: left;
+    line-height: 40px;
+    background: #ddd;
+    color: #a1a1a1;
+    margin-top: 14px;
+    text-align: center;
+}
+
+.logo22 .logo22-2 {
+    width: 60px;
+    height: 38px;
+    float: left;
+    line-height: 40px;
+    background: #ddd;
+    color: #a1a1a1;
+    margin-top: 14px;
+    text-align: center;
+}
+
+.searchSelected{
+    background: #5c307d !important;
+    color: #fff !important;
+}
+
+.logo22 .logo22-3 {
+    width: 180px;
+    height: 60px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 14px;
+}
+
+.logo22-3 input {
+    width: 180px;
+    height: 38px;
+    border: 0px;
+    background: #ddd;
+    line-height: 38px;
+    color: #a1a1a1;
+    text-indent: 10px;
+}
+
+#input_key{
+    outline: none;
+}
+
+.logo22 .logo22-4 {
+    width: 40px;
+    height: 60px;
+    float: left;
+    margin-top: 14px;
+}
+
+.logo22-4 input {
+    width: 38px;
+    height: 38px;
+}
+
+.dhkj {
+    width: 100%;
+    height: 50px;
+    background: url(../images/dhbg.jpg) no-repeat center 0;
+}
+
+.dhjz {
+    width: 1040px;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.dhjz li {
+    width: 90px;
+    height: 40px;
+    margin-top: 5px;
+    list-style-type: none;
+    font-size: 14px;
+    line-height: 40px;
+    color: #fff;
+}
+
+.wleft {
+    float: left;
+}
+
+.wtacent {
+    text-align: right;
+    text-align: center;
+}
+
+.bxs {
+    cursor: pointer;
+}
+
+.dhjz li a{
+    color: #fff;
+}
+
+.dhjz li:hover{
+    background: #653686;
+}
+
+.dhxlcd {
+    float: left;
+    z-index: 9999;
+    position: relative;
+    display: none;
+}
+
+.dhxlcd .myxtw {
+    /* margin-top: 5px; */
+    background: #653686;
+}
+
+.wid2 {
+    width: 100px;
+}
+
+.myxtw p {
+    text-align: left;
+}
+
+.myxtw p a {
+    color: #fff;
+    margin-left: 17px;
+}
+
+.dhjz li a {
+    color: #fff;
+    height: 40px;
+    display: block;
+}
+
+.dhjz li {
+    width: 90px;
+    height: 40px;
+    margin-top: 5px;
+    list-style-type: none;
+    font-size: 14px;
+    line-height: 40px;
+    color: #fff;
+}
+
+.wright {
+    float: right;
+}
+
+.wtarig {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.bxs {
+    cursor: pointer;
+}
+
+.dhjz li a {
+    color: #fff;
+    height: 40px;
+    display: block;
+}
+
+.index_banner li {
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 492px;
+}
+
+#banner_tabs ul li{
+    position: relative;
+}
+
+.index_banner cite {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    z-index: 999;
+    display: block;
+    margin-left: 360px;
+    width: 288px;
+    height: 15px;
+}
+
+.index_banner cite span {
+    float: left;
+    display: block;
+    margin: 0 4px;
+    width: 11px;
+    height: 11px;
+    background-color: #A0A0A0;
+    text-indent: -999em;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.cur{
+    background: #4B206B !important;
+}
+
+#bg{
+    transition: background .5s;
+}
