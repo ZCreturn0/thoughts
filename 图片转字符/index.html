@@ -14,26 +14,22 @@
             font-size: 12px;
             height: 12px;
             margin: 0;
-            width: 500px;
             float: left;
         }
         #text{
-            width: 400px;
-            height: 225px;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <img id="img" src="Hanser255.jpg" />
-    <canvas id="canvas" width="550" height="760"></canvas>
+    <img id="img" style="visibility: hidden;" src="Hanser255.jpg" />
+    <canvas style="visibility: hidden;" id="canvas"></canvas>
     <div id="text"></div>
     <script>
         var img = document.getElementById("img");
         var canvas = document.getElementById("canvas");
         var text = document.getElementById("text");
         var ctx = canvas.getContext('2d');
-        var timer;
 
         // 根据灰度值生成字符
         function toText(g) {
@@ -62,18 +58,29 @@
         }
 
         img.onload = () => {
-            ctx.drawImage(img, 0, 0, 550, 760);
-            var imageData = ctx.getImageData(0, 0, 550, 760).data;
+            const WIDTH = img.width;
+            const HEIGHT = img.height;
+            canvas.width = WIDTH;
+            canvas.height = HEIGHT;
+            text.width = WIDTH;
+            text.height = HEIGHT;
+            ctx.drawImage(img, 0, 0, WIDTH, HEIGHT);
+            var imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT).data;
             var html = '';
-            for (h = 0; h < 550; h +=12) {
+            for (h = 0; h < HEIGHT; h +=12) {
                 var pre = '<pre>';
-                for (w = 0; w < 760; w +=6) {
-                    var index = (w + 400 * h) * 4;
+                // var pre;
+                // var pre = document.createElement('pre');
+                for (w = 0; w < WIDTH; w +=6) {
+                    var index = (w + WIDTH * h) * 4;
                     var r = imageData[index + 0];
                     var g = imageData[index + 1];
                     var b = imageData[index + 2];
                     var gray = getGray(r, g, b);
+                    // pre = `<pre style="color: rgb(${r}, ${g}, ${b});">`;
                     pre += toText(gray);
+                    // pre.innerText = toText(gray);
+                    // pre.style.color = `rgb(${r}, ${g}, ${b})`;
                 }
                 pre += '</pre>';
                 html += pre;
