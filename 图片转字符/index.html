@@ -16,6 +16,7 @@
             margin: 0;
             width: 500px;
             float: left;
+            font-family: simsun;
         }
         #text{
             width: 400px;
@@ -37,22 +38,36 @@
 
         // 根据灰度值生成字符
         function toText(g) {
-            if (g <= 30) {
-                return '#';
-            } else if (g > 30 && g <= 60) {
+            if (g <= 17) {
+                return 'M';
+            } else if (g > 17 && g <= 34) {
+                return 'N';
+            } else if (g > 34 && g <= 51) {
+                return 'H';
+            } else if (g > 51 && g <= 68) {
+                return 'Q';
+            } else if (g > 68 && g <= 85) {
                 return '&';
-            } else if (g > 60 && g <= 120) {
-                return '$';
-            }  else if (g > 120 && g <= 150) {
-                return '*';
-            } else if (g > 150 && g <= 180) {
-                return 'o';
-            } else if (g > 180 && g <= 210) {
+            } else if (g > 85 && g <= 102) {
+                return 'O';
+            } else if (g > 102 && g <= 119) {
+                return 'C';
+            } else if (g > 119 && g <= 136) {
+                return '?';
+            } else if (g > 136 && g <= 153) {
+                return '7';
+            } else if (g > 153 && g <= 170) {
+                return '>';
+            } else if (g > 170 && g <= 187) {
                 return '!';
-            } else if (g > 210 && g <= 240) {
+            } else if (g > 187 && g <= 204) {
+                return ':';
+            } else if (g > 204 && g <= 221) {
+                return '-';
+            } else if (g > 221 && g <= 238) {
                 return ';';
             }  else {
-                return ' ';
+                return '.';
             }
         }
 
