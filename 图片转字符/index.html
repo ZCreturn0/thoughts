@@ -7,12 +7,12 @@
     <title>Document</title>
     <style>
         body{
+            width: 200%;
             font-size: 12px;
             font-family: simsun;
         }
         pre {
             font-size: 12px;
-            height: 12px;
             margin: 0;
             float: left;
         }
@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <img id="img" style="visibility: hidden;" src="Hanser255.jpg" />
+    <img id="img" style="visibility: hidden;" src="./Hanser255.jpg" />
     <canvas style="visibility: hidden;" id="canvas"></canvas>
     <div id="text"></div>
     <script>
@@ -48,7 +48,7 @@
             } else if (g > 210 && g <= 240) {
                 return ';';
             }  else {
-                return ' ';
+                return '.';
             }
         }
 
@@ -57,6 +57,7 @@
             return 0.299 * r + 0.578 * g + 0.114 * b;
         }
 
+        const BASE = 3;
         img.onload = () => {
             const WIDTH = img.width;
             const HEIGHT = img.height;
@@ -67,23 +68,24 @@
             ctx.drawImage(img, 0, 0, WIDTH, HEIGHT);
             var imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT).data;
             var html = '';
-            for (h = 0; h < HEIGHT; h +=12) {
-                var pre = '<pre>';
-                // var pre;
+            for (var h = 0; h < HEIGHT; h += 2 * BASE) {
+                // var pre = '<pre>';
+                var pre;
                 // var pre = document.createElement('pre');
-                for (w = 0; w < WIDTH; w +=6) {
+                for (var w = 0; w < WIDTH; w += BASE) {
                     var index = (w + WIDTH * h) * 4;
                     var r = imageData[index + 0];
                     var g = imageData[index + 1];
                     var b = imageData[index + 2];
                     var gray = getGray(r, g, b);
-                    // pre = `<pre style="color: rgb(${r}, ${g}, ${b});">`;
+                    pre = `<pre style="color: rgb(${r}, ${g}, ${b});">`;
                     pre += toText(gray);
+                    pre += '</pre>';
+                    html += pre;
                     // pre.innerText = toText(gray);
                     // pre.style.color = `rgb(${r}, ${g}, ${b})`;
                 }
-                pre += '</pre>';
-                html += pre;
+                html += '<br>';
             }
             text.innerHTML = html;
         }
