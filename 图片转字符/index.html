@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body{
-            width: 200%;
+        body {
+            width: 500%;
             font-size: 12px;
             font-family: simsun;
         }
@@ -15,14 +15,20 @@
             font-size: 12px;
             margin: 0;
             float: left;
+            height: 6px;
+            line-height: 6px;
         }
-        #text{
+        #text {
             margin-top: 20px;
+        }
+        br {
+            height: 0;
+            line-height: 0;
         }
     </style>
 </head>
 <body>
-    <img id="img" style="visibility: hidden;" src="./Hanser255.jpg" />
+    <img id="img" style="visibility: hidden;" src="./小天使.png" />
     <canvas style="visibility: hidden;" id="canvas"></canvas>
     <div id="text"></div>
     <script>
@@ -57,7 +63,7 @@
             return 0.299 * r + 0.578 * g + 0.114 * b;
         }
 
-        const BASE = 3;
+        const BASE = 1;
         img.onload = () => {
             const WIDTH = img.width;
             const HEIGHT = img.height;
