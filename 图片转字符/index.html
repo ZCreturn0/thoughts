@@ -6,35 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body{
+        body {
+            width: 500%;
             font-size: 12px;
             font-family: simsun;
         }
         pre {
             font-size: 12px;
-            height: 12px;
             margin: 0;
-            width: 500px;
             float: left;
-            font-family: simsun;
+            height: 6px;
+            line-height: 6px;
         }
-        #text{
-            width: 400px;
-            height: 225px;
+        #text {
             margin-top: 20px;
+        }
+        br {
+            height: 0;
+            line-height: 0;
         }
     </style>
 </head>
 <body>
-    <img id="img" src="Hanser255.jpg" />
-    <canvas id="canvas" width="550" height="760"></canvas>
+    <img id="img" style="visibility: hidden;" src="./小天使.png" />
+    <canvas style="visibility: hidden;" id="canvas"></canvas>
     <div id="text"></div>
     <script>
         var img = document.getElementById("img");
         var canvas = document.getElementById("canvas");
         var text = document.getElementById("text");
         var ctx = canvas.getContext('2d');
-        var timer;
 
         // 根据灰度值生成字符
         function toText(g) {
@@ -76,22 +77,35 @@
             return 0.299 * r + 0.578 * g + 0.114 * b;
         }
 
+        const BASE = 1;
         img.onload = () => {
-            ctx.drawImage(img, 0, 0, 550, 760);
-            var imageData = ctx.getImageData(0, 0, 550, 760).data;
+            const WIDTH = img.width;
+            const HEIGHT = img.height;
+            canvas.width = WIDTH;
+            canvas.height = HEIGHT;
+            text.width = WIDTH;
+            text.height = HEIGHT;
+            ctx.drawImage(img, 0, 0, WIDTH, HEIGHT);
+            var imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT).data;
             var html = '';
-            for (h = 0; h < 550; h +=12) {
-                var pre = '<pre>';
-                for (w = 0; w < 760; w +=6) {
-                    var index = (w + 400 * h) * 4;
+            for (var h = 0; h < HEIGHT; h += 2 * BASE) {
+                // var pre = '<pre>';
+                var pre;
+                // var pre = document.createElement('pre');
+                for (var w = 0; w < WIDTH; w += BASE) {
+                    var index = (w + WIDTH * h) * 4;
                     var r = imageData[index + 0];
                     var g = imageData[index + 1];
                     var b = imageData[index + 2];
                     var gray = getGray(r, g, b);
+                    pre = `<pre style="color: rgb(${r}, ${g}, ${b});">`;
                     pre += toText(gray);
+                    pre += '</pre>';
+                    html += pre;
+                    // pre.innerText = toText(gray);
+                    // pre.style.color = `rgb(${r}, ${g}, ${b})`;
                 }
-                pre += '</pre>';
-                html += pre;
+                html += '<br>';
             }
             text.innerHTML = html;
         }
