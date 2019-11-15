@@ -98,7 +98,7 @@
                     }, 3000);
                 },
                 nextPic() {
-                    this.index = this.index == this.index - 1 ? 0 : this.index + 1;
+                    this.index = this.index == this.swiperList.length - 1 ? 0 : this.index + 1;
                     clearInterval(this.timer);
                     this.timer = setInterval(() => {
                         this.index = (this.index + 1) % this.swiperList.length;
