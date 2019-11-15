@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .swiper{
+            position: relative;
+            width: 100vw;
+            height: 521px;
+            overflow: hidden;
+        }
+        .container{
+            width: 300vw;
+            height: 521px;
+            transition: transform .5s;
+        }
+        .swiper img{
+            width: 100vw;
+            height: 100%;
+        }
+        .cart{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            line-height: 40px;
+            border-radius: 50%;
+            background: rgba(205,205,205,0.4);
+            z-index: 999;
+            cursor: pointer;
+        }
+        .left{
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+        }
+        .right{
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+        }
+        .item{
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+            list-style: none;
+        }
+        .itemNode{
+            float: left;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="swiper">
+            <div class="cart left" @click="prePic"> < </div>
+            <div class="cart right" @click="nextPic"> > </div>
+            <div class="container" :style="{transform: `translateX(${-index * 100}vw)`}">
+                <img v-for="(src, index) in swiperList" :key="index" :src="src" />
+            </div>
+            <ul class="item">
+                <li class="itemNode" v-for="(src, index) in swiperList" @click="changeNode(index)" :key="index"></li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    // 轮播图片
+                    swiperList: [],
+                    index: 0,
+                    timer: null,
+                    interval: 3000
+                }
+            },
+            methods: {
+                prePic() {
+                    this.index = this.index == 0 ? this.swiperList.length - 1 : this.index - 1;
+                    clearInterval(this.timer);
+                    this.timer = setInterval(() => {
+                        this.index = (this.index + 1) % this.swiperList.length;
+                    }, 3000);
+                },
+                nextPic() {
+                    this.index = this.index == this.index - 1 ? 0 : this.index + 1;
+                    clearInterval(this.timer);
+                    this.timer = setInterval(() => {
+                        this.index = (this.index + 1) % this.swiperList.length;
+                    }, 3000);
+                },
+                changeNode(index) {
+                    this.index = index;
+                    clearInterval(this.timer);
+                    this.timer = setInterval(() => {
+                        this.index = (this.index + 1) % this.swiperList.length;
+                    }, 3000);
+                }
+            },
+            mounted() {
+                this.swiperList.push('./images/top1.deb2b40.jpg');
+                this.swiperList.push('./images/top2.e297732.jpg');
+                this.swiperList.push('./images/top3.a2779fc.jpg');
+                this.timer = setInterval(() => {
+                    this.index = (this.index + 1) % this.swiperList.length;
+                }, this.interval);
+            }
+        });
+    </script>
+</body>
+</html>
