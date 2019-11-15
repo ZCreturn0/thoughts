@@ -34,6 +34,18 @@
         });
         console.log(c == 1 && c == 2 && c == 3);
 
+        var cc = new Proxy({
+            i: 1,
+            [Symbol.toPrimitive](){
+                return this.i++;
+            }
+        }, {
+            get: function(target, name){
+                return target[name];
+            }
+        });
+        console.log(cc == 1 && cc == 2 && cc == 3);
+
         var d = 1;
         with({
             get dd(){
