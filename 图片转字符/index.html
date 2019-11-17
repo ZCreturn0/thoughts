@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         body {
-            width: 500%;
+            width: 300%;
             font-size: 12px;
             font-family: simsun;
         }
@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <img id="img" style="visibility: hidden;" src="./小天使.png" />
+    <img id="img" style="visibility: hidden;" src="./Hanser255.jpg" />
     <canvas style="visibility: hidden;" id="canvas"></canvas>
     <div id="text"></div>
     <script>
@@ -40,23 +40,23 @@
         // 根据灰度值生成字符
         function toText(g) {
             if (g <= 17) {
-                return 'M';
-            } else if (g > 17 && g <= 34) {
-                return 'N';
-            } else if (g > 34 && g <= 51) {
                 return 'H';
+            } else if (g > 17 && g <= 34) {
+                return 'A';
+            } else if (g > 34 && g <= 51) {
+                return 'N';
             } else if (g > 51 && g <= 68) {
-                return 'Q';
+                return 'S';
             } else if (g > 68 && g <= 85) {
-                return '&';
+                return 'E';
             } else if (g > 85 && g <= 102) {
-                return 'O';
+                return 'R';
             } else if (g > 102 && g <= 119) {
-                return 'C';
+                return 'L';
             } else if (g > 119 && g <= 136) {
-                return '?';
+                return 'I';
             } else if (g > 136 && g <= 153) {
-                return '7';
+                return 'V';
             } else if (g > 153 && g <= 170) {
                 return '>';
             } else if (g > 170 && g <= 187) {
@@ -108,6 +108,8 @@
                 html += '<br>';
             }
             text.innerHTML = html;
+            document.body.removeChild(img);
+            document.body.removeChild(canvas);
         }
     </script>
 </body>
