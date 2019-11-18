@@ -68,13 +68,14 @@
         <div class="swiper">
             <div class="cart left" @click="prePic"> < </div>
             <div class="cart right" @click="nextPic"> > </div>
-            <div class="container" :style="{transform: `translateX(${-index * 100}vw)`}">
+            <div class="container" :style="{transform: `translateX(calc(${-index * 100}vw))`}">
                 <img v-for="(src, index) in swiperList" :key="index" :src="src" />
             </div>
             <ul class="item">
                 <li class="itemNode" v-for="(src, index) in swiperList" @click="changeNode(index)" :key="index"></li>
             </ul>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
