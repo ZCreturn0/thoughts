@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        tr{
+            display: block;
+            border-bottom: 1px solid #ccc;
+        }
+        th,
+        td{
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="deleteMulti()">批量删除</button>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let caption = ['列1', '列2', '列3', '列4', '操作'];
+        let datas = [
+            ['aaa', 'aaaa', '11', '111'],
+            ['bbb', 'bbbb', '22', '222'],
+            ['ccc', 'cccc', '33', '333'],
+            ['ddd', 'dddd', '44', '444'],
+            ['eee', 'eeee', '55', '555']
+        ];
+        let table = $('<table></table>');
+        let tr = $('<tr></tr>');
+        tr.append(`<th></th>`);
+        for(let item of caption) {
+            tr.append(`<th>${item}</th>`);
+        }
+        table.append(tr);
+        for(let index in datas) {
+            let line = $(`<tr data-index="${index}"></tr>`);
+            let checkbox = $(`<td><input type="checkbox" value="${index}"/></td>`);
+            line.append(checkbox);
+            for(let data of datas[index]) {
+                line.append(`<td>${data}</td>`);
+            }
+            line.append(`<td><button onclick="deleteLine('${index}')">删除</button></td>`);
+            table.append(line);
+        }
+        $('body').append(table);
+
+        // 删除单个
+        function deleteLine(index) {
+            $(`tr[data-index=${index}]`).remove();
+        }
+
+        // 批量删除
+        function deleteMulti() {
+            // 获取选中的 index
+            let checked = $('input:checked');
+            let indexes = [];
+            for(let i = 0; i < checked.length; i++) {
+                indexes.push($(checked[i]).val());
+            }
+            indexes.forEach(deleteLine);
+        }
+    </script>
+</body>
+</html>
