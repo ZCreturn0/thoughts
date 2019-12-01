@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的简历</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <style>
+        .discription {
+            border: 1px solid #ccc;
+        }
+        .display {
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,9 +24,25 @@
             <!-- 代码区 -->
             <div class="codes"></div>
         </div>
+        <!-- 操作区 -->
+        <div class="operation">
+            <div class="operation-btns">
+                <div class="btn pause btn-selected">▦ 暂停</div>
+                <div class="btn speedUp">变速</div>
+            </div>
+            <div class="speed-select">
+                <div class="btn back-btn">返回</div>
+                <div class="btn speed-btn" data-speed="1">1X</div>
+                <div class="btn speed-btn" data-speed="2">2X</div>
+                <div class="btn speed-btn" data-speed="3">3X</div>
+            </div>
+        </div>
         <!-- 展示区 -->
-        <div class="display"></div>
+        <div class="display">
+            
+        </div>
     </div>
-    <script src="js/index.js"></script>
+    <script src="./data/data.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
