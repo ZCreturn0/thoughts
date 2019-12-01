@@ -3,17 +3,22 @@
     margin: 0;
 }
 
+:root {
+    --main-color: #1daf1d;
+}
+
 html,
 body {
     width: 100%;
     height: 100%;
+    user-select:none;
 }
 
 .container {
     width: 100%;
     height: 100%;
     background: #000;
-    color: #0f0;
+    color: var(--main-color);
     display: flex;
     justify-content: space-around;
 }
@@ -29,24 +34,34 @@ body {
     width: 10%;
     height: 90vh;
     transform: translateY(5vh);
+    overflow: hidden;
 }
 
-.operation-btns {
-    position: relative;
+.operation-btns,
+.speed-select {
+    width: 100%;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    display: inline-block;
+    transition: left .3s;
+}
+
+.speed-select {
+    left: 100%;
 }
 
 .btn {
     width: 50px;
     padding: 5px 10px;
-    border: 1px solid #0f0;
+    border: 1px solid var(--main-color);
     text-align: center;
     margin: 10px auto;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-selected {
-    background: #0f0;
+    background: var(--main-color);
     color: #fff;
 }
