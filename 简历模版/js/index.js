@@ -42,14 +42,72 @@ class Tools {
     }
 }
 
-// 打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const INTERVAL = 0.1 * 1000;
+// 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
+const BASE_INTERVAL = 0.1 * 1000;
+let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
 
 // 点击事件触发器
 let event = document.createEvent('HTMLEvents');
 event.initEvent("click", true, true);
+
+// 播放状态
+const playStatus = {
+    // 播放或暂停
+    play: true,
+    // 播放速度
+    speed: 1
+};
+// 代理
+let playStatusProxy = new Proxy(playStatus, {
+    get(target, name) {
+        return target[name];
+    },
+    set(target, name, value) {
+        target[name] = value;
+        if (name === 'play') {
+            // 根据当前状态决定播放或暂停
+            value ? resume() : pause();
+        } else if (name === 'speed') {
+            // 根据当前速度改变按钮样式
+            setSpeedStyle(value);
+            INTERVAL = BASE_INTERVAL / value;
+        }
+    }
+});
+// 暂停按钮
+let pauseBtn = document.getElementsByClassName('pause')[0];
+// 变速按钮
+let speedUp = document.getElementsByClassName('speedUp')[0];
+// 暂停变速区
+let operationBtns = document.getElementsByClassName('operation-btns')[0];
+// 选择速度区
+let speedSelect = document.getElementsByClassName('speed-select')[0];
+// 返回按钮
+let backBtn = document.getElementsByClassName('back-btn')[0];
+// 速度选择按钮(1X,2X,3X)
+let speedBtns = document.getElementsByClassName('speed-btn');
+
+// 暂停
+function pause() {
+    pauseBtn.innerText = '◀ 播放';
+}
+// 恢复播放
+function resume() {
+    pauseBtn.innerText = '▦ 暂停';
+}
+// 给当前速度对应按钮添加选中效果
+function setSpeedStyle(speed) {
+    for (let i = 0; i < speedBtns.length; i++) {
+        if (speedBtns[i].getAttribute('data-speed') == speed) {
+            Tools.addClass(speedBtns[i], 'btn-selected');
+        } else {
+            // 不是当前速度对应的按钮移除选中效果
+            Tools.removeClass(speedBtns[i], 'btn-selected');
+        }
+    }
+}
 
 ;(function() {
     // console.log(DATA);
@@ -59,61 +117,6 @@ event.initEvent("click", true, true);
 
 // 操作按钮注册事件
 function operationBtnEvents() {
-    // 播放状态
-    const playStatus = {
-        // 播放或暂停
-        play: true,
-        // 播放速度
-        speed: 1
-    };
-    // 代理
-    let playStatusProxy = new Proxy(playStatus, {
-        get(target, name) {
-            return target[name];
-        },
-        set(target, name, value) {
-            target[name] = value;
-            if (name === 'play') {
-                // 根据当前状态决定播放或暂停
-                value ? resume() : pause();
-            }
-            else if (name === 'speed') {
-                // 根据当前速度改变按钮样式
-                setSpeedStyle(value);
-            }
-        }
-    });
-    // 暂停按钮
-    let pauseBtn = document.getElementsByClassName('pause')[0];
-    // 变速按钮
-    let speedUp = document.getElementsByClassName('speedUp')[0];
-    // 暂停变速区
-    let operationBtns = document.getElementsByClassName('operation-btns')[0];
-    // 选择速度区
-    let speedSelect = document.getElementsByClassName('speed-select')[0];
-    // 返回按钮
-    let backBtn = document.getElementsByClassName('back-btn')[0];
-    // 速度选择按钮(1X,2X,3X)
-    let speedBtns = document.getElementsByClassName('speed-btn');
-    // 暂停
-    function pause() {
-        pauseBtn.innerText = '◀ 播放';
-    }
-    // 恢复播放
-    function resume() {
-        pauseBtn.innerText = '▦ 暂停';
-    }
-    // 给当前速度对应按钮添加选中效果
-    function setSpeedStyle(speed) {
-        for (let i = 0; i < speedBtns.length; i++) {
-            if (speedBtns[i].getAttribute('data-speed') == speed) {
-                Tools.addClass(speedBtns[i], 'btn-selected');
-            } else {
-                // 不是当前速度对应的按钮移除选中效果
-                Tools.removeClass(speedBtns[i], 'btn-selected');
-            }
-        }
-    }
     pauseBtn.onclick = () => {
         // 更改播放状态
         playStatusProxy.play = !playStatusProxy.play;
@@ -163,6 +166,10 @@ async function addParagraph(el, text) {
             // 把文字添加到段落里
             pre.innerText += word;
         });
+        // 暂停状态下无限循环等待
+        while (!playStatus.play) {
+            await Sleep(100);
+        }
     }
 }
 
