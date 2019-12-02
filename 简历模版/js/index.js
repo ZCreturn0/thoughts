@@ -33,6 +33,15 @@ class Tools {
     }
 }
 
+// 打字间隔,对应 speed,可更改这个值来调整基础打字速度
+const INTERVAL = 0.1 * 1000;
+// 控制全局定时器
+let TIMER = null;
+
+// 点击事件触发器
+let event = document.createEvent('HTMLEvents');
+event.initEvent("click", true, true);
+
 ;(function() {
     // console.log(DATA);
     operationBtnEvents();
@@ -114,8 +123,6 @@ function operationBtnEvents() {
         // 返回时恢复播放
         playStatusProxy.play = true;
     };
-    let event = document.createEvent('HTMLEvents');
-    event.initEvent("click", true, true);
     for (let i = 0; i < speedBtns.length; i++) {
         // 变速
         speedBtns[i].onclick = () => {
@@ -126,3 +133,55 @@ function operationBtnEvents() {
         };
     }
 }
+
+/**
+ * @description 在指定的元素中添加段落
+ * @param {object} el 指定元素
+ * @param {string} text 段落中的文字
+ */
+async function addParagraph(el, text) {
+    // 创建段落
+    let p = document.createElement('p');
+    // 把字符串转成数组
+    let words = text.split('');
+    // 把段落添加到显示区域
+    el.appendChild(p);
+    // 一次添加文字
+    for (let word of words) {
+        // 等待异步完成
+        await toPromise(word).then(word => {
+            // 把文字添加到段落里
+            p.innerText += word;
+        });
+    }
+}
+
+/**
+ * @description 把异步操作包装成 Promise 返回
+ * @param {any} word resolve 需要的参数
+ * @returns {Promise}
+ */
+function toPromise(word) {
+    return new Promise((resolve, reject) => {
+        // 定时器
+        setTimeout(() => {
+            // 延迟一段时间后把参数传回回调
+            resolve(word);
+        }, INTERVAL);
+    });
+}
+
+/**
+ * @description 在页面显示 introduce 内容
+ */
+async function setIntroduce() {
+    // 添加内容的区域
+    let el = document.getElementsByClassName('words')[0];
+    // 依次添加段落
+    for (let i = 0; i < DATA.introduce.length; i++) {
+        // 等待异步完成
+        await addParagraph(el, DATA.introduce[i]);
+    }
+}
+
+setIntroduce();
