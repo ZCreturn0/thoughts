@@ -208,6 +208,8 @@ async function setIntroduce() {
         // 暂停 1s 后再往下执行
         await Sleep(1000);
     }
+    // 介绍完后显示代码区域
+    showCodesArea();
 }
 
 /**
@@ -220,5 +222,12 @@ function Sleep(ms) {
         setTimeout(() => {
             resolve();
         }, ms);
-    })
+    });
+}
+
+/**
+ * @description 显示代码区域
+ */
+function showCodesArea() {
+    codesArea.style.opacity = 1;
 }
