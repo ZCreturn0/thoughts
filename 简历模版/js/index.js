@@ -1,3 +1,12 @@
+/**
+ * 
+ * @Author ZCreturn0
+ * @Date 2019-12-01 21:25:47 
+ * @Email 237350543@qq.com 
+ * @Github https://github.com/ZCreturn0
+ * 
+ */
+
 // 工具函数对象
 // 所有方法均为静态方法
 class Tools {
@@ -45,6 +54,7 @@ event.initEvent("click", true, true);
 ;(function() {
     // console.log(DATA);
     operationBtnEvents();
+    setIntroduce();
 })();
 
 // 操作按钮注册事件
@@ -141,17 +151,17 @@ function operationBtnEvents() {
  */
 async function addParagraph(el, text) {
     // 创建段落
-    let p = document.createElement('p');
+    let pre = document.createElement('pre');
     // 把字符串转成数组
     let words = text.split('');
     // 把段落添加到显示区域
-    el.appendChild(p);
+    el.appendChild(pre);
     // 一次添加文字
     for (let word of words) {
         // 等待异步完成
         await toPromise(word).then(word => {
             // 把文字添加到段落里
-            p.innerText += word;
+            pre.innerText += word;
         });
     }
 }
@@ -162,7 +172,7 @@ async function addParagraph(el, text) {
  * @returns {Promise}
  */
 function toPromise(word) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         // 定时器
         setTimeout(() => {
             // 延迟一段时间后把参数传回回调
@@ -181,7 +191,19 @@ async function setIntroduce() {
     for (let i = 0; i < DATA.introduce.length; i++) {
         // 等待异步完成
         await addParagraph(el, DATA.introduce[i]);
+        // 暂停 1s 后再往下执行
+        await Sleep(1000);
     }
 }
 
-setIntroduce();
+/**
+ * @description 暂停一段时间(什么都不做)
+ * @param {number} ms 暂停的时间(单位:毫秒)
+ */
+function Sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    })
+}

@@ -82,16 +82,17 @@ body {
     width: 99.9%;
 }
 
-.words > p {
+.words > pre {
     text-indent: 2em;
     /* 英文自动截断 */
     word-wrap: break-word;
     word-break: break-all;
+    white-space: pre-wrap;
     overflow: hidden;
     margin-top: 20px;
 }
 
-.words > p::first-letter {
+.words > pre::first-letter {
     font-size: 30px;
 }
 
