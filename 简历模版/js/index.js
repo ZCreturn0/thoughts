@@ -88,6 +88,10 @@ let speedSelect = document.getElementsByClassName('speed-select')[0];
 let backBtn = document.getElementsByClassName('back-btn')[0];
 // 速度选择按钮(1X,2X,3X)
 let speedBtns = document.getElementsByClassName('speed-btn');
+// 介绍区
+let wordsArea = document.getElementsByClassName('words')[0];
+// 代码区
+let codesArea = document.getElementsByClassName('codes')[0];
 
 // 暂停
 function pause() {
@@ -110,8 +114,9 @@ function setSpeedStyle(speed) {
 }
 
 ;(function() {
-    // console.log(DATA);
+    // 为操作按钮设置事件
     operationBtnEvents();
+    // 展示 introduce
     setIntroduce();
 })();
 
@@ -165,6 +170,8 @@ async function addParagraph(el, text) {
         await toPromise(word).then(word => {
             // 把文字添加到段落里
             pre.innerText += word;
+            // 滚动条滚到最底部
+            wordsArea.scrollTop = wordsArea.scrollHeight;
         });
         // 暂停状态下无限循环等待
         while (!playStatus.play) {
@@ -206,6 +213,7 @@ async function setIntroduce() {
 /**
  * @description 暂停一段时间(什么都不做)
  * @param {number} ms 暂停的时间(单位:毫秒)
+ * @returns {Promise}
  */
 function Sleep(ms) {
     return new Promise((resolve) => {
