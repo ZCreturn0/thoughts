@@ -149,6 +149,7 @@ body {
     height: 100%;
     position: absolute;
     left: 0;
+    transition: left .3s;
 }
 
 .codes-board {
