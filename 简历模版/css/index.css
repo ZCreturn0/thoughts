@@ -156,4 +156,5 @@ body {
     width: 33.333333333%;
     height: 100%;
     overflow-y: scroll;
+    box-shadow: 0px 0px 15px 2px #1daf1d inset;
 }
