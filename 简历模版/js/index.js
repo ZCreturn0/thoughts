@@ -92,6 +92,14 @@ let speedBtns = document.getElementsByClassName('speed-btn');
 let wordsArea = document.getElementsByClassName('words')[0];
 // 代码区
 let codesArea = document.getElementsByClassName('codes')[0];
+// 代码切换模块
+let displaySlide = document.getElementsByClassName('display-slide')[0];
+// HTML 按钮
+let HTMLBtn = document.getElementsByClassName('HTML')[0];
+// CSS 按钮
+let CSSBtn = document.getElementsByClassName('CSS')[0];
+// JS 按钮
+let JSBtn = document.getElementsByClassName('JS')[0];
 
 // 暂停
 function pause() {
@@ -230,4 +238,32 @@ function Sleep(ms) {
  */
 function showCodesArea() {
     codesArea.style.opacity = 1;
+}
+
+HTMLBtn.onclick = toHTMLCodeArea;
+CSSBtn.onclick = toCSSCodeArea;
+JSBtn.onclick = toJSCodeArea;
+
+// 切换到 HTML 代码区
+function toHTMLCodeArea() {
+    Tools.addClass(HTMLBtn, 'btn-selected');
+    Tools.removeClass(CSSBtn, 'btn-selected');
+    Tools.removeClass(JSBtn, 'btn-selected');
+    displaySlide.style.left = '0';
+}
+
+// 切换到 CSS 代码区
+function toCSSCodeArea() {
+    Tools.addClass(CSSBtn, 'btn-selected');
+    Tools.removeClass(HTMLBtn, 'btn-selected');
+    Tools.removeClass(JSBtn, 'btn-selected');
+    displaySlide.style.left = '-100%';
+}
+
+// 切换到 JS 代码区
+function toJSCodeArea() {
+    Tools.addClass(JSBtn, 'btn-selected');
+    Tools.removeClass(HTMLBtn, 'btn-selected');
+    Tools.removeClass(CSSBtn, 'btn-selected');
+    displaySlide.style.left = '-200%';
 }
