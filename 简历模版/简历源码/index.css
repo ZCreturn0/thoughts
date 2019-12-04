@@ -60,6 +60,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     padding: 10px 0;
+    margin-bottom: 20px;
 }
 
 .block-info-list {
@@ -68,4 +69,25 @@ body {
 
 .block-info-list > li {
     padding-bottom: 10px;
+}
+
+/* 4 */
+.name-and-expectation {
+    width: 80%;
+    height: 80px;
+    line-height: 80px;
+    margin: 140px auto 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.name {
+    font-size: 30px;
+}
+
+.expectation {
+    font-size: 30px;
+    padding: 0 20px;
+    background: var(--info-bgColor);
+    color: #fff;
 }
