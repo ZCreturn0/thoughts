@@ -240,6 +240,7 @@ function Sleep(ms) {
  */
 function showCodesArea() {
     codesArea.style.opacity = 1;
+    toHTMLCodeArea();
 }
 
 // test
