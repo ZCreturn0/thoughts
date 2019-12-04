@@ -101,6 +101,8 @@ let CSSBtn = document.getElementsByClassName('CSS')[0];
 // JS 按钮
 let JSBtn = document.getElementsByClassName('JS')[0];
 
+console.log(operationBtns.outerHTML);
+
 // 暂停
 function pause() {
     pauseBtn.innerText = '◀ 播放';
@@ -240,6 +242,7 @@ function showCodesArea() {
     codesArea.style.opacity = 1;
 }
 
+// test
 HTMLBtn.onclick = toHTMLCodeArea;
 CSSBtn.onclick = toCSSCodeArea;
 JSBtn.onclick = toJSCodeArea;
