@@ -31,10 +31,41 @@ body {
     width: 30%;
     height: 100%;
     background: var(--info-bgColor);
+    color: #fff;
 }
 
 .detail {
     width: 70%;
     height: 100%;
     background: var(--detail-bgColor);
+}
+
+/* 2 */
+.avatar {
+    width: 200px;
+    height: 200px;
+    /* 替换自己照片 */
+    background: url('./avatar.jpg');
+    background-size: contain;
+    margin: 80px auto 20px;
+    border-radius: 50%;
+}
+
+/* 3 */
+.info-block {
+    padding: 20px 50px;
+}
+
+.block-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.block-info-list {
+    list-style: none;
+}
+
+.block-info-list > li {
+    padding-bottom: 10px;
 }
