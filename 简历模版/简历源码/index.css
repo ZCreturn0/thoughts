@@ -25,6 +25,7 @@ body {
     margin: 0 auto;
     box-shadow: 0 0 10px 10px #ccc inset;
     display: flex;
+    -webkit-box-reflect: below 10px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 40%, transparent 100%);
 }
 
 .info {
@@ -89,4 +90,31 @@ body {
     padding: 0 20px;
     background: var(--info-bgColor);
     color: #fff;
+}
+
+/* 5 */
+.module {
+    margin-top: 20px;
+}
+
+.module-name {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 3px solid var(--info-bgColor);
+}
+
+.module-name-inner {
+    margin-left: 30px;
+    padding: 0px 10px;
+    background: var(--info-bgColor);
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+
+.module-content {
+    padding: 10px 30px;
+}
+
+.module-content-item {
+    margin-top: 10px;
 }
