@@ -23,53 +23,24 @@ const DATA = {
                         // 是否要插入代码
                         insert: false,
                         // 要显示的代码
-                        code: '<!DOCTYPE html>',
+                        // 用 \n 表示换行
+                        code: `<!DOCTYPE html>\n<html lang="zh">\n<head>`,
                         // 缩进
                         indent: 0
                     },
                     {
                         insert: false,
-                        code: '<html lang="zh">',
-                        indent: 0
-                    },
-                    {
-                        insert: false,
-                        code: '<head>',
-                        indent: 0
-                    },
-                    {
-                        insert: false,
-                        code: '<meta charset="UTF-8">',
+                        code: `<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<meta http-equiv="X-UA-Compatible" content="ie=edge">`,
                         indent: 4
                     },
                     {
                         insert: false,
-                        code: '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                        code: '<title>我的简历</title>\n<link rel="stylesheet" type="text/css" href="./index.css" />',
                         indent: 4
                     },
                     {
                         insert: false,
-                        code: '<meta http-equiv="X-UA-Compatible" content="ie=edge">',
-                        indent: 4
-                    },
-                    {
-                        insert: false,
-                        code: '<title>我的简历</title>',
-                        indent: 4
-                    },
-                    {
-                        insert: false,
-                        code: '<link rel="stylesheet" type="text/css" href="./index.css" />',
-                        indent: 4
-                    },
-                    {
-                        insert: false,
-                        code: '</head>',
-                        indent: 0
-                    },
-                    {
-                        insert: false,
-                        code: '<body>',
+                        code: '</head>\n<body>',
                         indent: 0
                     },
                     {
@@ -81,7 +52,7 @@ const DATA = {
                         insert: true,
                         code: '',
                         // 对应的步骤代码
-                        content: '1',
+                        content: '2',
                         indent: 8
                     },
                     {
@@ -91,18 +62,75 @@ const DATA = {
                     },
                     {
                         insert: false,
-                        code: '</body>',
+                        code: '</body>\n</html>',
                         indent: 0
-                    },
-                    {
-                        insert: false,
-                        code: '</html>',
-                        indent: 0
-                    },
+                    }
                 ],
                 css: []
             }
         },
-        length: 1
+        '1': {
+            description: [
+                '接下来添加一些初始化 CSS,并设置两个全局颜色.'
+            ],
+            code: {
+                html: [],
+                css: [
+                    {
+                        code: `* {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding: 0;\nmargin: 0;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code:`html,\nbody {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 100 % ;\nheight: 100 % ;\nbackground: #000;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `/* 全局变量 */\n:root {`,
+                        indent: 0
+                    },
+                    {
+                        code: `/* 个人信息背景色 */\n--info-bgColor: #00968f;\n/* 详细信息背景色 */\n--detail-bgColor: #fff;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.container {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 640px;\nheight: 700px;\nmargin: 0 auto;\nbox-shadow: 0 0 10px 10px #ccc inset;`,
+                        indent: 4
+                    },
+                    {
+                        code: `display: flex;\n-webkit-box-reflect: below 10px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, \ntransparent 40%, transparent 100%);`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        length: 2
     }
 };

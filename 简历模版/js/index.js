@@ -195,6 +195,42 @@ async function addParagraph(el, text) {
 }
 
 /**
+ * @description 带缩进的段落添加
+ * @param {object} el 指定元素
+ * @param {string} text 段落中的文字
+ * @param {number} spaces 缩进空格数
+ */
+
+async function addParagraphWithIndent(el, text, spaces) {
+    // 创建段落
+    let pre = document.createElement('pre');
+    // 把字符串转成数组
+    text = (spaces ? Array(spaces).fill(' ').join('') : '') + text;
+    let words = text.split('');
+    // 把段落添加到显示区域
+    el.appendChild(pre);
+    // 一次添加文字
+    for (let word of words) {
+        // 换行符
+        if (word.charCodeAt() == 10) {
+            // 后面补空格
+            word += spaces ? Array(spaces).fill(' ').join('') : '';
+        }
+        // 暂停状态下无限循环等待
+        while (!playStatus.play) {
+            await Sleep(100);
+        }
+        // 等待异步完成
+        await toPromise(word).then(word => {
+            // 把文字添加到段落里
+            pre.innerText += word;
+            // 滚动条滚到最底部
+            wordsArea.scrollTop = wordsArea.scrollHeight;
+        });
+    }
+}
+
+/**
  * @description 把异步操作包装成 Promise 返回
  * @param {any} word resolve 需要的参数
  * @returns {Promise}
@@ -278,44 +314,41 @@ async function coding() {
             // 按段渲染描述
             await addParagraph(desDom, des);
         }
-        await Sleep(500);
         // HTML 代码
         let htmlCodes = DATA.code[i].code.html;
-        // 添加 HTML 代码的区域
-        let hDom = document.querySelector(`div[data-step='${i}']`);
-        let htmlDom = hDom ? hDom : HTMLCodes;
-        for (let htmlCode of htmlCodes) {
-            // 无插入代码
-            if (!htmlCode.insert) {
-                // 获取空格
-                let spaces = htmlCode.indent ? Array(htmlCode.indent).fill(' ').join('') : '';
-                await addParagraph(htmlDom, spaces + htmlCode.code);
-            }
-            // 有要插入的代码
-            else {
-                let div = document.createElement('div');
-                div.setAttribute('data-step', htmlCode.content);
-                htmlDom.append(div);
+        // 判断是否有 HTML 代码,有则切换到 HTML 代码模块
+        if (htmlCodes.length) {
+            // 切换到 HTML 代码区域
+            toHTMLCodeArea();
+            // 等待切换
+            await Sleep(500);
+            // 添加 HTML 代码的区域
+            let hDom = document.querySelector(`div[data-step='${i}']`);
+            let htmlDom = hDom ? hDom : HTMLCodes;
+            for (let htmlCode of htmlCodes) {
+                // 无插入代码
+                if (!htmlCode.insert) {
+                    await addParagraphWithIndent(htmlDom, htmlCode.code, htmlCode.indent);
+                }
+                // 有要插入的代码
+                else {
+                    let div = document.createElement('div');
+                    div.setAttribute('data-step', htmlCode.content);
+                    htmlDom.append(div);
+                }
             }
         }
-        await Sleep(500);
         // CSS 代码
         let cssCodes = DATA.code[i].code.css;
-        // 添加 HTML 代码的区域
-        let hDom = document.querySelector(`div[data-step='${i}']`);
-        let htmlDom = hDom ? hDom : HTMLCodes;
-        for (let htmlCode of htmlCodes) {
-            // 无插入代码
-            if (!htmlCode.insert) {
-                // 获取空格
-                let spaces = htmlCode.indent ? Array(htmlCode.indent).fill(' ').join('') : '';
-                await addParagraph(htmlDom, spaces + htmlCode.code);
-            }
-            // 有要插入的代码
-            else {
-                let div = document.createElement('div');
-                div.setAttribute('data-step', htmlCode.content);
-                htmlDom.append(div);
+        if (cssCodes.length) {
+            // 切换到 CSS 代码区域
+            toCSSCodeArea();
+            await Sleep(500);
+            // 添加 CSS 代码的区域
+            // 所有 CSS 都顺序添加,所以不用判断是否有插入代码
+            let cssDom = CSSCodes;
+            for (let cssCode of cssCodes) {
+                await addParagraphWithIndent(cssDom, cssCode.code, cssCode.indent);
             }
         }
     }
