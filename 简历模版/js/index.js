@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.1 * 1000;
+const BASE_INTERVAL = 0.04 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
@@ -98,10 +98,12 @@ let displaySlide = document.getElementsByClassName('display-slide')[0];
 let HTMLBtn = document.getElementsByClassName('HTML')[0];
 // CSS 按钮
 let CSSBtn = document.getElementsByClassName('CSS')[0];
-// JS 按钮
-let JSBtn = document.getElementsByClassName('JS')[0];
+// HTML 代码区
+let HTMLCodes = document.getElementsByClassName('HTML-codes')[0];
+// CSS 代码区
+let CSSCodes = document.getElementsByClassName('CSS-codes')[0];
 
-console.log(operationBtns.outerHTML);
+// console.log(operationBtns.outerHTML);
 
 // 暂停
 function pause() {
@@ -123,11 +125,13 @@ function setSpeedStyle(speed) {
     }
 }
 
-;(function() {
+;(async function() {
     // 为操作按钮设置事件
     operationBtnEvents();
     // 展示 introduce
-    setIntroduce();
+    await setIntroduce();
+    // 展示代码
+    await coding();
 })();
 
 // 操作按钮注册事件
@@ -176,6 +180,10 @@ async function addParagraph(el, text) {
     el.appendChild(pre);
     // 一次添加文字
     for (let word of words) {
+        // 暂停状态下无限循环等待
+        while (!playStatus.play) {
+            await Sleep(100);
+        }
         // 等待异步完成
         await toPromise(word).then(word => {
             // 把文字添加到段落里
@@ -183,10 +191,6 @@ async function addParagraph(el, text) {
             // 滚动条滚到最底部
             wordsArea.scrollTop = wordsArea.scrollHeight;
         });
-        // 暂停状态下无限循环等待
-        while (!playStatus.play) {
-            await Sleep(100);
-        }
     }
 }
 
@@ -219,7 +223,7 @@ async function setIntroduce() {
         await Sleep(1000);
     }
     // 介绍完后显示代码区域
-    showCodesArea();
+    await showCodesArea();
 }
 
 /**
@@ -238,21 +242,20 @@ function Sleep(ms) {
 /**
  * @description 显示代码区域
  */
-function showCodesArea() {
+async function showCodesArea() {
     codesArea.style.opacity = 1;
     toHTMLCodeArea();
+    await Sleep(1000);
 }
 
 // test
 HTMLBtn.onclick = toHTMLCodeArea;
 CSSBtn.onclick = toCSSCodeArea;
-JSBtn.onclick = toJSCodeArea;
 
 // 切换到 HTML 代码区
 function toHTMLCodeArea() {
     Tools.addClass(HTMLBtn, 'btn-selected');
     Tools.removeClass(CSSBtn, 'btn-selected');
-    Tools.removeClass(JSBtn, 'btn-selected');
     displaySlide.style.left = '0';
 }
 
@@ -260,14 +263,60 @@ function toHTMLCodeArea() {
 function toCSSCodeArea() {
     Tools.addClass(CSSBtn, 'btn-selected');
     Tools.removeClass(HTMLBtn, 'btn-selected');
-    Tools.removeClass(JSBtn, 'btn-selected');
     displaySlide.style.left = '-100%';
 }
 
-// 切换到 JS 代码区
-function toJSCodeArea() {
-    Tools.addClass(JSBtn, 'btn-selected');
-    Tools.removeClass(HTMLBtn, 'btn-selected');
-    Tools.removeClass(CSSBtn, 'btn-selected');
-    displaySlide.style.left = '-200%';
+async function coding() {
+    // 遍历每个步骤
+    for (let i = 0; i < DATA.code.length; i++) {
+        // 渲染描述
+        let descriptions = DATA.code[i].description;
+        // 添加描述的区域
+        let desDom = document.getElementsByClassName('words')[0];
+        // 遍历描述
+        for (let des of descriptions) {
+            // 按段渲染描述
+            await addParagraph(desDom, des);
+        }
+        await Sleep(500);
+        // HTML 代码
+        let htmlCodes = DATA.code[i].code.html;
+        // 添加 HTML 代码的区域
+        let hDom = document.querySelector(`div[data-step='${i}']`);
+        let htmlDom = hDom ? hDom : HTMLCodes;
+        for (let htmlCode of htmlCodes) {
+            // 无插入代码
+            if (!htmlCode.insert) {
+                // 获取空格
+                let spaces = htmlCode.indent ? Array(htmlCode.indent).fill(' ').join('') : '';
+                await addParagraph(htmlDom, spaces + htmlCode.code);
+            }
+            // 有要插入的代码
+            else {
+                let div = document.createElement('div');
+                div.setAttribute('data-step', htmlCode.content);
+                htmlDom.append(div);
+            }
+        }
+        await Sleep(500);
+        // CSS 代码
+        let cssCodes = DATA.code[i].code.css;
+        // 添加 HTML 代码的区域
+        let hDom = document.querySelector(`div[data-step='${i}']`);
+        let htmlDom = hDom ? hDom : HTMLCodes;
+        for (let htmlCode of htmlCodes) {
+            // 无插入代码
+            if (!htmlCode.insert) {
+                // 获取空格
+                let spaces = htmlCode.indent ? Array(htmlCode.indent).fill(' ').join('') : '';
+                await addParagraph(htmlDom, spaces + htmlCode.code);
+            }
+            // 有要插入的代码
+            else {
+                let div = document.createElement('div');
+                div.setAttribute('data-step', htmlCode.content);
+                htmlDom.append(div);
+            }
+        }
+    }
 }
