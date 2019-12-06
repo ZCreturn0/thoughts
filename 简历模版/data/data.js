@@ -7,5 +7,91 @@ const DATA = {
         '可根据需求更改代码,该有注释的地方都写了注释.',
         '因为用的是<pre></pre>标签,所以这里输入文字的时候不要随便加换行.',
         '下面进入代码展示区.'
-    ]
+    ],
+    // 对代码进行解释及对应的代码
+    code: {
+        // 步骤
+        '0': {
+            // 描述,每项为一段
+            description: [
+                '首先建立一个 HTML 模版'
+            ],
+            // 对应的代码
+            code: {
+                html: [
+                    {
+                        // 是否要插入代码
+                        insert: false,
+                        // 要显示的代码
+                        code: '<!DOCTYPE html>',
+                        // 缩进
+                        indent: 0
+                    },
+                    {
+                        insert: false,
+                        code: '<html lang="zh">',
+                        indent: 0
+                    },
+                    {
+                        insert: false,
+                        code: '<head>',
+                        indent: 0
+                    },
+                    {
+                        insert: false,
+                        code: '<meta charset="UTF-8">',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '<meta http-equiv="X-UA-Compatible" content="ie=edge">',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '<title>我的简历</title>',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '<link rel="stylesheet" type="text/css" href="./index.css" />',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '</head>',
+                        indent: 0
+                    },
+                    {
+                        insert: false,
+                        code: '<body>',
+                        indent: 0
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '1',
+                        indent: 4
+                    },
+                    {
+                        insert: false,
+                        code: '</body>',
+                        indent: 0
+                    },
+                    {
+                        insert: false,
+                        code: '</html>',
+                        indent: 0
+                    },
+                ],
+                css: []
+            }
+        }
+    }
 };
