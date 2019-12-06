@@ -14,7 +14,7 @@ const DATA = {
         '0': {
             // 描述,每项为一段
             description: [
-                '首先建立一个 HTML 模版'
+                '首先建立一个 HTML 模版.'
             ],
             // 对应的代码
             code: {
@@ -73,10 +73,20 @@ const DATA = {
                         indent: 0
                     },
                     {
+                        insert: false,
+                        code: '<div class="container">',
+                        indent: 4
+                    },
+                    {
                         insert: true,
                         code: '',
                         // 对应的步骤代码
                         content: '1',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
                         indent: 4
                     },
                     {
@@ -92,6 +102,7 @@ const DATA = {
                 ],
                 css: []
             }
-        }
+        },
+        length: 1
     }
 };
