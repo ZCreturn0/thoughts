@@ -158,4 +158,5 @@ body {
     height: 100%;
     overflow-y: scroll;
     box-shadow: 0px 0px 15px 2px #1daf1d inset;
+    padding: 10px;
 }
