@@ -357,6 +357,7 @@ async function coding() {
                 await addParagraphWithIndent(cssDom, cssCode.code, cssCode.indent);
             }
         }
+        window[`step${i}`]();
     }
 }
 
@@ -374,4 +375,14 @@ function addCSS(text) {
 // 对应步骤完后显示对应效果
 function step0() {
     // 显示展示区
+    let displayContainer = document.createElement('div');
+    Tools.addClass(displayContainer, 'display-container');
+    let display = document.getElementsByClassName('display')[0];
+    display.append(displayContainer);
+    addCSS(':root {--info - bgColor: #00968f;--detail-bgColor: # fff;}');
+    addCSS('.display-container {width: 100%;height: 100%;margin: 0 auto;box-shadow: 0 0 10px 10px #00968f inset;display: flex;-webkit-box-reflect: below 10px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 40%, transparent 100%);}');
+}
+
+function step1() {
+
 }
