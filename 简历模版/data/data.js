@@ -93,7 +93,7 @@ const DATA = {
                         indent: 0
                     },
                     {
-                        code: `width: 100 % ;\nheight: 100 % ;\nbackground: #000;`,
+                        code: `width: 100%;\nheight: 100%;\nbackground: #000;`,
                         indent: 4
                     },
                     {
