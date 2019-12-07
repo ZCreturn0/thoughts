@@ -102,6 +102,12 @@ let CSSBtn = document.getElementsByClassName('CSS')[0];
 let HTMLCodes = document.getElementsByClassName('HTML-codes')[0];
 // CSS 代码区
 let CSSCodes = document.getElementsByClassName('CSS-codes')[0];
+// head 标签
+let head = document.getElementsByTagName('head')[0];
+// 新建一个 style 标签来动态添加 css
+let style = document.createElement('style');
+// 把新建的 style 标签添加到 head
+head.appendChild(style);
 
 // console.log(operationBtns.outerHTML);
 
@@ -225,7 +231,7 @@ async function addParagraphWithIndent(el, text, spaces) {
             // 把文字添加到段落里
             pre.innerText += word;
             // 滚动条滚到最底部
-            wordsArea.scrollTop = wordsArea.scrollHeight;
+            el.scrollTop = el.scrollHeight;
         });
     }
 }
@@ -352,4 +358,20 @@ async function coding() {
             }
         }
     }
+}
+
+// 动态添加 CSS 代码
+function addCSS(text) {
+    try {
+        let textNode = document.createTextNode(text);
+        style.appendChild(textNode);
+    }
+    catch (e) {
+        style.styleSheet.cssText = text;
+    }
+}
+
+// 对应步骤完后显示对应效果
+function step0() {
+    // 显示展示区
 }
