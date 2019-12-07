@@ -45,7 +45,7 @@ const DATA = {
                     },
                     {
                         insert: false,
-                        code: '<div class="container">',
+                        code: '<div class="display-container">',
                         indent: 4
                     },
                     {
@@ -113,7 +113,7 @@ const DATA = {
                         indent: 0
                     },
                     {
-                        code: `.container {`,
+                        code: `.display-container {`,
                         indent: 0
                     },
                     {
