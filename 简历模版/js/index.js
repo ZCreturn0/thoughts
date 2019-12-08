@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.04 * 1000;
+const BASE_INTERVAL = 0.01 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
@@ -373,7 +373,13 @@ function addCSS(text) {
 }
 
 // 对应步骤完后显示对应效果
+// 0.添加html,效果什么都不显示
 function step0() {
+    
+}
+
+// 1.显示轮廓
+function step1() {
     // 显示展示区
     let displayContainer = document.createElement('div');
     Tools.addClass(displayContainer, 'display-container');
@@ -381,8 +387,4 @@ function step0() {
     display.append(displayContainer);
     addCSS(':root {--info - bgColor: #00968f;--detail-bgColor: # fff;}');
     addCSS('.display-container {width: 100%;height: 100%;margin: 0 auto;box-shadow: 0 0 10px 10px #00968f inset;display: flex;-webkit-box-reflect: below 10px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 40%, transparent 100%);}');
-}
-
-function step1() {
-
 }
