@@ -131,6 +131,86 @@ const DATA = {
                 ]
             }
         },
-        length: 2
+        '2': {
+            description: [
+                '整个页面分为两部分',
+                '一部分是个人信息,一部分是详情信息'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<!-- 个人信息 -->',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="info">',
+                        indent: 8
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '3',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<!-- 详细信息 -->',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="detail">',
+                        indent: 8
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '00000000000000',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 8
+                    },
+                ],
+                css: [
+                    {
+                        code: `.display-container .info {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 30%;\nheight: 100%;\nbackground: var(--info-bgColor);\ncolor: #fff;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .detail {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 70%;\nheight: 100%;\nbackground: var(--detail-bgColor);`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                ]
+            }
+        },
+        length: 3
     }
 };

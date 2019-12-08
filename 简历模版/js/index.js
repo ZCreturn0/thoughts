@@ -102,6 +102,8 @@ let CSSBtn = document.getElementsByClassName('CSS')[0];
 let HTMLCodes = document.getElementsByClassName('HTML-codes')[0];
 // CSS 代码区
 let CSSCodes = document.getElementsByClassName('CSS-codes')[0];
+// 效果展示区
+let display = document.getElementsByClassName('display')[0];
 // head 标签
 let head = document.getElementsByTagName('head')[0];
 // 新建一个 style 标签来动态添加 css
@@ -383,8 +385,20 @@ function step1() {
     // 显示展示区
     let displayContainer = document.createElement('div');
     Tools.addClass(displayContainer, 'display-container');
-    let display = document.getElementsByClassName('display')[0];
     display.append(displayContainer);
-    addCSS(':root {--info - bgColor: #00968f;--detail-bgColor: # fff;}');
+    addCSS(':root {--info-bgColor: #00968f;--detail-bgColor: #fff;}');
     addCSS('.display-container {width: 100%;height: 100%;margin: 0 auto;box-shadow: 0 0 10px 10px #00968f inset;display: flex;-webkit-box-reflect: below 10px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 40%, transparent 100%);}');
+}
+
+// 2.分模块:个人信息 详细信息
+function step2() {
+    let displayContainer = display.getElementsByClassName('display-container')[0];
+    let info = document.createElement('div');
+    Tools.addClass(info, 'info');
+    displayContainer.append(info);
+    let detail = document.createElement('div');
+    Tools.addClass(detail, 'detail');
+    displayContainer.append(detail);
+    addCSS('.display-container .info {width: 30%;height: 100%;background: var(--info-bgColor);color: #fff;}');
+    addCSS('.display-container .detail {width: 70%;height: 100%;background: var(--detail-bgColor);}');
 }
