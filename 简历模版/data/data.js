@@ -156,6 +156,13 @@ const DATA = {
                         indent: 12
                     },
                     {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '4',
+                        indent: 12
+                    },
+                    {
                         insert: false,
                         code: '</div>',
                         indent: 8
@@ -211,6 +218,34 @@ const DATA = {
                 ]
             }
         },
-        length: 3
+        '3': {
+            description: [
+                '先放上自己的照片,并设置相应的样式'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="avatar"></div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .avatar {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 150px;\nheight: 150px;\nbackground: url('./avatar.jpg');\nbackground-size: contain;\nmargin: 20px auto 20px;\nborder-radius: 50%;`,
+                        indent: 4
+                    },
+                    {
+                        code: `.}`,
+                        indent: 0
+                    },
+                ]
+            }
+        },
+        length: 4
     }
 };

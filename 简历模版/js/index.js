@@ -402,3 +402,12 @@ function step2() {
     addCSS('.display-container .info {width: 30%;height: 100%;background: var(--info-bgColor);color: #fff;}');
     addCSS('.display-container .detail {width: 70%;height: 100%;background: var(--detail-bgColor);}');
 }
+
+// 3.显示头像
+function step3() {
+    let info = display.getElementsByClassName('info')[0];
+    let avatar = document.createElement('div');
+    Tools.addClass(avatar, 'avatar');
+    info.append(avatar);
+    addCSS(`.display-container .avatar {width: 120px;height: 120px;background: url('./avatar.jpg');background-size: contain;margin: 20px auto 20px;border-radius: 50%;}`);
+}
