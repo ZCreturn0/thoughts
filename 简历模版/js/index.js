@@ -411,3 +411,89 @@ function step3() {
     info.append(avatar);
     addCSS(`.display-container .avatar {width: 120px;height: 120px;background: url('./avatar.jpg');background-size: contain;margin: 20px auto 20px;border-radius: 50%;}`);
 }
+
+// 4.个人信息
+function step4() {
+    subInfoAdd([
+        {
+            title: '个人信息',
+            items: [
+                {
+                    text: '📱  13222222222'
+                },
+                {
+                    text: '📪 aaaaaaa@qq.com'
+                },
+            ]
+        }
+    ]);
+    addCSS(`.display-container .info-block {padding: 10px 15px;}`);
+    addCSS(`.display-container .block-title {font-size: 20px;font-weight: bold;padding: 10px 0;}`);
+    addCSS(`.display-container .block-info-list {list-style: none;}`);
+    addCSS(`.display-container .block-info-list > li {padding-bottom: 10px;}`);
+}
+
+// 5.其他信息
+function step5() {
+    subInfoAdd([
+        {
+            title: '技能证书',
+            items: [
+                {
+                    text: '很值钱的证书1'
+                },
+                {
+                    text: '很值钱的证书2'
+                },
+                {
+                    text: '没那么值钱的证书3'
+                },
+                {
+                    text: '不值钱的就别写了'
+                }
+            ]
+        },
+        {
+            title: '获得奖项',
+            items: [
+                {
+                    text: '再来一瓶'
+                },
+                {
+                    text: '再来一包'
+                },
+                {
+                    text: '冠军之夜抽中价值10块的皮肤'
+                }
+            ]
+        }
+    ]);
+}
+
+// 5.对个人信息添加的简单封装
+function subInfoAdd(infoList) {
+    let info = display.getElementsByClassName('info')[0];
+    for (let item of infoList) {
+        let infoBlock = document.createElement('div');
+        Tools.addClass(infoBlock, 'info-block');
+        let blockTitle = document.createElement('div');
+        Tools.addClass(blockTitle, 'block-title');
+
+        blockTitle.innerText = item.title;
+        infoBlock.append(blockTitle);
+
+        let infoblockInfoListBlock = document.createElement('ul');
+        Tools.addClass(infoblockInfoListBlock, 'block-info-list');
+        infoBlock.append(infoblockInfoListBlock);
+
+        for (let subItem of item.items) {
+            let li = document.createElement('li');
+            let pre = document.createElement('pre');
+            pre.innerText = subItem.text;
+            li.append(pre);
+            infoblockInfoListBlock.append(li);
+        }
+
+        info.append(infoBlock);
+    }
+}

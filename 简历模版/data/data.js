@@ -133,8 +133,8 @@ const DATA = {
         },
         '2': {
             description: [
-                '整个页面分为两部分',
-                '一部分是个人信息,一部分是详情信息'
+                '整个页面分为两部分.',
+                '一部分是个人信息,一部分是详情信息.'
             ],
             code: {
                 html: [
@@ -151,15 +151,19 @@ const DATA = {
                     {
                         insert: true,
                         code: '',
-                        // 对应的步骤代码
                         content: '3',
                         indent: 12
                     },
                     {
                         insert: true,
                         code: '',
-                        // 对应的步骤代码
                         content: '4',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        content: '5',
                         indent: 12
                     },
                     {
@@ -220,7 +224,7 @@ const DATA = {
         },
         '3': {
             description: [
-                '先放上自己的照片,并设置相应的样式'
+                '先放上自己的照片,并设置相应的样式.'
             ],
             code: {
                 html: [
@@ -246,6 +250,196 @@ const DATA = {
                 ]
             }
         },
-        length: 4
+        '4': {
+            description: [
+                '添加个人信息,增加相应的样式.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="info-block">',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="block-title">个人信息</div>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<ul class="block-info-list">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<li>📱  13222222222</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>📪 aaaaaaa@qq.com</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</ul>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 8
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .info-block {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding: 10px 15px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-title {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 20px;\nfont-weight: bold;\npadding: 10px 0;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-info-list {`,
+                        indent: 0
+                    },
+                    {
+                        code: `list-style: none;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-info-list > li {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding-bottom: 10px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '5': {
+            description: [
+                '类似地添加其他信息.',
+                '因为所用的类都是一样的,所以不需要额外添加 CSS.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="info-block">',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="block-title">技能证书</div>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<ul class="block-info-list">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<li>很值钱的证书1</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>很值钱的证书2</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>没那么值钱的证书3</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>不值钱的就别写了</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</ul>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="info-block">',
+                        indent: 8
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="block-title">获得奖项</div>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<ul class="block-info-list">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<li>再来一瓶</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>再来一包</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<li>冠军之夜抽中价值10块的皮肤</li>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</ul>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 8
+                    }
+                ],
+                css: []
+            }
+        },
+        length: 6
     }
 };
