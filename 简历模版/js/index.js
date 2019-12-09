@@ -232,7 +232,10 @@ async function addParagraphWithIndent(el, text, spaces) {
             // 把文字添加到段落里
             pre.innerText += word;
             // 滚动条滚到最底部
+            // 可优化
             el.scrollTop = el.scrollHeight;
+            HTMLCodes.scrollTop = HTMLCodes.scrollHeight;
+            CSSCodes.scrollTop = CSSCodes.scrollHeight;
         });
     }
 }
