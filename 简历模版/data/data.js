@@ -1,12 +1,7 @@
 const DATA = {
     // 开头介绍环节,数组中的每一个元素为一段
     introduce: [
-        '这是 ZCreturn0 开发的的一款简历模版,灵感来自知乎的某篇文章.本项目地址: https://github.com/ZCreturn0/thoughts/tree/master/%E7%AE%80%E5%8E%86%E6%A8%A1%E7%89%88. 觉得不错请点个 ★star !!',
-        '改变本文件内容换成你想展示的内容,introduce 中每个元素为一段.',
-        '当 introduce 完后会进入编写代码展示简历环节.',
-        '可根据需求更改代码,该有注释的地方都写了注释.',
-        '因为用的是<pre></pre>标签,所以这里输入文字的时候不要随便加换行.',
-        '下面进入代码展示区.'
+        
     ],
     // 对代码进行解释及对应的代码
     code: {
@@ -277,23 +272,8 @@ const DATA = {
                     },
                     {
                         insert: false,
-                        code: '<div class="block-title">个人信息</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
                         code: '<ul class="block-info-list">',
                         indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<li>📱  13222222222</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>📪 aaaaaaa@qq.com</li>',
-                        indent: 20
                     },
                     {
                         insert: false,
@@ -364,93 +344,7 @@ const DATA = {
                 '因为所用的类都是一样的,所以不需要额外添加 CSS.'
             ],
             code: {
-                html: [
-                    {
-                        insert: false,
-                        code: '<div class="info-block">',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="block-title">技能证书</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<ul class="block-info-list">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<li>很值钱的证书1</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>很值钱的证书2</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>没那么值钱的证书3</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>不值钱的就别写了</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</ul>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="info-block">',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="block-title">获得奖项</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<ul class="block-info-list">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<li>再来一瓶</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>再来一包</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<li>冠军之夜抽中价值10块的皮肤</li>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</ul>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 12
-                    }
-                ],
+                html: [],
                 css: []
             }
         },
@@ -787,3 +681,56 @@ const DATA = {
         length: 9
     }
 };
+
+DATA.introduce = SETTINGS.introduce;
+let firstInfoTitle = `<div class="block-title">${SETTINGS.info[0].title}</div>`;
+DATA.code[4].code.html.splice(1, 0,{
+    insert: false,
+    code: '<div class="info-block">',
+    indent: 12
+});
+let firstInfoItems = [];
+for (let i = 0; i < SETTINGS.info[0].items.length; i++) {
+    firstInfoItems.push({
+        insert: false,
+        code: `<li>${SETTINGS.info[0].items[i]}</li>`,
+        indent: 20
+    });
+}
+DATA.code[4].code.html.splice(3, 0, ...firstInfoItems);
+let infoItems = [];
+for (let i = 1; i < SETTINGS.info.length; i++) {
+    infoItems.push({
+        insert: false,
+        code: '<div class="info-block">',
+        indent: 12
+    });
+    infoItems.push({
+        insert: false,
+        code: `<div class="block-title">${SETTINGS.info[i].title}</div>`,
+        indent: 16
+    });
+    infoItems.push({
+        insert: false,
+        code: '<ul class="block-info-list">',
+        indent: 16
+    });
+    for (let item of SETTINGS.info[i].items) {
+        infoItems.push({
+            insert: false,
+            code: `<li>${item}</li>`,
+            indent: 20
+        });
+    }
+    infoItems.push({
+        insert: false,
+        code: '</ul>',
+        indent: 16
+    });
+    infoItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 12
+    });
+}
+DATA.code[5].code.html = infoItems;
