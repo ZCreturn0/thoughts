@@ -185,7 +185,21 @@ const DATA = {
                         insert: true,
                         code: '',
                         // 对应的步骤代码
-                        content: '00000000000000',
+                        content: '6',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '7',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '8',
                         indent: 12
                     },
                     {
@@ -259,37 +273,37 @@ const DATA = {
                     {
                         insert: false,
                         code: '<div class="info-block">',
-                        indent: 8
+                        indent: 12
                     },
                     {
                         insert: false,
                         code: '<div class="block-title">个人信息</div>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<ul class="block-info-list">',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<li>📱  13222222222</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>📪 aaaaaaa@qq.com</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '</ul>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '</div>',
-                        indent: 8
+                        indent: 12
                     }
                 ],
                 css: [
@@ -354,92 +368,101 @@ const DATA = {
                     {
                         insert: false,
                         code: '<div class="info-block">',
-                        indent: 8
+                        indent: 12
                     },
                     {
                         insert: false,
                         code: '<div class="block-title">技能证书</div>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<ul class="block-info-list">',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<li>很值钱的证书1</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>很值钱的证书2</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>没那么值钱的证书3</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>不值钱的就别写了</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '</ul>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '</div>',
-                        indent: 8
+                        indent: 12
                     },
                     {
                         insert: false,
                         code: '<div class="info-block">',
-                        indent: 8
+                        indent: 12
                     },
                     {
                         insert: false,
                         code: '<div class="block-title">获得奖项</div>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<ul class="block-info-list">',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '<li>再来一瓶</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>再来一包</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '<li>冠军之夜抽中价值10块的皮肤</li>',
-                        indent: 16
+                        indent: 20
                     },
                     {
                         insert: false,
                         code: '</ul>',
-                        indent: 12
+                        indent: 16
                     },
                     {
                         insert: false,
                         code: '</div>',
-                        indent: 8
+                        indent: 12
                     }
                 ],
                 css: []
             }
         },
-        length: 6
+        '6': {
+            description: [
+                '下面开始做内容详情页.'
+            ],
+            code: {
+                html: [],
+                css: []
+            }
+        },
+        length: 7
     }
 };
