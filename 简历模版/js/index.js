@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.01 * 1000;
+const BASE_INTERVAL = 0.1 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
@@ -497,5 +497,110 @@ function subInfoAdd(infoList) {
         }
 
         info.append(infoBlock);
+    }
+}
+
+// 6.姓名及求职意向
+function step6() {
+    let detail = document.getElementsByClassName('detail')[0];
+    let nameAndExpectation = document.createElement('div');
+    Tools.addClass(nameAndExpectation, 'name-and-expectation');
+    let name = document.createElement('div');
+    Tools.addClass(name, 'name');
+    name.innerText = '你的名字';
+    let expectation = document.createElement('div');
+    Tools.addClass(expectation, 'expectation');
+    expectation.innerText = '求职意向/总统';
+    nameAndExpectation.append(name);
+    nameAndExpectation.append(expectation);
+    detail.append(nameAndExpectation);
+    addCSS(`.display-container .name-and-expectation {width: 80%;height: 80px;line-height: 80px;margin: 60px auto 0;display: flex;justify-content: space-around;}`);
+    addCSS(`.display-container .name {font-size: 30px;}`);
+    addCSS(`.display-container .expectation {font-size: 30px;padding: 0 20px;background: var(--info-bgColor);color: #fff;}`);
+}
+
+// 7.添加详细信息
+function step7() {
+    addDetailInfo([
+        {
+            title: '教育背景',
+            items: [
+                {
+                    text: '2015.9--2019.6       山东蓝翔'
+                },
+                {
+                    text: '2011.9--2015.6       清华大学'
+                }
+            ]
+        }
+    ]);
+    addCSS('.display-container .module {margin-top: 20px;}');
+    addCSS('.display-container .module-name {font-size: 20px;font-weight: bold;border-bottom: 3px solid var(--info-bgColor);}');
+    addCSS('.display-container .module-name-inner {margin-left: 30px;padding: 0px 10px;background: var(--info-bgColor);color: #fff;border-radius: 5px 5px 0 0;}');
+    addCSS('.display-container .module-content {padding: 10px 30px;}');
+    addCSS('.display-container .module-content-item {margin-top: 10px;color: #000;}');
+}
+
+// 8.继续添加详细信息
+function step8() {
+    addDetailInfo([
+        {
+            title: '工作经历',
+            items: [
+                {
+                    text: '2015.9--2019.6       阿里P7'
+                },
+                {
+                    text: '2011.9--2015.6       腾讯实习'
+                }
+            ]
+        },
+        {
+            title: '自我评价',
+            items: [
+                {
+                    text: 'HTML+CSS+JS 熟练       VUE 熟练      Node.js 熟悉'
+                },
+                {
+                    text: '其他相关技能介绍'
+                }
+            ]
+        },
+        {
+            title: '关于',
+            items: [
+                {
+                    text: '作者        ZCreturn0'
+                },
+                {
+                    text: 'github ---> https://github.com/ZCreturn0'
+                }
+            ]
+        }
+    ]);
+}
+
+// 7.对详细信息添加的简单封装
+function addDetailInfo(detailList) {
+    let _detail = document.getElementsByClassName('detail')[0];
+    for (let detail of detailList) {
+        let _module = document.createElement('div');
+        Tools.addClass(_module, 'module');
+        let moduleName = document.createElement('div');
+        Tools.addClass(moduleName, 'module-name');
+        let moduleNameInner = document.createElement('span');
+        Tools.addClass(moduleNameInner, 'module-name-inner');
+        moduleNameInner.innerText = detail.title;
+        moduleName.append(moduleNameInner);
+        _module.append(moduleName);
+        let moduleContent = document.createElement('div');
+        for (let item of detail.items) {
+            let moduleContentItem = document.createElement('pre');
+            Tools.addClass(moduleContentItem, 'module-content-item');
+            moduleContentItem.innerText = item.text;
+            moduleContent.append(moduleContentItem);
+        }
+        _module.append(moduleContent);
+        _detail.append(_module);
     }
 }

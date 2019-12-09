@@ -1,11 +1,11 @@
 const DATA = {
     // 开头介绍环节,数组中的每一个元素为一段
     introduce: [
-        // '这是 ZCreturn0 开发的的一款简历模版,灵感来自知乎的某篇文章.本项目地址: https://github.com/ZCreturn0/thoughts/tree/master/%E7%AE%80%E5%8E%86%E6%A8%A1%E7%89%88. 觉得不错请点个 ★star !!',
-        // '改变本文件内容换成你想展示的内容,introduce 中每个元素为一段.',
-        // '当 introduce 完后会进入编写代码展示简历环节.',
-        // '可根据需求更改代码,该有注释的地方都写了注释.',
-        // '因为用的是<pre></pre>标签,所以这里输入文字的时候不要随便加换行.',
+        '这是 ZCreturn0 开发的的一款简历模版,灵感来自知乎的某篇文章.本项目地址: https://github.com/ZCreturn0/thoughts/tree/master/%E7%AE%80%E5%8E%86%E6%A8%A1%E7%89%88. 觉得不错请点个 ★star !!',
+        '改变本文件内容换成你想展示的内容,introduce 中每个元素为一段.',
+        '当 introduce 完后会进入编写代码展示简历环节.',
+        '可根据需求更改代码,该有注释的地方都写了注释.',
+        '因为用的是<pre></pre>标签,所以这里输入文字的时候不要随便加换行.',
         '下面进入代码展示区.'
     ],
     // 对代码进行解释及对应的代码
@@ -456,13 +456,334 @@ const DATA = {
         },
         '6': {
             description: [
-                '下面开始做内容详情页.'
+                '下面开始做内容详情页.',
+                '首先把名字和求职意向写上.添加对应样式.'
             ],
             code: {
-                html: [],
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="name-and-expectation">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="name">你的名字</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="expectation">求职意向/总统</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .name-and-expectation {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 80%;\nheight: 80px;\nline-height: 80px;\nmargin: 60px auto 0;\ndisplay: flex;\njustify-content: space-around;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .name {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 30px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .expectation {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 30px;\npadding: 0 20px;\nbackground: var(--info-bgColor);\ncolor: #fff;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '7': {
+            description: [
+                '然后添加详细信息.',
+                '先设计一个模版,后面直接添加 HTML 代码即可.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="module">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-name">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<span class="module-name-inner">教育背景</span>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-content">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">2015.9--2019.6       山东蓝翔</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">2011.9--2015.6       清华大学</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .module {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-top: 20px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-name {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 20px;\nfont-weight: bold;\nborder-bottom: 3px solid var(--info-bgColor);`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-name-inner {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-left: 30px;\npadding: 0px 10px;\nbackground: var(--info-bgColor);\ncolor: #fff;\nborder-radius: 5px 5px 0 0;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-content {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding: 10px 30px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-content-item {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-top: 10px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '8': {
+            description: [
+                '最后,复制几段模版,放入相应的信息即可.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="module">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-name">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<span class="module-name-inner">工作经历</span>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-content">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">2015.9--2019.6       阿里P7</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">2011.9--2015.6       腾讯实习</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-name">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<span class="module-name-inner">自我评价</span>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-content">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">HTML+CSS+JS 熟练       VUE 熟练      Node.js 熟悉</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">其他相关技能介绍</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-name">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<span class="module-name-inner">关于</span>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-content">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">作者        ZCreturn0</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '<pre class="module-content-item">github ---> https://github.com/ZCreturn0</pre>',
+                        indent: 20
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
                 css: []
             }
         },
-        length: 7
+        length: 9
     }
 };

@@ -81,6 +81,7 @@ body {
 
 .words {
     overflow-y: scroll;
+    box-shadow: 0px 0px 15px 2px #1daf1d inset;
 }
 
 .words > pre {
@@ -119,7 +120,6 @@ body {
 .codes {
     opacity: 0;
     transition: opacity .5s;
-    border: 1px solid var(--main-color);
 }
 
 .codes-switch {
