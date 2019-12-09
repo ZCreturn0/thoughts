@@ -111,8 +111,6 @@ let style = document.createElement('style');
 // 把新建的 style 标签添加到 head
 head.appendChild(style);
 
-// console.log(operationBtns.outerHTML);
-
 // 暂停
 function pause() {
     pauseBtn.innerText = '◀ 播放';
@@ -212,8 +210,9 @@ async function addParagraph(el, text) {
 async function addParagraphWithIndent(el, text, spaces) {
     // 创建段落
     let pre = document.createElement('pre');
-    // 把字符串转成数组
+    // 添加缩进
     text = (spaces ? Array(spaces).fill(' ').join('') : '') + text;
+    // 把字符串转成数组
     let words = text.split('');
     // 把段落添加到显示区域
     el.appendChild(pre);
