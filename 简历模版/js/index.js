@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.1 * 1000;
+const BASE_INTERVAL = 0.01 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
