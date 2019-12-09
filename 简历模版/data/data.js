@@ -362,16 +362,6 @@ const DATA = {
                     },
                     {
                         insert: false,
-                        code: '<div class="name">你的名字</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="expectation">求职意向/总统</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
                         code: '</div>',
                         indent: 12
                     }
@@ -433,11 +423,11 @@ const DATA = {
                         code: '<div class="module-name">',
                         indent: 16
                     },
-                    {
-                        insert: false,
-                        code: '<span class="module-name-inner">教育背景</span>',
-                        indent: 20
-                    },
+                    // {
+                    //     insert: false,
+                    //     code: '<span class="module-name-inner">教育背景</span>',
+                    //     indent: 20
+                    // },
                     {
                         insert: false,
                         code: '</div>',
@@ -686,7 +676,7 @@ DATA.introduce = SETTINGS.introduce;
 let firstInfoTitle = `<div class="block-title">${SETTINGS.info[0].title}</div>`;
 DATA.code[4].code.html.splice(1, 0,{
     insert: false,
-    code: '<div class="info-block">',
+    code: firstInfoTitle,
     indent: 12
 });
 let firstInfoItems = [];
@@ -734,3 +724,30 @@ for (let i = 1; i < SETTINGS.info.length; i++) {
     });
 }
 DATA.code[5].code.html = infoItems;
+let nameAndExpectationInfo = [];
+nameAndExpectationInfo.push({
+    insert: false,
+    code: `<div class="name">${SETTINGS.nameAndExpectation.name}</div>`,
+    indent: 16
+});
+nameAndExpectationInfo.push({
+    insert: false,
+    code: `<div class="expectation">${SETTINGS.nameAndExpectation.expectation}</div>`,
+    indent: 16
+});
+DATA.code[6].code.html.splice(1, 0, ...nameAndExpectationInfo);
+let firstDetailTitle = `<span class="module-name-inner">${SETTINGS.detail[0].title}</span>`;
+DATA.code[7].code.html.splice(2, 0, {
+    insert: false,
+    code: firstDetailTitle,
+    indent: 20
+});
+let firstDetailItems = [];
+for (let i = 0; i < SETTINGS.detail[0].items.length; i++) {
+    firstDetailItems.push({
+        insert: false,
+        code: `<pre class="module-content-item">${SETTINGS.detail[0].items[i]}</pre>`,
+        indent: 20
+    });
+}
+DATA.code[4].code.html.splice(5, 0, ...firstDetailItems);
