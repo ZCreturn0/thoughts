@@ -416,19 +416,7 @@ function step3() {
 
 // 4.个人信息
 function step4() {
-    subInfoAdd([
-        {
-            title: '个人信息',
-            items: [
-                {
-                    text: '📱  13222222222'
-                },
-                {
-                    text: '📪 aaaaaaa@qq.com'
-                },
-            ]
-        }
-    ]);
+    subInfoAdd([SETTINGS.info[0]]);
     addCSS(`.display-container .info-block {padding: 10px 15px;}`);
     addCSS(`.display-container .block-title {font-size: 20px;font-weight: bold;padding: 10px 0;}`);
     addCSS(`.display-container .block-info-list {list-style: none;}`);
@@ -437,39 +425,7 @@ function step4() {
 
 // 5.其他信息
 function step5() {
-    subInfoAdd([
-        {
-            title: '技能证书',
-            items: [
-                {
-                    text: '很值钱的证书1'
-                },
-                {
-                    text: '很值钱的证书2'
-                },
-                {
-                    text: '没那么值钱的证书3'
-                },
-                {
-                    text: '不值钱的就别写了'
-                }
-            ]
-        },
-        {
-            title: '获得奖项',
-            items: [
-                {
-                    text: '再来一瓶'
-                },
-                {
-                    text: '再来一包'
-                },
-                {
-                    text: '冠军之夜抽中价值10块的皮肤'
-                }
-            ]
-        }
-    ]);
+    subInfoAdd(SETTINGS.info.slice(1));
 }
 
 // 5.对个人信息添加的简单封装
@@ -491,7 +447,7 @@ function subInfoAdd(infoList) {
         for (let subItem of item.items) {
             let li = document.createElement('li');
             let pre = document.createElement('pre');
-            pre.innerText = subItem.text;
+            pre.innerText = subItem;
             li.append(pre);
             infoblockInfoListBlock.append(li);
         }
@@ -507,10 +463,10 @@ function step6() {
     Tools.addClass(nameAndExpectation, 'name-and-expectation');
     let name = document.createElement('div');
     Tools.addClass(name, 'name');
-    name.innerText = '你的名字';
+    name.innerText = SETTINGS.nameAndExpectation.name;
     let expectation = document.createElement('div');
     Tools.addClass(expectation, 'expectation');
-    expectation.innerText = '求职意向/总统';
+    expectation.innerText = SETTINGS.nameAndExpectation.expectation;
     nameAndExpectation.append(name);
     nameAndExpectation.append(expectation);
     detail.append(nameAndExpectation);
@@ -521,19 +477,7 @@ function step6() {
 
 // 7.添加详细信息
 function step7() {
-    addDetailInfo([
-        {
-            title: '教育背景',
-            items: [
-                {
-                    text: '2015.9--2019.6       山东蓝翔'
-                },
-                {
-                    text: '2011.9--2015.6       清华大学'
-                }
-            ]
-        }
-    ]);
+    addDetailInfo([SETTINGS.detail[0]]);
     addCSS('.display-container .module {margin-top: 20px;}');
     addCSS('.display-container .module-name {font-size: 20px;font-weight: bold;border-bottom: 3px solid var(--info-bgColor);}');
     addCSS('.display-container .module-name-inner {margin-left: 30px;padding: 0px 10px;background: var(--info-bgColor);color: #fff;border-radius: 5px 5px 0 0;}');
@@ -543,41 +487,7 @@ function step7() {
 
 // 8.继续添加详细信息
 function step8() {
-    addDetailInfo([
-        {
-            title: '工作经历',
-            items: [
-                {
-                    text: '2015.9--2019.6       阿里P7'
-                },
-                {
-                    text: '2011.9--2015.6       腾讯实习'
-                }
-            ]
-        },
-        {
-            title: '自我评价',
-            items: [
-                {
-                    text: 'HTML+CSS+JS 熟练       VUE 熟练      Node.js 熟悉'
-                },
-                {
-                    text: '其他相关技能介绍'
-                }
-            ]
-        },
-        {
-            title: '关于',
-            items: [
-                {
-                    text: '作者        ZCreturn0'
-                },
-                {
-                    text: 'github ---> https://github.com/ZCreturn0'
-                }
-            ]
-        }
-    ]);
+    addDetailInfo(SETTINGS.detail.slice(1));
 }
 
 // 7.对详细信息添加的简单封装
@@ -597,7 +507,7 @@ function addDetailInfo(detailList) {
         for (let item of detail.items) {
             let moduleContentItem = document.createElement('pre');
             Tools.addClass(moduleContentItem, 'module-content-item');
-            moduleContentItem.innerText = item.text;
+            moduleContentItem.innerText = item;
             moduleContent.append(moduleContentItem);
         }
         _module.append(moduleContent);
