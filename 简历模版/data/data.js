@@ -423,11 +423,6 @@ const DATA = {
                         code: '<div class="module-name">',
                         indent: 16
                     },
-                    // {
-                    //     insert: false,
-                    //     code: '<span class="module-name-inner">教育背景</span>',
-                    //     indent: 20
-                    // },
                     {
                         insert: false,
                         code: '</div>',
@@ -437,16 +432,6 @@ const DATA = {
                         insert: false,
                         code: '<div class="module-content">',
                         indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">2015.9--2019.6       山东蓝翔</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">2011.9--2015.6       清华大学</pre>',
-                        indent: 20
                     },
                     {
                         insert: false,
@@ -528,143 +513,7 @@ const DATA = {
                 '最后,复制几段模版,放入相应的信息即可.'
             ],
             code: {
-                html: [
-                    {
-                        insert: false,
-                        code: '<div class="module">',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-name">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<span class="module-name-inner">工作经历</span>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-content">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">2015.9--2019.6       阿里P7</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">2011.9--2015.6       腾讯实习</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module">',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-name">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<span class="module-name-inner">自我评价</span>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-content">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">HTML+CSS+JS 熟练       VUE 熟练      Node.js 熟悉</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">其他相关技能介绍</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module">',
-                        indent: 12
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-name">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<span class="module-name-inner">关于</span>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<div class="module-content">',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">作者        ZCreturn0</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '<pre class="module-content-item">github ---> https://github.com/ZCreturn0</pre>',
-                        indent: 20
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 16
-                    },
-                    {
-                        insert: false,
-                        code: '</div>',
-                        indent: 12
-                    }
-                ],
+                html: [],
                 css: []
             }
         },
@@ -692,7 +541,7 @@ let infoItems = [];
 for (let i = 1; i < SETTINGS.info.length; i++) {
     infoItems.push({
         insert: false,
-        code: '<div class="info-block">',
+        code: '<div class="module">',
         indent: 12
     });
     infoItems.push({
@@ -750,4 +599,50 @@ for (let i = 0; i < SETTINGS.detail[0].items.length; i++) {
         indent: 20
     });
 }
-DATA.code[4].code.html.splice(5, 0, ...firstDetailItems);
+DATA.code[7].code.html.splice(5, 0, ...firstDetailItems);
+let detailItems = [];
+for (let i = 1; i < SETTINGS.detail.length; i++) {
+    detailItems.push({
+        insert: false,
+        code: '<div class="info-block">',
+        indent: 12
+    });
+    detailItems.push({
+        insert: false,
+        code: '<div class="module-name">',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: `<span class="module-name-inner">${SETTINGS.detail[i].title}</span>`,
+        indent: 20
+    });
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: '<div class="module-content">',
+        indent: 16
+    });
+    for (let item of SETTINGS.detail[i].items) {
+        detailItems.push({
+            insert: false,
+            code: `<pre class="module-content-item">${item}</pre>`,
+            indent: 20
+        });
+    }
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 12
+    });
+}
+DATA.code[8].code.html = detailItems;
