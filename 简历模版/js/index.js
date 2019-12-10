@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.01 * 1000;
+const BASE_INTERVAL = 0.03 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
@@ -173,7 +173,7 @@ function operationBtnEvents() {
 }
 
 /**
- * @description 在指定的元素中添加段落
+ * @description 在指定的元素中添加段落(用于添加介绍文字信息)
  * @param {object} el 指定元素
  * @param {string} text 段落中的文字
  */
@@ -201,7 +201,7 @@ async function addParagraph(el, text) {
 }
 
 /**
- * @description 带缩进的段落添加
+ * @description 带缩进的段落添加(用于添加代码)
  * @param {object} el 指定元素
  * @param {string} text 段落中的文字
  * @param {number} spaces 缩进空格数
@@ -294,10 +294,6 @@ async function showCodesArea() {
     await Sleep(1000);
 }
 
-// test
-HTMLBtn.onclick = toHTMLCodeArea;
-CSSBtn.onclick = toCSSCodeArea;
-
 // 切换到 HTML 代码区
 function toHTMLCodeArea() {
     Tools.addClass(HTMLBtn, 'btn-selected');
@@ -322,6 +318,7 @@ async function coding() {
         // 遍历描述
         for (let des of descriptions) {
             // 按段渲染描述
+            await Sleep(500);
             await addParagraph(desDom, des);
         }
         // HTML 代码
@@ -361,8 +358,12 @@ async function coding() {
                 await addParagraphWithIndent(cssDom, cssCode.code, cssCode.indent);
             }
         }
+        // 执行对应步骤
         window[`step${i}`]();
     }
+    // 展示完后给代码切换按钮加上事件
+    HTMLBtn.onclick = toHTMLCodeArea;
+    CSSBtn.onclick = toCSSCodeArea;
 }
 
 // 动态添加 CSS 代码

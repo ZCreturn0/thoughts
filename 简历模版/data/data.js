@@ -1,8 +1,6 @@
 const DATA = {
     // 开头介绍环节,数组中的每一个元素为一段
-    introduce: [
-        
-    ],
+    introduce: [],
     // 对代码进行解释及对应的代码
     code: {
         // 步骤
