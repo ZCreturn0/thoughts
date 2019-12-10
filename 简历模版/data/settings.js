@@ -33,6 +33,14 @@ const SETTINGS = {
                 '再来一包',
                 '冠军之夜抽中价值10块的皮肤'
             ]
+        },
+        {
+            title: 'test',
+            items: [
+                'testtest',
+                'testtest',
+                'testtesttesttest'
+            ]
         }
     ],
     // 名字期望
@@ -68,6 +76,14 @@ const SETTINGS = {
             items: [
                 '作者        ZCreturn0',
                 'github ---> https://github.com/ZCreturn0'
+            ]
+        },
+        {
+            title: 'test',
+            items: [
+                'testtesttesttest',
+                'testtesttesttesttesttesttest',
+                'testtesttesttesttesttest'
             ]
         }
     ]
