@@ -43,7 +43,7 @@ class Tools {
 }
 
 // 基础打字间隔,对应 speed,可更改这个值来调整基础打字速度
-const BASE_INTERVAL = 0.01 * 1000;
+const BASE_INTERVAL = 0.03 * 1000;
 let INTERVAL = BASE_INTERVAL;
 // 控制全局定时器
 let TIMER = null;
@@ -111,8 +111,6 @@ let style = document.createElement('style');
 // 把新建的 style 标签添加到 head
 head.appendChild(style);
 
-// console.log(operationBtns.outerHTML);
-
 // 暂停
 function pause() {
     pauseBtn.innerText = '◀ 播放';
@@ -175,7 +173,7 @@ function operationBtnEvents() {
 }
 
 /**
- * @description 在指定的元素中添加段落
+ * @description 在指定的元素中添加段落(用于添加介绍文字信息)
  * @param {object} el 指定元素
  * @param {string} text 段落中的文字
  */
@@ -203,7 +201,7 @@ async function addParagraph(el, text) {
 }
 
 /**
- * @description 带缩进的段落添加
+ * @description 带缩进的段落添加(用于添加代码)
  * @param {object} el 指定元素
  * @param {string} text 段落中的文字
  * @param {number} spaces 缩进空格数
@@ -212,8 +210,9 @@ async function addParagraph(el, text) {
 async function addParagraphWithIndent(el, text, spaces) {
     // 创建段落
     let pre = document.createElement('pre');
-    // 把字符串转成数组
+    // 添加缩进
     text = (spaces ? Array(spaces).fill(' ').join('') : '') + text;
+    // 把字符串转成数组
     let words = text.split('');
     // 把段落添加到显示区域
     el.appendChild(pre);
@@ -233,7 +232,10 @@ async function addParagraphWithIndent(el, text, spaces) {
             // 把文字添加到段落里
             pre.innerText += word;
             // 滚动条滚到最底部
+            // 可优化
             el.scrollTop = el.scrollHeight;
+            HTMLCodes.scrollTop = HTMLCodes.scrollHeight;
+            CSSCodes.scrollTop = CSSCodes.scrollHeight;
         });
     }
 }
@@ -292,10 +294,6 @@ async function showCodesArea() {
     await Sleep(1000);
 }
 
-// test
-HTMLBtn.onclick = toHTMLCodeArea;
-CSSBtn.onclick = toCSSCodeArea;
-
 // 切换到 HTML 代码区
 function toHTMLCodeArea() {
     Tools.addClass(HTMLBtn, 'btn-selected');
@@ -320,6 +318,7 @@ async function coding() {
         // 遍历描述
         for (let des of descriptions) {
             // 按段渲染描述
+            await Sleep(500);
             await addParagraph(desDom, des);
         }
         // HTML 代码
@@ -359,8 +358,12 @@ async function coding() {
                 await addParagraphWithIndent(cssDom, cssCode.code, cssCode.indent);
             }
         }
+        // 执行对应步骤
         window[`step${i}`]();
     }
+    // 展示完后给代码切换按钮加上事件
+    HTMLBtn.onclick = toHTMLCodeArea;
+    CSSBtn.onclick = toCSSCodeArea;
 }
 
 // 动态添加 CSS 代码
@@ -410,4 +413,105 @@ function step3() {
     Tools.addClass(avatar, 'avatar');
     info.append(avatar);
     addCSS(`.display-container .avatar {width: 120px;height: 120px;background: url('./avatar.jpg');background-size: contain;margin: 20px auto 20px;border-radius: 50%;}`);
+}
+
+// 4.个人信息
+function step4() {
+    subInfoAdd([SETTINGS.info[0]]);
+    addCSS(`.display-container .info-block {padding: 10px 15px;}`);
+    addCSS(`.display-container .block-title {font-size: 20px;font-weight: bold;padding: 10px 0;}`);
+    addCSS(`.display-container .block-info-list {list-style: none;}`);
+    addCSS(`.display-container .block-info-list > li {padding-bottom: 10px;}`);
+}
+
+// 5.其他信息
+function step5() {
+    subInfoAdd(SETTINGS.info.slice(1));
+}
+
+// 5.对个人信息添加的简单封装
+function subInfoAdd(infoList) {
+    let info = display.getElementsByClassName('info')[0];
+    for (let item of infoList) {
+        let infoBlock = document.createElement('div');
+        Tools.addClass(infoBlock, 'info-block');
+        let blockTitle = document.createElement('div');
+        Tools.addClass(blockTitle, 'block-title');
+
+        blockTitle.innerText = item.title;
+        infoBlock.append(blockTitle);
+
+        let infoblockInfoListBlock = document.createElement('ul');
+        Tools.addClass(infoblockInfoListBlock, 'block-info-list');
+        infoBlock.append(infoblockInfoListBlock);
+
+        for (let subItem of item.items) {
+            let li = document.createElement('li');
+            let pre = document.createElement('pre');
+            pre.innerText = subItem;
+            li.append(pre);
+            infoblockInfoListBlock.append(li);
+        }
+
+        info.append(infoBlock);
+    }
+}
+
+// 6.姓名及求职意向
+function step6() {
+    let detail = document.getElementsByClassName('detail')[0];
+    let nameAndExpectation = document.createElement('div');
+    Tools.addClass(nameAndExpectation, 'name-and-expectation');
+    let name = document.createElement('div');
+    Tools.addClass(name, 'name');
+    name.innerText = SETTINGS.nameAndExpectation.name;
+    let expectation = document.createElement('div');
+    Tools.addClass(expectation, 'expectation');
+    expectation.innerText = SETTINGS.nameAndExpectation.expectation;
+    nameAndExpectation.append(name);
+    nameAndExpectation.append(expectation);
+    detail.append(nameAndExpectation);
+    addCSS(`.display-container .name-and-expectation {width: 80%;height: 80px;line-height: 80px;margin: 60px auto 0;display: flex;justify-content: space-around;}`);
+    addCSS(`.display-container .name {font-size: 30px;}`);
+    addCSS(`.display-container .expectation {font-size: 30px;padding: 0 20px;background: var(--info-bgColor);color: #fff;}`);
+}
+
+// 7.添加详细信息
+function step7() {
+    addDetailInfo([SETTINGS.detail[0]]);
+    addCSS('.display-container .module {margin-top: 20px;}');
+    addCSS('.display-container .module-name {font-size: 20px;font-weight: bold;border-bottom: 3px solid var(--info-bgColor);}');
+    addCSS('.display-container .module-name-inner {margin-left: 30px;padding: 0px 10px;background: var(--info-bgColor);color: #fff;border-radius: 5px 5px 0 0;}');
+    addCSS('.display-container .module-content {padding: 10px 30px;}');
+    addCSS('.display-container .module-content-item {margin-top: 10px;color: #000;}');
+}
+
+// 8.继续添加详细信息
+function step8() {
+    addDetailInfo(SETTINGS.detail.slice(1));
+}
+
+// 7.对详细信息添加的简单封装
+function addDetailInfo(detailList) {
+    let _detail = document.getElementsByClassName('detail')[0];
+    for (let detail of detailList) {
+        let _module = document.createElement('div');
+        Tools.addClass(_module, 'module');
+        let moduleName = document.createElement('div');
+        Tools.addClass(moduleName, 'module-name');
+        let moduleNameInner = document.createElement('span');
+        Tools.addClass(moduleNameInner, 'module-name-inner');
+        moduleNameInner.innerText = detail.title;
+        moduleName.append(moduleNameInner);
+        _module.append(moduleName);
+        let moduleContent = document.createElement('div');
+        for (let item of detail.items) {
+            let moduleContentItem = document.createElement('pre');
+            Tools.addClass(moduleContentItem, 'module-content-item');
+            moduleContentItem.innerText = item;
+            moduleContent.append(moduleContentItem);
+        }
+        _module.append(moduleContent);
+        _detail.append(_module);
+    }
 }

@@ -1,13 +1,6 @@
 const DATA = {
     // 开头介绍环节,数组中的每一个元素为一段
-    introduce: [
-        // '这是 ZCreturn0 开发的的一款简历模版,灵感来自知乎的某篇文章.本项目地址: https://github.com/ZCreturn0/thoughts/tree/master/%E7%AE%80%E5%8E%86%E6%A8%A1%E7%89%88. 觉得不错请点个 ★star !!',
-        // '改变本文件内容换成你想展示的内容,introduce 中每个元素为一段.',
-        // '当 introduce 完后会进入编写代码展示简历环节.',
-        // '可根据需求更改代码,该有注释的地方都写了注释.',
-        // '因为用的是<pre></pre>标签,所以这里输入文字的时候不要随便加换行.',
-        '下面进入代码展示区.'
-    ],
+    introduce: [],
     // 对代码进行解释及对应的代码
     code: {
         // 步骤
@@ -133,8 +126,8 @@ const DATA = {
         },
         '2': {
             description: [
-                '整个页面分为两部分',
-                '一部分是个人信息,一部分是详情信息'
+                '整个页面分为两部分.',
+                '一部分是个人信息,一部分是详情信息.'
             ],
             code: {
                 html: [
@@ -151,15 +144,19 @@ const DATA = {
                     {
                         insert: true,
                         code: '',
-                        // 对应的步骤代码
                         content: '3',
                         indent: 12
                     },
                     {
                         insert: true,
                         code: '',
-                        // 对应的步骤代码
                         content: '4',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        content: '5',
                         indent: 12
                     },
                     {
@@ -181,7 +178,21 @@ const DATA = {
                         insert: true,
                         code: '',
                         // 对应的步骤代码
-                        content: '00000000000000',
+                        content: '6',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '7',
+                        indent: 12
+                    },
+                    {
+                        insert: true,
+                        code: '',
+                        // 对应的步骤代码
+                        content: '8',
                         indent: 12
                     },
                     {
@@ -220,7 +231,7 @@ const DATA = {
         },
         '3': {
             description: [
-                '先放上自己的照片,并设置相应的样式'
+                '先放上自己的照片,并设置相应的样式.'
             ],
             code: {
                 html: [
@@ -246,6 +257,390 @@ const DATA = {
                 ]
             }
         },
-        length: 4
+        '4': {
+            description: [
+                '添加个人信息,增加相应的样式.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="info-block">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<ul class="block-info-list">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</ul>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .info-block {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding: 10px 15px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-title {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 20px;\nfont-weight: bold;\npadding: 10px 0;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-info-list {`,
+                        indent: 0
+                    },
+                    {
+                        code: `list-style: none;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .block-info-list > li {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding-bottom: 10px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '5': {
+            description: [
+                '类似地添加其他信息.',
+                '因为所用的类都是一样的,所以不需要额外添加 CSS.'
+            ],
+            code: {
+                html: [],
+                css: []
+            }
+        },
+        '6': {
+            description: [
+                '下面开始做内容详情页.',
+                '首先把名字和求职意向写上.添加对应样式.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="name-and-expectation">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .name-and-expectation {`,
+                        indent: 0
+                    },
+                    {
+                        code: `width: 80%;\nheight: 80px;\nline-height: 80px;\nmargin: 60px auto 0;\ndisplay: flex;\njustify-content: space-around;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .name {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 30px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .expectation {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 30px;\npadding: 0 20px;\nbackground: var(--info-bgColor);\ncolor: #fff;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '7': {
+            description: [
+                '然后添加详细信息.',
+                '先设计一个模版,后面直接添加 HTML 代码即可.'
+            ],
+            code: {
+                html: [
+                    {
+                        insert: false,
+                        code: '<div class="module">',
+                        indent: 12
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-name">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '<div class="module-content">',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 16
+                    },
+                    {
+                        insert: false,
+                        code: '</div>',
+                        indent: 12
+                    }
+                ],
+                css: [
+                    {
+                        code: `.display-container .module {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-top: 20px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-name {`,
+                        indent: 0
+                    },
+                    {
+                        code: `font-size: 20px;\nfont-weight: bold;\nborder-bottom: 3px solid var(--info-bgColor);`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-name-inner {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-left: 30px;\npadding: 0px 10px;\nbackground: var(--info-bgColor);\ncolor: #fff;\nborder-radius: 5px 5px 0 0;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-content {`,
+                        indent: 0
+                    },
+                    {
+                        code: `padding: 10px 30px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    },
+                    {
+                        code: `.display-container .module-content-item {`,
+                        indent: 0
+                    },
+                    {
+                        code: `margin-top: 10px;`,
+                        indent: 4
+                    },
+                    {
+                        code: `}`,
+                        indent: 0
+                    }
+                ]
+            }
+        },
+        '8': {
+            description: [
+                '最后,复制几段模版,放入相应的信息即可.'
+            ],
+            code: {
+                html: [],
+                css: []
+            }
+        },
+        length: 9
     }
 };
+
+DATA.introduce = SETTINGS.introduce;
+let firstInfoTitle = `<div class="block-title">${SETTINGS.info[0].title}</div>`;
+DATA.code[4].code.html.splice(1, 0,{
+    insert: false,
+    code: firstInfoTitle,
+    indent: 12
+});
+let firstInfoItems = [];
+for (let i = 0; i < SETTINGS.info[0].items.length; i++) {
+    firstInfoItems.push({
+        insert: false,
+        code: `<li>${SETTINGS.info[0].items[i]}</li>`,
+        indent: 20
+    });
+}
+DATA.code[4].code.html.splice(3, 0, ...firstInfoItems);
+let infoItems = [];
+for (let i = 1; i < SETTINGS.info.length; i++) {
+    infoItems.push({
+        insert: false,
+        code: '<div class="module">',
+        indent: 12
+    });
+    infoItems.push({
+        insert: false,
+        code: `<div class="block-title">${SETTINGS.info[i].title}</div>`,
+        indent: 16
+    });
+    infoItems.push({
+        insert: false,
+        code: '<ul class="block-info-list">',
+        indent: 16
+    });
+    for (let item of SETTINGS.info[i].items) {
+        infoItems.push({
+            insert: false,
+            code: `<li>${item}</li>`,
+            indent: 20
+        });
+    }
+    infoItems.push({
+        insert: false,
+        code: '</ul>',
+        indent: 16
+    });
+    infoItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 12
+    });
+}
+DATA.code[5].code.html = infoItems;
+let nameAndExpectationInfo = [];
+nameAndExpectationInfo.push({
+    insert: false,
+    code: `<div class="name">${SETTINGS.nameAndExpectation.name}</div>`,
+    indent: 16
+});
+nameAndExpectationInfo.push({
+    insert: false,
+    code: `<div class="expectation">${SETTINGS.nameAndExpectation.expectation}</div>`,
+    indent: 16
+});
+DATA.code[6].code.html.splice(1, 0, ...nameAndExpectationInfo);
+let firstDetailTitle = `<span class="module-name-inner">${SETTINGS.detail[0].title}</span>`;
+DATA.code[7].code.html.splice(2, 0, {
+    insert: false,
+    code: firstDetailTitle,
+    indent: 20
+});
+let firstDetailItems = [];
+for (let i = 0; i < SETTINGS.detail[0].items.length; i++) {
+    firstDetailItems.push({
+        insert: false,
+        code: `<pre class="module-content-item">${SETTINGS.detail[0].items[i]}</pre>`,
+        indent: 20
+    });
+}
+DATA.code[7].code.html.splice(5, 0, ...firstDetailItems);
+let detailItems = [];
+for (let i = 1; i < SETTINGS.detail.length; i++) {
+    detailItems.push({
+        insert: false,
+        code: '<div class="info-block">',
+        indent: 12
+    });
+    detailItems.push({
+        insert: false,
+        code: '<div class="module-name">',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: `<span class="module-name-inner">${SETTINGS.detail[i].title}</span>`,
+        indent: 20
+    });
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: '<div class="module-content">',
+        indent: 16
+    });
+    for (let item of SETTINGS.detail[i].items) {
+        detailItems.push({
+            insert: false,
+            code: `<pre class="module-content-item">${item}</pre>`,
+            indent: 20
+        });
+    }
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 16
+    });
+    detailItems.push({
+        insert: false,
+        code: '</div>',
+        indent: 12
+    });
+}
+DATA.code[8].code.html = detailItems;
