@@ -29,7 +29,7 @@
             height: 0;
             position: relative;
             transform-style: preserve-3d;
-            /* transform: translateZ(-1600px); */
+            transform: translateZ(-1600px);
             z-index: 1;
         }
         #box li {
@@ -77,7 +77,7 @@
     <script>
         ;(function(){
             // li 最大个数
-            const MAX_LI = 100;
+            const MAX_LI = 162;
             const BOX_ELE = $('#box');
 
             // li 3个方向的间距
@@ -107,13 +107,14 @@
             let gridLayout = _ => {
                 let arr = [...Array(MAX_LI).keys()];
                 let count = 0;
-                arr.forEach(i => {
+                // forEach 里有回调会变成异步函数
+                $(arr).each(i => {
                     // console.log(i)
                     let index = rangeRandomInt(0, arr.length - 1);
                     // 计算3个方向的偏移
                     let liEleMoveX = ((index % aSquareNum) % xRowMaxNum) * liEleOffsetX;
-                    let liEleMoveY = ((index % aSquareNum) % yColMaxNum) * liEleOffsetY;
-                    let liEleMoveZ = (index % aSquareNum) * liEleOffsetZ;
+                    let liEleMoveY = parseInt((index % aSquareNum) / yColMaxNum) * liEleOffsetY;
+                    let liEleMoveZ = parseInt(index / aSquareNum) * liEleOffsetZ;
                     // 计算 x,y,z 坐标 = 最小坐标 + 偏移
                     let liEleCoordX = liMinPosX + liEleMoveX;
                     let liEleCoordY = liMinPosY + liEleMoveY;
@@ -127,8 +128,8 @@
             };
 
             function main() {
-                [...Array(MAX_LI).keys()].forEach(i => {
-                    let liEle = $(`<li><span>${i}</span></li>`);
+                $([...Array(MAX_LI).keys()]).each(i => {
+                    let liEle = $(`<li></li>`);
                     BOX_ELE.append(liEle);
                 });
                 gridLayout();
