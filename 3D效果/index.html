@@ -28,6 +28,8 @@
             width: 0;
             height: 0;
             position: relative;
+            transform-style: preserve-3d;
+            /* transform: translateZ(-1600px); */
             z-index: 1;
         }
         #box li {
@@ -65,9 +67,7 @@
 </head>
 <body>
     <div class="wrap">
-        <ul id="box">
-            <li><span>test</span></li>
-        </ul>
+        <ul id="box"></ul>
 
         <div class="mask">
             <div class="ba-mask"></div>
@@ -78,8 +78,60 @@
         ;(function(){
             // li 最大个数
             const MAX_LI = 100;
-            function main() {
+            const BOX_ELE = $('#box');
 
+            // li 3个方向的间距
+            const liEleOffsetX = 350;
+            const liEleOffsetY = 350;
+            const liEleOffsetZ = 350;
+            // x,y 轴最大个数
+            const xRowMaxNum = 5;
+            const yColMaxNum = 5;
+            // 单个平面的个数
+            const aSquareNum = xRowMaxNum * yColMaxNum;
+            // z 轴层数
+            const zDeptNum = Math.ceil(MAX_LI / aSquareNum);
+
+            // 计算坐标"最小"的 li 坐标
+            let liMinPosX = parseInt(-1 * xRowMaxNum / 2) * liEleOffsetX;
+            let liMinPosY = parseInt(-1 * yColMaxNum / 2) * liEleOffsetY;
+            let liMinPosZ = parseInt(-1 * zDeptNum / 2) * liEleOffsetZ;
+
+            // 范围随机整数
+            // min, max 为 int
+            let rangeRandomInt = (min, max) => {
+                return min + Math.floor(Math.random() * (max - min));
+            };
+
+            // 布局方案
+            let gridLayout = _ => {
+                let arr = [...Array(MAX_LI).keys()];
+                let count = 0;
+                arr.forEach(i => {
+                    // console.log(i)
+                    let index = rangeRandomInt(0, arr.length - 1);
+                    // 计算3个方向的偏移
+                    let liEleMoveX = ((index % aSquareNum) % xRowMaxNum) * liEleOffsetX;
+                    let liEleMoveY = ((index % aSquareNum) % yColMaxNum) * liEleOffsetY;
+                    let liEleMoveZ = (index % aSquareNum) * liEleOffsetZ;
+                    // 计算 x,y,z 坐标 = 最小坐标 + 偏移
+                    let liEleCoordX = liMinPosX + liEleMoveX;
+                    let liEleCoordY = liMinPosY + liEleMoveY;
+                    let liEleCoordZ = liMinPosZ + liEleMoveZ;
+                    $("#box li").eq(arr[index]).css({
+                        "transform": `translate3d(${liEleCoordX}px, ${liEleCoordY}px, ${liEleCoordZ}px)`
+                    });
+                    console.log(arr[index])
+                    arr.splice(index, 1);
+                });
+            };
+
+            function main() {
+                [...Array(MAX_LI).keys()].forEach(i => {
+                    let liEle = $(`<li><span>${i}</span></li>`);
+                    BOX_ELE.append(liEle);
+                });
+                gridLayout();
             }
             main();
         })()
