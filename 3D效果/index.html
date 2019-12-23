@@ -21,7 +21,7 @@
         .wrap {
             height: 100%;
             overflow: hidden;
-            perspective: 800px;
+            perspective: 1600px;
         }
         #box {
             top: 50%;
@@ -80,7 +80,7 @@
     <script>
         ;(function(){
             // li 最大个数
-            const MAX_LI = 162;
+            const MAX_LI = 125;
             const BOX_ELE = $('#box');
 
             // li 3个方向的间距
@@ -95,6 +95,12 @@
             // z 轴层数
             const zDeptNum = Math.ceil(MAX_LI / aSquareNum);
 
+            // 默认景深(box 在 z 轴移动的距离)
+            const liEleDeptDefault = -800;
+
+            const deptDefault = liEleDeptDefault;
+            let liEleDeptZ = deptDefault;
+
             // 计算坐标"最小"的 li 坐标
             let liMinPosX = parseInt(-1 * xRowMaxNum / 2) * liEleOffsetX;
             let liMinPosY = parseInt(-1 * yColMaxNum / 2) * liEleOffsetY;
@@ -102,6 +108,13 @@
 
             // 要展示的数据
             let data = ['hanser', '烤箱', '陈小只', '憨八嘎', '憨', '小天使', '憨色'];
+
+            // 定时器
+            let timer = null;
+
+            // 偏移角度
+            let liEleDegX = 0;
+            let liEleDegY = 0;
 
             // 范围随机整数
             // min, max 为 int
@@ -118,9 +131,9 @@
                     // console.log(i)
                     let index = rangeRandomInt(0, arr.length - 1);
                     // 计算3个方向的偏移
-                    let liEleMoveX = ((index % aSquareNum) % xRowMaxNum) * liEleOffsetX;
-                    let liEleMoveY = parseInt((index % aSquareNum) / yColMaxNum) * liEleOffsetY;
-                    let liEleMoveZ = parseInt(index / aSquareNum) * liEleOffsetZ;
+                    let liEleMoveX = ((arr[index] % aSquareNum) % xRowMaxNum) * liEleOffsetX;
+                    let liEleMoveY = parseInt((arr[index] % aSquareNum) / yColMaxNum) * liEleOffsetY;
+                    let liEleMoveZ = parseInt(arr[index] / aSquareNum) * liEleOffsetZ;
                     // 计算 x,y,z 坐标 = 最小坐标 + 偏移
                     let liEleCoordX = liMinPosX + liEleMoveX;
                     let liEleCoordY = liMinPosY + liEleMoveY;
@@ -143,7 +156,7 @@
                 setTimeout(() => {
                     gridLayout();
                 }, 0);
-                
+
                 // 鼠标移入移出效果
                 $('#box li').hover(function(){
                     $(this).css('border','1px solid rgba(125,255,255,0.75)');
@@ -154,6 +167,50 @@
                     $(this).css('border','1px solid rgba(125,255,255,0.25)');
                     $(this).css('boxShadow','0 0 15px rgba(0,255,255,0.5)');
                     $(this).css('transition','0s');
+                });
+
+                // 上一个点坐标
+                let oldCoordX,oldCoordY;
+                // 当前点坐标
+                let newCoordX,newCoordY;
+                // 坐标差
+                let diffX,diffY;
+                $(document).mousedown(eOuter => {
+                    let e = eOuter || window.event;
+                    oldCoordX = e.clientX;
+                    oldCoordY = e.clientY;
+                    $(this).on('mousemove', eInner => {
+                        let event = eInner || window.event;
+                        timer && clearInterval(timer);
+                        
+                        newCoordX = event.clientX;
+                        newCoordY = event.clientY;
+                        
+                        diffX = newCoordX - oldCoordX;
+                        diffY = newCoordY - oldCoordY;
+                        // 更新上一个点的坐标
+                        oldCoordX = newCoordX;
+                        oldCoordY = newCoordY;
+                        // 计算角度(x,y 对调)
+                        liEleDegX -= diffY * 0.1;
+                        liEleDegY += diffX * 0.1;
+                        $("#box").css({
+                            "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
+                        });
+                    });
+                }).mouseup(eOuter => {
+                    $(this).off('mousemove');
+                    timer && clearInterval(timer);
+                    timer = setInterval(() => {
+                        diffX *= 0.96;
+                        diffY *= 0.96;
+                        Math.abs(diffX) <= 0.05 && Math.abs(diffY) <=0.05 && clearInterval(timer);
+                        liEleDegX -= diffY * 0.1;
+                        liEleDegY += diffX * 0.1;
+                        $("#box").css({
+                            "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
+                        });
+                    }, 10);
                 });
             }
             main();
