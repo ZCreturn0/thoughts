@@ -13,6 +13,7 @@
         html,
         body {
             height: 100%;
+            -webkit-user-select: none;
         }
         li {
             list-style-type: none;
@@ -29,7 +30,7 @@
             height: 0;
             position: relative;
             transform-style: preserve-3d;
-            transform: translateZ(-1600px);
+            transform: translateZ(-800px);
             z-index: 1;
         }
         #box li {
@@ -43,6 +44,8 @@
             background-color: rgba(5, 100, 80, 0.2);
             border: 1px solid rgba(125, 255, 255, 0.25);
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: 4s ease-in-out;
+            cursor: pointer;
         }
         #box li span {
             font-size: 28px;
@@ -70,7 +73,7 @@
         <ul id="box"></ul>
 
         <div class="mask">
-            <div class="ba-mask"></div>
+            <div class="bg-mask"></div>
         </div>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -97,6 +100,9 @@
             let liMinPosY = parseInt(-1 * yColMaxNum / 2) * liEleOffsetY;
             let liMinPosZ = parseInt(-1 * zDeptNum / 2) * liEleOffsetZ;
 
+            // 要展示的数据
+            let data = ['hanser', '烤箱', '陈小只', '憨八嘎', '憨', '小天使', '憨色'];
+
             // 范围随机整数
             // min, max 为 int
             let rangeRandomInt = (min, max) => {
@@ -122,7 +128,6 @@
                     $("#box li").eq(arr[index]).css({
                         "transform": `translate3d(${liEleCoordX}px, ${liEleCoordY}px, ${liEleCoordZ}px)`
                     });
-                    console.log(arr[index])
                     arr.splice(index, 1);
                 });
             };
@@ -130,9 +135,26 @@
             function main() {
                 $([...Array(MAX_LI).keys()]).each(i => {
                     let liEle = $(`<li></li>`);
+                    let span = $(`<span>${data[rangeRandomInt(0, data.length)]}</span>`);
+                    span.css('color', `rgb(${rangeRandomInt(100, 255)}, ${rangeRandomInt(100, 255)}, ${rangeRandomInt(100, 255)})`);
+                    liEle.append(span);
                     BOX_ELE.append(liEle);
                 });
-                gridLayout();
+                setTimeout(() => {
+                    gridLayout();
+                }, 0);
+                
+                // 鼠标移入移出效果
+                $('#box li').hover(function(){
+                    $(this).css('border','1px solid rgba(125,255,255,0.75)');
+                    $(this).css('boxShadow','0 0 15px rgba(0,255,255,0.75)');
+                    $(this).css('transition','0s');
+                },
+                function(){
+                    $(this).css('border','1px solid rgba(125,255,255,0.25)');
+                    $(this).css('boxShadow','0 0 15px rgba(0,255,255,0.5)');
+                    $(this).css('transition','0s');
+                });
             }
             main();
         })()
