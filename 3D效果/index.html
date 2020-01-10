@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./iconfont.css">
     <style>
         * {
             margin: 0;
@@ -30,6 +31,7 @@
             height: 0;
             position: relative;
             transform-style: preserve-3d;
+            /* 与 mousemove 同步 */
             transform: translateZ(-800px);
             z-index: 1;
         }
@@ -44,7 +46,7 @@
             background-color: rgba(5, 100, 80, 0.2);
             border: 1px solid rgba(125, 255, 255, 0.25);
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-            transition: 4s ease-in-out;
+            /* transition: 4s ease-in-out; */
             cursor: pointer;
         }
         #box li span {
@@ -66,6 +68,32 @@
             background: #000;
             opacity: 0.25;
         }
+        .operation {
+            width: 450px;
+            height: 50px;
+            line-height: 50px;
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 225px);
+            background-color: rgba(5, 100, 80, 0.2);
+            border: 1px solid rgba(125, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            padding: 0 20px;
+            z-index: 999;
+            text-align: center;
+        }
+        .operation > li {
+            float: left;
+            width: 90px;
+            height: 100%;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 2px 2px 5px #5ca1d2;
+            transition: .5s ease-in-out;
+        }
+        .selected {
+            background: rgba(0, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -75,6 +103,13 @@
         <div class="mask">
             <div class="bg-mask"></div>
         </div>
+        <ul class="operation">
+            <li data-method="gridLayout"><i class="icon iconfont icon-iconfontwujingongju"></i></li>
+            <li data-method="helixLayout"><i class="icon iconfont icon-"></i></li data-method="gridLayout">
+            <li data-method="sphereLayout"><i class="icon iconfont shijiao-qiuxing"></i></li>
+            <li data-method="geomeLayout"><i class="icon iconfont jihe"></i></li>
+            <li data-method="randomLayout"><i class="icon iconfont suiji"></i></li>
+        </ul>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -107,7 +142,7 @@
             let liMinPosZ = parseInt(-1 * zDeptNum / 2) * liEleOffsetZ;
 
             // 要展示的数据
-            let data = ['hanser', '烤箱', '陈小只', '憨八嘎', '憨', '小天使', '憨色'];
+            let data = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG'];
 
             // 定时器
             let timer = null;
@@ -122,13 +157,11 @@
                 return min + Math.floor(Math.random() * (max - min));
             };
 
-            // 布局方案
+            // 格子布局
             let gridLayout = _ => {
                 let arr = [...Array(MAX_LI).keys()];
-                let count = 0;
                 // forEach 里有回调会变成异步函数
                 $(arr).each(i => {
-                    // console.log(i)
                     let index = rangeRandomInt(0, arr.length - 1);
                     // 计算3个方向的偏移
                     let liEleMoveX = ((arr[index] % aSquareNum) % xRowMaxNum) * liEleOffsetX;
@@ -139,10 +172,85 @@
                     let liEleCoordY = liMinPosY + liEleMoveY;
                     let liEleCoordZ = liMinPosZ + liEleMoveZ;
                     $("#box li").eq(arr[index]).css({
+                        // 必须在这里添加 transition,放在 css 中会导致部分 li 无效从而出现瞬移(bug????)
+                        "transition": "4s ease-in-out",
                         "transform": `translate3d(${liEleCoordX}px, ${liEleCoordY}px, ${liEleCoordZ}px)`
                     });
                     arr.splice(index, 1);
                 });
+            };
+
+            // 螺旋布局
+            let helixLayout = _ => {
+                let arr = [...Array(MAX_LI).keys()];
+                $(arr).each(i => {
+                    let index = rangeRandomInt(0, arr.length - 1);
+                    // 36个一圈,每个旋转10度
+                    let liEleDegY = 10 * i;
+                    // 从中间往上下散开,每个往上移动10
+                    let liEleDepY = -10 * parseInt(MAX_LI / 2) + 10 * i;
+                    $("#box li").eq(arr[index]).css({
+                        "transition": "4s ease-in-out",
+                        // 沿 Y 轴旋转对应角度并移动距离,朝 Z 轴移动景深距离的绝对值(朝面对的方向移动)
+                        "transform": `rotateY(${liEleDegY}deg) translateY(${liEleDepY}px) translateZ(${Math.abs(deptDefault)}px)`
+                    });
+                    arr.splice(index, 1);
+                });
+            };
+
+            // 球形布局
+            let sphereLayout = _ => {
+                let arr = [...Array(MAX_LI).keys()];
+                $(arr).each(i => {
+                    let index = rangeRandomInt(0, arr.length - 1);
+                    // y 轴旋转角度 (修改角度查看不同效果, 与总个数有关 2:20铺不满,3:30有重叠, 3:60,3:90球的线条数不同)
+                    let liEleDegY = 3 * i;
+                    let liEleDegX = 30 * i;
+                    $("#box li").eq(arr[index]).css({
+                        "transition": "4s ease-in-out",
+                        "transform": `rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg) translateZ(${Math.abs(deptDefault)}px)`
+                    });
+                    arr.splice(index, 1);
+                });
+            };
+
+            // 几何布局
+            let geomeLayout = _ => {
+                let arr = [...Array(MAX_LI).keys()];
+                $(arr).each(i => {
+                    let index = rangeRandomInt(0, arr.length - 1);
+                    let liEleDegY = 8.9 * i;
+                    let liEleDegX = 2.9 * i;
+                    $("#box li").eq(arr[index]).css({
+                        "transition": "4s ease-in-out",
+                        "transform": `rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg) translateZ(${Math.abs(deptDefault)}px)`
+                    });
+                    arr.splice(index, 1);
+                });
+            };
+
+            // 随机布局
+            let randomLayout = _ => {
+                let arr = [...Array(MAX_LI).keys()];
+                $(arr).each(i => {
+                    let index = rangeRandomInt(0, arr.length - 1);
+                    let x = (Math.random() - 0.5) * 3000;
+                    let y = (Math.random() - 0.5) * 3000;
+                    let z = (Math.random() - 0.5) * 3000;
+                    let rx = ((Math.random() - 0.5) > 0 ? 1 : -1) * Math.random();
+                    let ry = ((Math.random() - 0.5) > 0 ? 1 : -1) * Math.random();
+                    let rz = ((Math.random() - 0.5) > 0 ? 1 : -1) * Math.random();
+                    let deg = Math.random() * 360;
+                    $("#box li").eq(arr[index]).css({
+                        "transition": "4s ease-in-out",
+                        "transform": `translate3d(${x}px, ${y}px, ${z}px) rotate3d(${rx}, ${ry}, ${rz}, ${deg}deg)`
+                    });
+                    arr.splice(index, 1);
+                });
+            };
+
+            let methodDict = {
+                gridLayout, helixLayout, sphereLayout, geomeLayout, randomLayout
             };
 
             function main() {
@@ -153,8 +261,20 @@
                     liEle.append(span);
                     BOX_ELE.append(liEle);
                 });
+
+                $(".operation>li").click(function(){
+                    $(".operation>li").removeClass('selected');
+                    $(this).addClass('selected');
+                    let method = $(this).attr('data-method');
+                    // 复原场景
+                    // $("#box").css({
+                    //     "transition": "4s ease-in-out",
+                    //     "transform": `translateZ(${deptDefault}px) rotateX(0deg) rotateY(0deg)`
+                    // });
+                    methodDict[method]();
+                });
                 setTimeout(() => {
-                    gridLayout();
+                    $(".operation>li").eq(0).click();
                 }, 0);
 
                 // 鼠标移入移出效果
@@ -174,8 +294,9 @@
                 // 当前点坐标
                 let newCoordX,newCoordY;
                 // 坐标差
-                let diffX,diffY;
-                $(document).mousedown(eOuter => {
+                // 必须给初始值,否则mousedown后没触发mousemove会导致diffX,diffY为NaN
+                let diffX = 0,diffY = 0;
+                $(document).on('mousedown', eOuter => {
                     let e = eOuter || window.event;
                     oldCoordX = e.clientX;
                     oldCoordY = e.clientY;
@@ -194,19 +315,37 @@
                         // 计算角度(x,y 对调)
                         liEleDegX -= diffY * 0.1;
                         liEleDegY += diffX * 0.1;
+                        console.log(liEleDeptZ, liEleDegX, liEleDegY);
                         $("#box").css({
                             "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
                         });
                     });
-                }).mouseup(eOuter => {
+                }).on('mouseup', eOuter => {
                     $(this).off('mousemove');
                     timer && clearInterval(timer);
                     timer = setInterval(() => {
-                        diffX *= 0.96;
-                        diffY *= 0.96;
+                        diffX *= 0.9;
+                        diffY *= 0.9;
                         Math.abs(diffX) <= 0.05 && Math.abs(diffY) <=0.05 && clearInterval(timer);
                         liEleDegX -= diffY * 0.1;
                         liEleDegY += diffX * 0.1;
+                        $("#box").css({
+                            "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
+                        });
+                    }, 10);
+                }).on('mousewheel DOMMouseScroll', e => {
+                    timer && clearInterval(timer);
+                    // 判断滚轮方向
+                    let step = (e.originalEvent.wheelDelta && e.originalEvent.wheelDelta > 0 ? 1 : -1)
+                            || (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));
+                    liEleDeptZ += step * 90;
+                    $("#box").css({
+                        "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
+                    });
+                    timer = setInterval(() => {
+                        step *= 0.8;
+                        liEleDeptZ += step * 80;
+                        Math.abs(step) < 0.0005 && clearInterval(timer);
                         $("#box").css({
                             "transform": `translateZ(${liEleDeptZ}px) rotateX(${liEleDegX}deg) rotateY(${liEleDegY}deg)`
                         });
